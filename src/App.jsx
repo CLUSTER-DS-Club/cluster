@@ -24,7 +24,7 @@ function App() {
       ) : (
         <>
           <Header />
-          <main>
+          <main >
             <HeroSection />
             <FeaturesGrid />
             <TestimonialsCarousel />
