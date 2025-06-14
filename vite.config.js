@@ -3,6 +3,10 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  base: '/cluster/',
+  base: '/',
+   server: {
+    host: true,       
+    port: 5173        
+  },
   plugins: [react(), tailwindcss()],
 });

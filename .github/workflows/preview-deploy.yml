@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: Netlify Preview Deploy
+
+on:
+  pull_request_target:
+    branches:
+      - main
+
+jobs:
+  preview-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run:  npm install
+
+      - name: Build Vite app
+        run:  npm run build
+
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+
+      - name: Deploy to Netlify (Preview)
+        id: netlify
+        run: |
+          PREVIEW_URL=$(netlify deploy --dir=dist --auth=$NETLIFY_AUTH_TOKEN --site=d9e0b237-f36b-488a-bbbf-2edc9a95fd0e | grep -Eo 'https://[^ ]+\.netlify\.app')
+          echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+      - name: Comment PR with preview link
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `🚀 **Preview Deploy Successful!**\n\n🔗 Preview URL: ${{ steps.netlify.outputs.preview_url }}\n\nPlease test the changes before merging.`
+            })

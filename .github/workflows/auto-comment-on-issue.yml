@@ -1,5 +1,6 @@
-name: Auto Comment on Issue Open
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 
+name: Auto Comment on Issue Open
 on:
   issues:
     types: [opened]
