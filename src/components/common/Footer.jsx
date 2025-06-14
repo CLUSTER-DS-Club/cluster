@@ -9,8 +9,9 @@ import {
     Send,
     CheckCircle
 } from 'lucide-react';
-import { SiDiscord, SiLinkedin, SiGmail, SiGithub } from 'react-icons/si'; // ✅ Import Discord icon from react-icons
+import { SiDiscord, SiLinkedin, SiGmail, SiGithub } from 'react-icons/si'; 
 import logo from '/DS_CLUB_LOGO.jpeg';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     const [email, setEmail] = useState('');
@@ -138,14 +139,14 @@ const Footer = () => {
                                     <ul className="space-y-3">
                                         {quickLinks.map((link, index) => (
                                             <li key={index}>
-                                                <a
-                                                    href="#"
+                                                <Link
+                                                    to={`/${link.toLowerCase().replace(/\s+/g, '-')}`}  // handles links like "About Us" → "/about-us"
                                                     className="text-slate-400 hover:text-cyan-400 transition-all duration-300 font-medium flex items-center space-x-3 group py-1"
                                                 >
                                                     <div className="w-1.5 h-1.5 bg-slate-600 rounded-full group-hover:bg-cyan-400 transition-colors duration-300"></div>
                                                     <span>{link}</span>
                                                     <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-0 group-hover:translate-x-1" />
-                                                </a>
+                                                </Link>
                                             </li>
                                         ))}
                                     </ul>
