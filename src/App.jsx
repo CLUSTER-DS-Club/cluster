@@ -26,7 +26,7 @@ function App() {
   )
 
   return (
-    <Router>
+    <Router basename="/cluster">
       <AnimatedBackground />
       <FloatingElements />
       <ScrollToTop />
