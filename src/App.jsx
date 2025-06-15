@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import { Routes, Route } from 'react-router-dom'
 import Header from './components/common/Header.jsx'
 import Footer from './components/common/Footer.jsx'
 import FloatingElements from './components/common/FloatingElements.jsx'
@@ -10,29 +11,34 @@ import TestimonialsCarousel from './components/home/TestimonialsCarousel.jsx'
 import CallToAction from './components/home/CallToAction.jsx'
 import AnimatedBackground from './components/common/AnimatedBackground.jsx'
 import ScrollToTop from './components/common/ScrollToTop.jsx'
+import Research from './components/Research.jsx'
+import Publications from './components/Publications.jsx'
 
 function App() {
-  const [loading, setLoading] = useState(true)
-
   return (
     <>
       <AnimatedBackground />
       <FloatingElements />
       <ScrollToTop />
-      {loading ? (
-        <LoadingScreen onComplete={() => setLoading(false)} />
-      ) : (
-        <>
-          <Header />
-          <main>
-            <HeroSection />
-            <FeaturesGrid />
-            <TestimonialsCarousel />
-            <CallToAction />
-          </main>
-          <Footer />
-        </>
-      )}
+      <Header />
+      <main>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <HeroSection />
+                <FeaturesGrid />
+                <TestimonialsCarousel />
+                <CallToAction />
+              </>
+            }
+          />
+          <Route path="/research" element={<Research />} />
+          <Route path="/publications" element={<Publications />} />
+        </Routes>
+      </main>
+      <Footer />
     </>
   )
 }
