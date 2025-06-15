@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown, Users } from 'lucide-react';
 import logo from '/DS_CLUB_LOGO.jpeg';
@@ -20,7 +21,7 @@ const Header = () => {
         { name: 'Community', href: '#', hasDropdown: false },
         { name: 'Research', href: '#', hasDropdown: false },
         { name: 'About', href: '#', hasDropdown: false },
-        { name: 'Contact', href: '#', hasDropdown: false }
+        { name: 'Contact', href: '/contact', hasDropdown: false }
     ];
 
     return (
@@ -60,8 +61,8 @@ const Header = () => {
                                 onMouseEnter={() => item.hasDropdown && setActiveDropdown(index)}
                                 onMouseLeave={() => setActiveDropdown(null)}
                             >
-                                <a
-                                    href={item.href}
+                                <Link
+                                    to={item.href}
                                     className="text-slate-300 hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 flex items-center space-x-1 group"
                                 >
                                     <span className="relative">
@@ -72,7 +73,7 @@ const Header = () => {
                                         <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${activeDropdown === index ? 'rotate-180' : ''
                                             }`} />
                                     )}
-                                </a>
+                                </Link>
 
                                 {/* Dropdown Menu */}
                                 {item.hasDropdown && activeDropdown === index && (
@@ -121,13 +122,13 @@ const Header = () => {
                     <div className="md:hidden bg-slate-800/95 backdrop-blur-xl border-t border-cyan-500/20 animate-in slide-in-from-top duration-300">
                         <div className="px-2 pt-2 pb-3 space-y-1">
                             {navItems.map((item, index) => (
-                                <a
+                                <Link
                                     key={index}
-                                    href={item.href}
+                                    to={item.href}
                                     className="text-slate-300 hover:text-cyan-400 hover:bg-cyan-500/10 block px-3 py-2 rounded-md text-base font-medium transition-all duration-300"
                                 >
                                     {item.name}
-                                </a>
+                                </Link>
                             ))}
                             <div className="pt-4 border-t border-slate-700">
                                 <a
