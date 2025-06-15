@@ -9,6 +9,9 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import useDebounce from "./hooks/useDebounce";
 
 const FAQ = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
   const categoriesSet = new Set(allFaqs.map((f) => f.category));
   const categories = ["All", ...Array.from(categoriesSet)];
 
@@ -20,6 +23,7 @@ const FAQ = () => {
   const location = useLocation();
 
   useEffect(() => {
+    
     const hash = location.hash.replace("#", "");
     if (hash) {
       const exists = allFaqs.find((f) => f.id === hash);
