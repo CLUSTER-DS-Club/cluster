@@ -1,0 +1,95 @@
+[
+  {
+    "id": 1,
+    "title": "AI-Powered Learning Assistant",
+    "year": "2024",
+    "summary": "Revolutionary educational platform that personalizes learning paths using advanced machine learning algorithms and natural language processing.",
+    "thumbnail": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop",
+    "tags": ["AI", "Education", "React", "Python"],
+    "badge": {
+      "text": "🏆 Most Impactful",
+      "color": "from-yellow-500/20 to-orange-500/20 border-yellow-500/30"
+    },
+    "techStack": ["React", "Python", "TensorFlow", "PostgreSQL", "Docker", "FastAPI"],
+    "problem": "Students worldwide struggled with one-size-fits-all online learning platforms that failed to adapt to individual learning styles, pace, and knowledge gaps, resulting in 60% dropout rates and poor learning outcomes.",
+    "solution": "Developed an intelligent adaptive learning ecosystem that analyzes student performance patterns in real-time, adjusts content difficulty dynamically, provides personalized study paths, and offers contextual feedback using advanced ML algorithms and cognitive science principles.",
+    "impact": {
+      "metrics": [
+        "15,000+ active learners globally",
+        "40% improvement in course completion rates",
+        "2.3K GitHub stars and growing",
+        "Adopted by 5 major universities",
+        "85% student satisfaction score"
+      ],
+      "community": "Empowered 50+ contributors in ML/EdTech development, established partnerships with 3 educational institutions, and created an open standard for adaptive learning that's been adopted by 4 other projects worldwide."
+    },
+    "links": {
+      "github": "https://github.com/example/ai-learning",
+      "demo": "https://demo-learning.example.com",
+      "blog": "https://blog.example.com/ai-learning-case-study"
+    },
+    "color": "from-cyan-500/20 to-blue-500/20 border-cyan-500/30"
+  },
+  {
+    "id": 2,
+    "title": "Sustainable Supply Chain Tracker",
+    "year": "2023",
+    "summary": "Blockchain-powered transparency platform enabling small businesses to track, verify, and communicate sustainable sourcing practices.",
+    "thumbnail": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=250&fit=crop",
+    "tags": ["Web3", "Sustainability", "Blockchain", "React"],
+    "badge": {
+      "text": "🌱 Eco Champion",
+      "color": "from-green-500/20 to-emerald-500/20 border-green-500/30"
+    },
+    "techStack": ["React", "Solidity", "Node.js", "IPFS", "Ethereum", "Web3.js"],
+    "problem": "Small businesses lacked affordable, credible tools to verify and communicate their sustainable sourcing practices to environmentally conscious consumers, losing significant competitive advantage in a $150B sustainable goods market.",
+    "solution": "Built a decentralized transparency platform using blockchain technology to create immutable supply chain records, implemented QR code verification system for consumers, and developed automated sustainability scoring algorithms with third-party verification protocols.",
+    "impact": {
+      "metrics": [
+        "200+ businesses successfully onboarded",
+        "10,000+ products tracked and verified",
+        "30% average increase in customer trust scores",
+        "500+ active community members",
+        "$2M+ in additional revenue generated for SMEs"
+      ],
+      "community": "Trained 100+ developers in Web3 sustainability applications, created open standards adopted by 3 major sustainability platforms, and established a global network of verification partners."
+    },
+    "links": {
+      "github": "https://github.com/example/supply-tracker",
+      "demo": "https://supply-demo.example.com",
+      "blog": "https://blog.example.com/sustainable-blockchain"
+    },
+    "color": "from-green-500/20 to-teal-500/20 border-green-500/30"
+  },
+  {
+    "id": 3,
+    "title": "Community Health Monitor",
+    "year": "2024",
+    "summary": "IoT-powered environmental monitoring network providing real-time health insights and early warning systems for vulnerable communities.",
+    "thumbnail": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=250&fit=crop",
+    "tags": ["IoT", "Health", "Data Science", "Community"],
+    "badge": {
+      "text": "💡 Innovation Award",
+      "color": "from-purple-500/20 to-pink-500/20 border-purple-500/30"
+    },
+    "techStack": ["Python", "Arduino", "React", "InfluxDB", "Grafana", "TensorFlow"],
+    "problem": "Underserved communities lacked access to real-time environmental health data, making it impossible to protect vulnerable residents from pollution-related health risks that cause 7M+ premature deaths annually worldwide.",
+    "solution": "Engineered a comprehensive IoT sensor network with community-hosted monitoring stations, implemented ML-powered predictive health analytics, developed real-time mobile alert systems, and created interactive community health dashboards with actionable insights.",
+    "impact": {
+      "metrics": [
+        "25 monitoring stations deployed across 3 cities",
+        "5,000+ residents directly served",
+        "85% reduction in pollution exposure incidents",
+        "Officially adopted by city council policies",
+        "Featured in WHO digital health report"
+      ],
+      "community": "Trained 30+ community members in IoT development and data literacy, established ongoing community health monitoring programs, and created replicable deployment guides used by 8 other cities."
+    },
+    "links": {
+      "github": "https://github.com/example/health-monitor",
+      "demo": "https://health-demo.example.com",
+      "blog": "https://blog.example.com/community-health-iot"
+    },
+    "color": "from-purple-500/20 to-indigo-500/20 border-purple-500/30"
+  }
+]

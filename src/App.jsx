@@ -10,6 +10,8 @@ import TestimonialsCarousel from './components/home/TestimonialsCarousel.jsx'
 import CallToAction from './components/home/CallToAction.jsx'
 import AnimatedBackground from './components/common/AnimatedBackground.jsx'
 import ScrollToTop from './components/common/ScrollToTop.jsx'
+import CaseStudiesPage from './components/case_studies/CaseStudies.jsx'
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -25,10 +27,20 @@ function App() {
         <>
           <Header />
           <main>
-            <HeroSection />
-            <FeaturesGrid />
-            <TestimonialsCarousel />
-            <CallToAction />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <HeroSection />
+                    <FeaturesGrid />
+                    <TestimonialsCarousel />
+                    <CallToAction />
+                  </>
+                }
+              />
+              <Route path="/case-studies" element={<CaseStudiesPage />} />
+            </Routes>
           </main>
           <Footer />
         </>

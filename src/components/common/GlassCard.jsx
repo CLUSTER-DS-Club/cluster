@@ -206,7 +206,7 @@ export const GlassInfoCard = ({ title, description, icon: Icon, stats, ...props 
                     ))}
                 </div>
             )}
-        </div>
+        </div>ting stats effect
     </GlassCard>
 );
 
