@@ -75,8 +75,8 @@ const Research = () => {
             <p>{pub.summary}</p>
           </a>
         ))}
-        <div style={{textAlign: 'right', marginTop: '1.2rem'}}>
-          <a href="/#/publications" className="view-all-pubs">View All Publications →</a>
+        <div style={{ textAlign: 'right', marginTop: '1.2rem' }}>
+          <a href="/publications" className="view-all-pubs">View All Publications →</a>
         </div>
       </section>
       {popup !== null && (
