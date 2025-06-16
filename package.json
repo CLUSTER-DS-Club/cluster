@@ -5,13 +5,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build && cp dist/index.html dist/404.html",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
-  },
+  "start": "npm run dev",
+  "dev": "vite",
+  "build": "vite build && cp dist/index.html dist/404.html",
+  "lint": "eslint .",
+  "preview": "vite preview",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d dist"
+}
+,
   "dependencies": {
     "@tailwindcss/vite": "^4.1.7",
     "lucide-react": "^0.511.0",

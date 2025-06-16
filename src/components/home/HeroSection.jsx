@@ -84,7 +84,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 pt-17 lg:pt-20 md:pb-20 pb-32 lg:pb-4 xl:pb-0">
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
         {/* Large gradient orbs */}
@@ -226,7 +226,7 @@ const HeroSection = () => {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <div className="absolute -bottom-20 md:-bottom-17 lg:bottom-5 left-1/2 transform -translate-x-1/2">
           <button
             onClick={scrollToNext}
             className="flex flex-col items-center space-y-2 text-slate-400 hover:text-cyan-400 transition-colors duration-300 group"

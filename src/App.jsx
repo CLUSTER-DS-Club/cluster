@@ -1,5 +1,4 @@
-
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 
@@ -12,29 +11,41 @@ import ScrollToTop from './components/common/ScrollToTop.jsx'
 
 import Home from './components/home/HomePage.jsx'
 import FAQPage from './components/faq/FAQPage.jsx'
+import Research from './components/Research.jsx'
+import Publications from './components/Publications.jsx'
+import ContactPage from './components/contact/ContactPage.jsx'
 
 function App() {
   const [loading, setLoading] = useState(true)
 
-  if (loading) {
-    return <LoadingScreen onComplete={() => setLoading(false)} />
-  }
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000) // simulate loading
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
-    <>
+    <Router>
       <AnimatedBackground />
       <FloatingElements />
       <ScrollToTop />
-      <Header />
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/faq" element={<FAQPage />} />
-          {/* <Route path="/about" element={<AboutPage />} /> */}
-        </Routes>
-      </main>
-      <Footer />
-    </>
+      {loading ? (
+        <LoadingScreen onComplete={() => setLoading(false)} />
+      ) : (
+        <>
+          <Header />
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/faq" element={<FAQPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/research" element={<Research />} />
+              <Route path="/publications" element={<Publications />} />
+            </Routes>
+          </main>
+          <Footer />
+        </>
+      )}
+    </Router>
   )
 }
 
