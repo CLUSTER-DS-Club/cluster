@@ -32,7 +32,7 @@ const Header = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
-                    <div className="flex items-center space-x-3 group cursor-pointer">
+                    <Link to="/" className="flex items-center space-x-3 group cursor-pointer">
                         <div className="relative">
                             {/* Circular background for logo */}
                             <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg shadow-cyan-500/25 group-hover:shadow-cyan-500/50 transition-all duration-300 group-hover:scale-110 overflow-hidden">
@@ -50,7 +50,7 @@ const Header = () => {
                                 CLUSTER
                             </h1>
                         </div>
-                    </div>
+                    </Link>
 
                     {/* Desktop Navigation */}
                     <nav className="hidden md:flex items-center space-x-8">
