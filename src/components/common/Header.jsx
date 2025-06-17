@@ -161,11 +161,10 @@ const Header = () => {
                             </div>
                             <div className="pt-4 border-t border-slate-700">
                                 {user ? (
-                                    <button
-                                        type="button"
+                                    <button type="button"
                                         onClick={logout}
                                         className="w-full block px-3 py-2 bg-gradient-to-r from-red-500 to-red-700 text-white rounded-lg hover:from-red-600 hover:to-red-800 transition-all duration-300 shadow-lg shadow-red-500/25 hover:shadow-red-500/40"
-                                    >
+                                        >
                                         Logout
                                     </button>
                                 ) : (

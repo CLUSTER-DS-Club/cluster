@@ -101,7 +101,7 @@ const Signup = () => {
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
-                placeholder="Enter your full name"
+                placeholder="     Enter your full name"
                 required
                 className="pl-10"
               />
@@ -118,7 +118,7 @@ const Signup = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="Enter your email"
+                placeholder="     Enter your email"
                 required
                 className="pl-10"
               />
@@ -135,7 +135,7 @@ const Signup = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                placeholder="Create a password"
+                placeholder="     Create a password"
                 required
                 className="pl-10"
               />
@@ -159,7 +159,7 @@ const Signup = () => {
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                placeholder="Confirm your password"
+                placeholder="    Confirm your password"
                 required
                 className="pl-10"
               />
