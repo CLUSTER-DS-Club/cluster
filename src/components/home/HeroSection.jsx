@@ -167,13 +167,14 @@ const HeroSection = () => {
             </div>
 
             {/* Quick Stats */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 relative z-10 overflow-visible pt-4 mb-10">
               {stats.map((stat, index) => (
                 <GlassCard
                   key={index}
                   variant="primary"
                   hover="scale"
-                  className="p-4 text-center"
+                  className="p-4 text-center transform transition-all duration-500 ease-in-out will-chnage-transform"
+                  stylr={{zIndex:1}}
                 >
                   <stat.icon className="w-6 h-6 text-cyan-400 mx-auto mb-2" />
                   <div className="text-xl font-bold text-white">{stat.value}</div>
@@ -189,7 +190,7 @@ const HeroSection = () => {
             }`}>
             <div className="relative">
               {/* Main Feature Cards */}
-              <div className="space-y-6">
+              <div className="space-y-6 mt-5">
                 {features.map((feature, index) => (
                   <GlassCard
                     key={index}
