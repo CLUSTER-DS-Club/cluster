@@ -50,7 +50,11 @@ git clone https://github.com/CLUSTER-DS-Club/cluster.git
 cd cluster
 npm install
 npm run dev
-````
+cd backend
+node server.js
+```
+
+Create a .env file in the backend and initialize MONGO_URI and JWT_SECRET
 
 ---
 
@@ -59,7 +63,7 @@ npm run dev
 ```
 cluster/
 ├── public/              # Static assets
-├── src/                 
+├── src/               
 │   ├── components/      # Reusable UI components
 │   ├── pages/           # Application pages
 │   └── App.jsx          # Root component
