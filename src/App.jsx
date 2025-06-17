@@ -16,6 +16,9 @@ import ScrollToTop from './components/common/ScrollToTop.jsx'
 import Research from './components/Research.jsx'
 import Publications from './components/Publications.jsx'
 import ContactPage from './components/contact/ContactPage.jsx'
+import Blog from './pages/Blog.jsx'
+import BlogPost from './pages/BlogPost.jsx'
+
 
 function Home() {
   return (
@@ -52,6 +55,8 @@ function App() {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/research" element={<Research />} />
               <Route path="/publications" element={<Publications />} />
+              <Route path = "/blog" element={<Blog />} />
+              <Route path = "/blog/:id" element={<BlogPost/>}/>
             </Routes>
           </main>
           <Footer />
