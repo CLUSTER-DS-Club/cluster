@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useContext } from 'react';
 import { Menu, X, ChevronDown, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '/DS_CLUB_LOGO.jpeg';

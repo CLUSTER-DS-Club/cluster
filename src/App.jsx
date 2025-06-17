@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import Header from './components/common/Header.jsx'
@@ -13,9 +13,19 @@ import AnimatedBackground from './components/common/AnimatedBackground.jsx'
 import ScrollToTop from './components/common/ScrollToTop.jsx'
 import Login from './pages/Login.jsx'
 import Signup from './pages/Signup.jsx'
+import Home from './components/home/HomePage.jsx'
+import FAQPage from './components/faq/FAQPage.jsx'
+import Research from './components/Research.jsx'
+import Publications from './components/Publications.jsx'
+import ContactPage from './components/contact/ContactPage.jsx'
 
 function App() {
   const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000) // simulate loading
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <>
@@ -29,14 +39,11 @@ function App() {
           <Header />
           <main>
             <Routes>
-              <Route path="/" element={
-                <>
-                  <HeroSection />
-                  <FeaturesGrid />
-                  <TestimonialsCarousel />
-                  <CallToAction />
-                </>
-              } />
+              <Route path="/" element={<Home />} />
+              <Route path="/faq" element={<FAQPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/research" element={<Research />} />
+              <Route path="/publications" element={<Publications />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
             </Routes>
