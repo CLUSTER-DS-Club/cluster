@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom';
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown, Users } from 'lucide-react';
 import logo from '/DS_CLUB_LOGO.jpeg';
 import { AuthContext } from '../../context/AuthContext';
 
 const Header = () => {
-    const { user, logout } = useContext(AuthContext);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);

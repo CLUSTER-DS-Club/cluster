@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { UserPlus, User, Mail, Lock, Eye, EyeOff } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Auth.css';
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -70,9 +71,7 @@ const Signup = () => {
         alert(data.message || 'Signup failed');
         return;
       }
-      // alert('Signup successful! Please login.');
-      // Redirect to login page
-      window.location.href = 'login';
+      navigate('/login')
     } catch (err) {
       alert('Server error');
     }
@@ -241,4 +240,4 @@ const Signup = () => {
   );
 };
 
-export default Signup; 
+export default Signup;

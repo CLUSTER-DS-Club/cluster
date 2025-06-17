@@ -14,7 +14,6 @@ const Login = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
-  const [infoMessage, setInfoMessage] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,7 +56,6 @@ const Login = () => {
         <h2>Welcome Back</h2>
         <p className="subtitle">Sign in to your account</p>
 
-        {infoMessage && <p className="text-green-500 mb-4">{infoMessage}</p>}
         {error && <p className="text-red-500 mb-4">{error}</p>}
         
         <form onSubmit={handleSubmit} className="auth-form">
@@ -107,7 +105,6 @@ const Login = () => {
               <input type="checkbox" />
               <span>Remember me</span>
             </label>
-            <a href="#" className="forgot-password">Forgot password?</a>
           </div>
 
           <button type="submit" className="auth-button">
