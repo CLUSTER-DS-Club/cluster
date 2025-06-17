@@ -19,11 +19,11 @@ const CallToAction = ({ isVisible = true }) => (
             Become part of a global community that's redefining what's possible with data science,
             statistical analysis, and collaborative research. Your journey to excellence starts here.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-10 py-4 rounded-xl font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 hover:scale-105 shadow-xl shadow-cyan-500/20 hover:shadow-cyan-500/30">
+          <div className="flex gap-10 mt-10 flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-gradient-to-r from-cyan-500/80 to-blue-500/80 text-white px-10 py-4 rounded-xl font-semibold border border-cyan-300/60 hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 hover:scale-105 shadow-xl shadow-cyan-500/20 hover:shadow-cyan-500/30">
               Join CLUSTER Today
             </button>
-            <button className="border border-cyan-400/30 text-white px-10 py-4 rounded-xl font-semibold hover:bg-cyan-500/10 hover:border-cyan-400/50 transition-all duration-300 backdrop-blur-sm">
+            <button className="bg-gradient-to-r from-cyan-500/80 to-blue-500/80 text-white px-10 py-4 rounded-xl font-semibold border border-cyan-300/60 hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 hover:scale-105 shadow-xl shadow-cyan-500/20 hover:shadow-cyan-500/30">
               Explore Our Research
             </button>
           </div>
