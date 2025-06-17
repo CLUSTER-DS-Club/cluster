@@ -14,7 +14,7 @@ import FAQPage from './components/faq/FAQPage.jsx'
 import Research from './components/Research.jsx'
 import Publications from './components/Publications.jsx'
 import ContactPage from './components/contact/ContactPage.jsx'
-import Privacy from './pages/privacy.jsx'
+import Privacy from './pages/Privacy/Privacy.jsx'
 
 function App() {
   const [loading, setLoading] = useState(true)
