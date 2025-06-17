@@ -1,12 +1,26 @@
-const express = require('express');
-const cors = require('cors');
-const nodemailer = require('nodemailer');
+import express from 'express';
+import cors from 'cors';
+import nodemailer from 'nodemailer';
+import mongoose from 'mongoose';
+import authRouter from './routes/auth.js';
 
 const app = express();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use('/api/auth', authRouter);
+// MongoDB connection
+const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/clusterdb';
+
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const db = mongoose.connection;
+db.on('error', (error) => console.error('MongoDB connection error:', error));
+db.once('open', () => console.log('Connected to MongoDB'));
 
 // Email configuration - Replace these with your actual Gmail credentials
 const emailConfig = {

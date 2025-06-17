@@ -104,6 +104,12 @@ const Header = () => {
                             <Users className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
                             <span>Join Community</span>
                         </a>
+                        <Link
+                            to="login"
+                            className="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 flex items-center space-x-2"
+                        >
+                            <span>Login</span>
+                        </Link>
                     </div>
 
                     {/* Mobile menu button */}
@@ -140,6 +146,12 @@ const Header = () => {
                                     <Users className="w-4 h-4" />
                                     <span>Join Community</span>
                                 </a>
+                                <Link
+                                    to="login"
+                                    className="w-full block px-3 py-2 mt-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 flex items-center justify-center space-x-2"
+                                >
+                                    <span>Login</span>
+                                </Link>
                             </div>
                         </div>
                     </div>

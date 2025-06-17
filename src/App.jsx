@@ -14,6 +14,8 @@ import FAQPage from './components/faq/FAQPage.jsx'
 import Research from './components/Research.jsx'
 import Publications from './components/Publications.jsx'
 import ContactPage from './components/contact/ContactPage.jsx'
+import Login from './pages/Login.jsx'
+import Signup from './pages/Signup.jsx'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -40,6 +42,8 @@ function App() {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/research" element={<Research />} />
               <Route path="/publications" element={<Publications />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
             </Routes>
           </main>
           <Footer />
