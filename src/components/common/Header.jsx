@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Menu, X, ChevronDown, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import logo from '/DS_CLUB_LOGO.jpeg';
+import { AuthContext } from '../../context/AuthContext';
 
 const Header = () => {
+    const { user, logout } = useContext(AuthContext);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
@@ -103,6 +106,22 @@ const Header = () => {
                             <Users className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
                             <span>Join Community</span>
                         </a>
+                        {user ? (
+                            <button
+                                type="button"
+                                onClick={logout}
+                                className="px-4 py-2 bg-gradient-to-r from-red-500 to-red-700 text-white rounded-lg hover:from-red-600 hover:to-red-800 transition-all duration-300 shadow-lg shadow-red-500/25 hover:shadow-red-500/40"
+                            >
+                                Logout
+                            </button>
+                        ) : (
+                            <Link
+                                to="/login"
+                                className="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
+                            >
+                                Login
+                            </Link>
+                        )}
                     </div>
 
                     {/* Mobile menu button */}
@@ -139,6 +158,24 @@ const Header = () => {
                                     <Users className="w-4 h-4" />
                                     <span>Join Community</span>
                                 </a>
+                            </div>
+                            <div className="pt-4 border-t border-slate-700">
+                                {user ? (
+                                    <button
+                                        type="button"
+                                        onClick={logout}
+                                        className="w-full block px-3 py-2 bg-gradient-to-r from-red-500 to-red-700 text-white rounded-lg hover:from-red-600 hover:to-red-800 transition-all duration-300 shadow-lg shadow-red-500/25 hover:shadow-red-500/40"
+                                    >
+                                        Logout
+                                    </button>
+                                ) : (
+                                    <Link
+                                        to="/login"
+                                        className="w-full block px-3 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
+                                    >
+                                        Login
+                                    </Link>
+                                )}
                             </div>
                         </div>
                     </div>
