@@ -16,6 +16,7 @@ import Publications from './components/Publications.jsx'
 import ContactPage from './components/contact/ContactPage.jsx'
 import Privacy from './pages/Privacy/Privacy.jsx'
 import Cookies from './pages/Cookies/Cookies.jsx'
+import Terms from './pages/Terms of Service/Terms.jsx'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -44,6 +45,7 @@ function App() {
               <Route path="/publications" element={<Publications />} />
               <Route path='/privacy' element={<Privacy/>}/>
               <Route path='/cookies' element={<Cookies/>}/>
+              <Route path='/terms' element={<Terms/>}/>
 
             </Routes>
           </main>
