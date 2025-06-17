@@ -19,7 +19,8 @@ const Header = () => {
 
     const navItems = [
         { name: 'Home', href: '/', hasDropdown: false },
-        { name: 'Alumni', href: '/alumni', hasDropdown: false },
+        // Alumni link temporarily hidden as per client request
+        // { name: 'Alumni', href: '/alumni', hasDropdown: false },
         { name: 'Community', href: '#', hasDropdown: false },
         { name: 'Research', href: '#', hasDropdown: false },
         { name: 'About', href: '#', hasDropdown: false },
