@@ -63,19 +63,16 @@ const BlogGrid = ({ selectedTag }) => {
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
       {filteredPosts.length > 0 ? (
         filteredPosts.map((post) => (
+          <div className="flex flex-col h-full">
           <Link key={post.id} to={`/blog/${post.id}`} state={{ post }}>
             {" "}
             {/* Pass blog data */}
             <BlogCard {...post} />
           </Link>
+          </div>
         ))
       ) : (
         <div className="flex flex-col items-center justify-center h-[400px] bg-[#1E293B] rounded-lg shadow-md p-8 transition-all animate-fadeIn">
-          {/* <img
-            src="/cluster/blog/Noresult.png"
-            alt="No results found"
-            className="w-48 h-48 opacity-80 mb-6"
-          /> */}
 
           <h2 className="text-4xl font-bold text-red-400">No Blogs Found</h2>
           <p className="text-lg text-gray-300 mt-3">
