@@ -113,14 +113,7 @@ const Header = () => {
                             >
                                 Logout
                             </button>
-                        ) : (
-                            <Link
-                                to="login"
-                                className="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 flex items-center space-x-2"
-                            >
-                                <span>Login</span>
-                            </Link>
-                        )}
+                        ) : null}
                     </div>
 
                     {/* Mobile menu button */}
