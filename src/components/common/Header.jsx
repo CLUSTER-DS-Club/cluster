@@ -106,14 +106,7 @@ const Header = () => {
                             <Users className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
                             <span>Join Community</span>
                         </a>
-                        {user ? (
-                            <button
-                                onClick={logout}
-                                className="px-4 py-2 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-lg hover:from-red-600 hover:to-pink-600 transition-all duration-300 shadow-lg shadow-red-500/25 hover:shadow-red-500/40 flex items-center space-x-2"
-                            >
-                                Logout
-                            </button>
-                        ) : null}
+                        {/* Removed login/logout buttons as per request */}
                     </div>
 
                     {/* Mobile menu button */}
@@ -150,21 +143,7 @@ const Header = () => {
                                     <Users className="w-4 h-4" />
                                     <span>Join Community</span>
                                 </a>
-                                {user ? (
-                                    <button
-                                        onClick={logout}
-                                        className="w-full block px-3 py-2 mt-2 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-lg hover:from-red-600 hover:to-pink-600 transition-all duration-300 shadow-lg shadow-red-500/25 hover:shadow-red-500/40 flex items-center justify-center space-x-2"
-                                    >
-                                        Logout
-                                    </button>
-                                ) : (
-                                    <Link
-                                        to="login"
-                                        className="w-full block px-3 py-2 mt-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 flex items-center justify-center space-x-2"
-                                    >
-                                        <span>Login</span>
-                                    </Link>
-                                )}
+                            {/* Removed login/logout buttons as per request */}
                             </div>
                         </div>
                     </div>
