@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Menu, X, ChevronDown, Users } from 'lucide-react';
 import logo from '/DS_CLUB_LOGO.jpeg';
+import { AuthContext } from '../../context/AuthContext';
 
 const Header = () => {
+    const { user, logout } = useContext(AuthContext);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
@@ -104,12 +106,21 @@ const Header = () => {
                             <Users className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
                             <span>Join Community</span>
                         </a>
-                        <Link
-                            to="login"
-                            className="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 flex items-center space-x-2"
-                        >
-                            <span>Login</span>
-                        </Link>
+                        {user ? (
+                            <button
+                                onClick={logout}
+                                className="px-4 py-2 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-lg hover:from-red-600 hover:to-pink-600 transition-all duration-300 shadow-lg shadow-red-500/25 hover:shadow-red-500/40 flex items-center space-x-2"
+                            >
+                                Logout
+                            </button>
+                        ) : (
+                            <Link
+                                to="login"
+                                className="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 flex items-center space-x-2"
+                            >
+                                <span>Login</span>
+                            </Link>
+                        )}
                     </div>
 
                     {/* Mobile menu button */}
@@ -146,12 +157,21 @@ const Header = () => {
                                     <Users className="w-4 h-4" />
                                     <span>Join Community</span>
                                 </a>
-                                <Link
-                                    to="login"
-                                    className="w-full block px-3 py-2 mt-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 flex items-center justify-center space-x-2"
-                                >
-                                    <span>Login</span>
-                                </Link>
+                                {user ? (
+                                    <button
+                                        onClick={logout}
+                                        className="w-full block px-3 py-2 mt-2 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-lg hover:from-red-600 hover:to-pink-600 transition-all duration-300 shadow-lg shadow-red-500/25 hover:shadow-red-500/40 flex items-center justify-center space-x-2"
+                                    >
+                                        Logout
+                                    </button>
+                                ) : (
+                                    <Link
+                                        to="login"
+                                        className="w-full block px-3 py-2 mt-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 flex items-center justify-center space-x-2"
+                                    >
+                                        <span>Login</span>
+                                    </Link>
+                                )}
                             </div>
                         </div>
                     </div>
