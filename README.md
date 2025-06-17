@@ -50,7 +50,10 @@ git clone https://github.com/CLUSTER-DS-Club/cluster.git
 cd cluster
 npm install
 npm run dev
+cd backend
+npm install
 ````
+Create a .env file in backend which includes MONGO_URI and JWT_SECRET
 
 ---
 
