@@ -329,20 +329,20 @@ const Footer = () => {
                       </Link>
                     </li>
                     <li>
-                      <a
-                        href="#"
+                      <Link
+                        to="terms"
                         className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
                       >
                         Terms of Service
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="#"
+                      <Link
+                        to="cookies"
                         className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
                       >
                         Cookie Policy
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
