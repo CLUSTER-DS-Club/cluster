@@ -12,6 +12,7 @@ import {
 import { SiDiscord, SiLinkedin, SiGmail, SiGithub } from 'react-icons/si';
 import logo from '/DS_CLUB_LOGO.jpeg';
 import { Link } from 'react-router-dom';
+import CaseStudy from '../case study/caseStudy';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -46,14 +47,14 @@ const Footer = () => {
       { name: 'About Us', url: '/about' },
       { name: 'Our Team', url: '/team' },
       { name: 'Research', url: '/research' },
-      { name: 'Events', url: '/events' }
+      { name: 'Events', url: '/events' },
     ],
     resources: [
       { name: 'Documentation', url: '/docs' },
       { name: 'Tutorials', url: '/tutorials' },
       { name: 'Blog', url: '/blog' },
       { name: 'Case Studies', url: '/cases' },
-      { name: 'Whitepapers', url: '/whitepapers' }
+      { name: 'Resources', url: '/CaseStudy' }
     ],
     support: [
       { name: 'Contact Us', url: '/contact' },
