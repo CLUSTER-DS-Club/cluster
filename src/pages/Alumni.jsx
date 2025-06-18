@@ -18,18 +18,15 @@ import {
     Send,
     CheckCircle
 } from 'lucide-react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-coverflow';
+import { SiDiscord, SiLinkedin, SiGmail, SiGithub } from 'react-icons/si';
 
 const Alumni = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [selectedFilter, setSelectedFilter] = useState('all');
     const [filteredAlumni, setFilteredAlumni] = useState([]);
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
     useEffect(() => {
         const timer = setTimeout(() => setIsVisible(true), 300);
@@ -123,34 +120,49 @@ const Alumni = () => {
         }
     ];
 
-    // Testimonials for carousel
+    // Testimonials using the same design as main website
     const testimonials = [
         {
-            id: 1,
-            name: "Sarah Chen",
-            role: "Senior Data Scientist at Google",
-            image: "/api/placeholder/400/400",
-            quote: "CLUSTER didn't just teach me data science; it taught me how to think critically, collaborate effectively, and push the boundaries of what's possible. The mentorship I received and the projects I worked on directly led to my success at Google. The community here is truly special - we're not just alumni, we're a family of innovators.",
+            name: 'Sarah Chen',
+            text: 'CLUSTER helped me connect with amazing data scientists and opened doors to collaborations I never thought possible! The research hub is a game changer.',
+            role: 'Senior Data Scientist at Google',
             rating: 5,
-            year: "2022"
+            avatar: 'SC'
         },
         {
-            id: 2,
-            name: "Michael Rodriguez",
-            role: "AI Research Engineer at OpenAI",
-            image: "/api/placeholder/400/400",
-            quote: "The research culture at CLUSTER is unmatched. I was encouraged to explore cutting-edge AI concepts and given the resources to turn ideas into reality. Today, I'm working on systems that will shape the future of AI, and it all started with the foundation I built at CLUSTER. The faculty's guidance was instrumental in my journey.",
+            name: 'Michael Rodriguez',
+            text: 'The research opportunities at CLUSTER were incredible. Finding the right team members has never been easier, and now I work on cutting-edge AI.',
+            role: 'AI Research Engineer at OpenAI',
             rating: 5,
-            year: "2021"
+            avatar: 'MR'
         },
         {
-            id: 3,
-            name: "David Kim",
-            role: "Founder & CEO at DataFlow AI",
-            image: "/api/placeholder/400/400",
-            quote: "CLUSTER gave me more than technical skills - it gave me the confidence to dream big. The entrepreneurial ecosystem, the network of brilliant minds, and the culture of innovation inspired me to start my own company. We've now raised $10M and are solving real-world problems with AI. None of this would have been possible without CLUSTER.",
+            name: 'David Kim',
+            text: 'I found my co-founder through this platform! The networking features are incredibly powerful and helped me build a successful startup.',
+            role: 'Founder & CEO at DataFlow AI',
             rating: 5,
-            year: "2020"
+            avatar: 'DK'
+        },
+        {
+            name: 'Priya Sharma',
+            text: 'The networking possibilities are endless! This platform transformed how I approach professional connections in product management.',
+            role: 'Product Manager at Microsoft',
+            rating: 5,
+            avatar: 'PS'
+        },
+        {
+            name: 'Emily Johnson',
+            text: 'CLUSTER\'s matching algorithm is spot-on. I\'ve built meaningful relationships that advanced my career in autonomous systems.',
+            role: 'ML Engineer at Tesla',
+            rating: 5,
+            avatar: 'EJ'
+        },
+        {
+            name: 'Alex Thompson',
+            text: 'The quality of connections on this platform is unmatched. Every interaction has been valuable for my data engineering career.',
+            role: 'Data Engineering Lead at Netflix',
+            rating: 5,
+            avatar: 'AT'
         }
     ];
 
@@ -211,6 +223,51 @@ const Alumni = () => {
             setFilteredAlumni(alumniData.filter(alumni => alumni.category === selectedFilter));
         }
     }, [selectedFilter]);
+
+    // Testimonial carousel logic (same as main website)
+    useEffect(() => {
+        if (!isAutoPlaying) return;
+
+        const interval = setInterval(() => {
+            setCurrentIndex((prev) =>
+                prev >= testimonials.length - 3 ? 0 : prev + 1
+            );
+        }, 4000);
+
+        return () => clearInterval(interval);
+    }, [isAutoPlaying]);
+
+    const nextSlide = () => {
+        setCurrentIndex((prev) =>
+            prev >= testimonials.length - 3 ? 0 : prev + 1
+        );
+        setIsAutoPlaying(false);
+    };
+
+    const prevSlide = () => {
+        setCurrentIndex((prev) =>
+            prev <= 0 ? testimonials.length - 3 : prev - 1
+        );
+        setIsAutoPlaying(false);
+    };
+
+    const goToSlide = (index) => {
+        setCurrentIndex(index);
+        setIsAutoPlaying(false);
+    };
+
+    const renderStars = (rating) => {
+        return Array.from({ length: 5 }, (_, i) => (
+            <Star
+                key={i}
+                size={16}
+                className={`${i < rating
+                        ? 'text-cyan-400 fill-cyan-400'
+                        : 'text-slate-600'
+                    }`}
+            />
+        ));
+    };
 
     const handleSubmitStory = () => {
         setFormSubmitted(true);
@@ -381,89 +438,124 @@ const Alumni = () => {
                 </div>
             </section>
 
-            {/* Testimonials Carousel */}
-            <section className="relative z-10 py-20 px-4">
-                <div className="max-w-7xl mx-auto">
-                    <div className={`text-center mb-16 transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 backdrop-blur-sm border border-cyan-400/30 rounded-full px-6 py-2 mb-6">
-                            <Quote className="w-5 h-5 text-cyan-400" />
-                            <span className="text-cyan-300 font-medium">In Their Words</span>
+            {/* Testimonials Section - Using Main Website Design */}
+            <section className="py-20 bg-slate-800 relative overflow-hidden">
+                {/* Background decoration */}
+                <div className="absolute inset-0">
+                    <div className="absolute top-10 left-10 w-32 h-32 bg-cyan-500/10 rounded-full blur-xl"></div>
+                    <div className="absolute bottom-10 right-10 w-48 h-48 bg-blue-500/10 rounded-full blur-2xl"></div>
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl"></div>
+                </div>
+
+                <div className="max-w-7xl mx-auto px-4 relative z-10">
+                    {/* Header */}
+                    <div className="text-center mb-16">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-700/50 rounded-full mb-6">
+                            <Quote size={20} className="text-cyan-400" />
+                            <span className="text-slate-300 text-sm font-medium">What our alumni say</span>
                         </div>
-                        <h2 className="text-4xl font-bold text-white mb-6">
-                            What Our Alumni
-                            <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"> Say</span>
+                        <h2 className="text-5xl font-bold text-white mb-6 leading-tight">
+                            Trusted by
+                            <span className="text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text">
+                                {' '}innovators
+                            </span>
                         </h2>
-                        <p className="text-slate-300 text-lg max-w-2xl mx-auto">
-                            Hear directly from our graduates about their journey and how CLUSTER shaped their careers
+                        <p className="text-slate-400 text-xl max-w-2xl mx-auto">
+                            Join thousands of professionals who've transformed their careers with CLUSTER
                         </p>
                     </div>
 
+                    {/* Carousel */}
                     <div className="relative">
-                        <Swiper
-                            modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
-                            spaceBetween={30}
-                            slidesPerView={1}
-                            navigation={{
-                                prevEl: '.testimonial-prev',
-                                nextEl: '.testimonial-next',
-                            }}
-                            pagination={{ clickable: true }}
-                            autoplay={{ delay: 5000 }}
-                            effect="coverflow"
-                            coverflowEffect={{
-                                rotate: 50,
-                                stretch: 0,
-                                depth: 100,
-                                modifier: 1,
-                                slideShadows: true,
-                            }}
-                            breakpoints={{
-                                768: {
-                                    slidesPerView: 1,
-                                },
-                                1024: {
-                                    slidesPerView: 1,
-                                }
-                            }}
-                            className="testimonials-swiper"
-                        >
-                            {testimonials.map((testimonial) => (
-                                <SwiperSlide key={testimonial.id}>
-                                    <div className="bg-gradient-to-br from-slate-800/60 to-blue-900/40 backdrop-blur-xl rounded-3xl p-12 border border-white/10 max-w-4xl mx-auto">
-                                        <div className="flex flex-col lg:flex-row items-center gap-8">
-                                            <div className="w-32 h-32 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center text-white text-3xl font-bold shadow-2xl shadow-cyan-500/25 flex-shrink-0">
-                                                {testimonial.name.split(' ').map(n => n[0]).join('')}
+                        <div className="overflow-hidden">
+                            <div
+                                className="flex transition-transform duration-700 ease-out"
+                                style={{
+                                    transform: `translateX(-${currentIndex * (100 / 3)}%)`
+                                }}
+                            >
+                                {testimonials.map((testimonial, idx) => (
+                                    <div
+                                        key={idx}
+                                        className="flex-shrink-0 px-4"
+                                        style={{ width: `${100 / 3}%` }}
+                                    >
+                                        <div className="group bg-slate-900/70 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-slate-700/50 h-full flex flex-col justify-between transform transition-all duration-300 hover:scale-105 hover:bg-slate-900/90 hover:border-cyan-500/30 hover:shadow-cyan-500/10 hover:shadow-2xl">
+                                            {/* Quote icon */}
+                                            <div className="mb-6">
+                                                <Quote size={32} className="text-cyan-400/60 group-hover:text-cyan-400 transition-colors duration-300" />
                                             </div>
-                                            <div className="flex-1 text-center lg:text-left">
-                                                <Quote className="w-12 h-12 text-cyan-400/60 mb-6 mx-auto lg:mx-0" />
-                                                <p className="text-slate-200 text-xl leading-relaxed mb-8 italic">
-                                                    "{testimonial.quote}"
-                                                </p>
-                                                <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
-                                                    {Array.from({ length: 5 }).map((_, i) => (
-                                                        <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                                                    ))}
+
+                                            {/* Testimonial text */}
+                                            <p className="text-slate-200 text-lg leading-relaxed mb-8 flex-grow">
+                                                "{testimonial.text}"
+                                            </p>
+
+                                            {/* Rating */}
+                                            <div className="flex items-center gap-1 mb-6">
+                                                {renderStars(testimonial.rating)}
+                                            </div>
+
+                                            {/* User info */}
+                                            <div className="flex items-center gap-4">
+                                                <div className="w-14 h-14 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                                                    {testimonial.avatar}
                                                 </div>
                                                 <div>
-                                                    <h4 className="text-2xl font-bold text-white mb-2">{testimonial.name}</h4>
-                                                    <p className="text-cyan-400 font-semibold mb-1">{testimonial.role}</p>
-                                                    <p className="text-slate-400">Class of {testimonial.year}</p>
+                                                    <div className="text-white font-semibold text-lg group-hover:text-cyan-400 transition-colors duration-300">
+                                                        {testimonial.name}
+                                                    </div>
+                                                    <div className="text-slate-400 text-sm">
+                                                        {testimonial.role}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </SwiperSlide>
-                            ))}
-                        </Swiper>
+                                ))}
+                            </div>
+                        </div>
 
-                        {/* Custom Navigation */}
-                        <button className="testimonial-prev absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-slate-900/80 backdrop-blur-sm hover:bg-slate-800 text-cyan-400 rounded-full flex items-center justify-center shadow-xl border border-slate-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-110 z-10">
-                            <ChevronLeft className="w-6 h-6" />
+                        {/* Navigation buttons */}
+                        <button
+                            onClick={prevSlide}
+                            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 bg-slate-900/80 backdrop-blur-sm hover:bg-slate-800 text-cyan-400 rounded-full flex items-center justify-center shadow-xl border border-slate-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-110 z-10"
+                        >
+                            <ChevronLeft size={24} />
                         </button>
-                        <button className="testimonial-next absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-slate-900/80 backdrop-blur-sm hover:bg-slate-800 text-cyan-400 rounded-full flex items-center justify-center shadow-xl border border-slate-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-110 z-10">
-                            <ChevronRight className="w-6 h-6" />
+                        <button
+                            onClick={nextSlide}
+                            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 bg-slate-900/80 backdrop-blur-sm hover:bg-slate-800 text-cyan-400 rounded-full flex items-center justify-center shadow-xl border border-slate-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-110 z-10"
+                        >
+                            <ChevronRight size={24} />
                         </button>
                     </div>
+
+                    {/* Dots indicator */}
+                    <div className="flex justify-center gap-3 mt-12">
+                        {Array.from({ length: Math.ceil(testimonials.length / 3) }, (_, i) => (
+                            <button
+                                key={i}
+                                onClick={() => goToSlide(i)}
+                                className={`w-3 h-3 rounded-full transition-all duration-300 ${Math.floor(currentIndex / 3) === i
+                                        ? 'bg-cyan-400 w-8'
+                                        : 'bg-slate-600 hover:bg-slate-500'
+                                    }`}
+                            />
+                        ))}
+                    </div>
+
+                    {/* Resume autoplay button */}
+                    {!isAutoPlaying && (
+                        <div className="text-center mt-8">
+                            <button
+                                onClick={() => setIsAutoPlaying(true)}
+                                className="px-6 py-2 bg-slate-700/50 hover:bg-slate-700 text-slate-300 rounded-full text-sm transition-all duration-300 border border-slate-600/50 hover:border-slate-500"
+                            >
+                                Resume autoplay
+                            </button>
+                        </div>
+                    )}
                 </div>
             </section>
 
