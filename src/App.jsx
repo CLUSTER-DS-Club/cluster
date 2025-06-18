@@ -17,6 +17,8 @@ import ContactPage from './components/contact/ContactPage.jsx'
 import Privacy from './pages/Privacy/Privacy.jsx'
 import Cookies from './pages/Cookies/Cookies.jsx'
 import Terms from './pages/Terms of Service/Terms.jsx'
+import Blog from './pages/Blog.jsx'
+import BlogPost from './pages/BlogPost.jsx'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -46,7 +48,9 @@ function App() {
               <Route path='/privacy' element={<Privacy/>}/>
               <Route path='/cookies' element={<Cookies/>}/>
               <Route path='/terms' element={<Terms/>}/>
-
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:id" element={<BlogPost />} />
             </Routes>
           </main>
           <Footer />
