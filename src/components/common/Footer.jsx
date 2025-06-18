@@ -290,9 +290,6 @@ const Footer = () => {
                     </li>
 
                     <li>
-                      {/* <a href="/cluster/blog" className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200">
-                        Blog
-                      </a> */}
                       <Link
                         to="/blog"
                         className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
