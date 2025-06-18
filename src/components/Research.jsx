@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Research.css';
 
 const projects = [
@@ -33,6 +33,9 @@ const featuredPublications = [
 
 const Research = () => {
   const [popup, setPopup] = useState(null);
+  useEffect(() => {
+    window.scrollTo(0, 0); 
+  }, []);
 
   return (
     <div className="research-page">
