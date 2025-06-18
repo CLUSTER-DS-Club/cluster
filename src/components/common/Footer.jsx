@@ -321,12 +321,12 @@ const Footer = () => {
                   <h3 className="text-lg font-semibold text-white">Legal</h3>
                   <ul className="space-y-3">
                     <li>
-                      <a
-                        href="#"
+                      <Link
+                        to="/privacy"
                         className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
                       >
                         Privacy Policy
-                      </a>
+                      </Link>
                     </li>
                     <li>
                       <a
