@@ -66,7 +66,7 @@ const Footer = () => {
       { name: 'Tutorials', url: '/tutorials' },
       { name: 'Blog', url: '/blog' },
       { name: 'Case Studies', url: '/cases' },
-      { name: 'Resources', url: '/CaseStudy' }
+      { name: 'Resources', url: '/CaseStudy' },
 
       { name: "About Us", url: "/about" },
       { name: "Our Team", url: "/team" },
