@@ -1,25 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Zap,
-  Mail,
-  MapPin,
-  ArrowUp,
-  ExternalLink,
-  Heart,
-  Send,
-  CheckCircle
-} from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Mail, MapPin, ArrowUp, Heart } from 'lucide-react';
 import { SiDiscord, SiLinkedin, SiGmail, SiGithub } from 'react-icons/si';
 import logo from '/DS_CLUB_LOGO.jpeg';
 import { Link } from 'react-router-dom';
-import CaseStudy from '../case study/caseStudy';
-
-import React, { useState, useEffect } from "react";
-import { Mail, MapPin, ArrowUp, Heart } from "lucide-react";
-import { SiDiscord, SiLinkedin, SiGmail, SiGithub } from "react-icons/si";
-import logo from "/DS_CLUB_LOGO.jpeg";
-import { Link } from "react-router-dom";
-
 
 const Footer = () => {
   // State management
@@ -65,33 +48,20 @@ const Footer = () => {
       { name: 'Documentation', url: '/docs' },
       { name: 'Tutorials', url: '/tutorials' },
       { name: 'Blog', url: '/blog' },
-      { name: 'Case Studies', url: '/cases' },
-      { name: 'Resources', url: '/CaseStudy' },
-
-      { name: "About Us", url: "/about" },
-      { name: "Our Team", url: "/team" },
-      { name: "Research", url: "/research" },
-      { name: "Events", url: "/events" },
-    ],
-    resources: [
-      { name: "Documentation", url: "/docs" },
-      { name: "Tutorials", url: "/tutorials" },
-      { name: "Blog", url: "/blog" },
-      { name: "Case Studies", url: "/cases" },
-      { name: "Whitepapers", url: "/whitepapers" },
-
+      { name: 'Case Studies', url: '/CaseStudy' },
+      { name: 'Whitepapers', url: '/whitepapers' },
     ],
     support: [
-      { name: "Contact Us", url: "/contact" },
-      { name: "FAQ", url: "/faq" },
-      { name: "Community", url: "/community" },
-      { name: "Help Center", url: "/help" },
+      { name: 'Contact Us', url: '/contact' },
+      { name: 'FAQ', url: '/faq' },
+      { name: 'Community', url: '/community' },
+      { name: 'Help Center', url: '/help' },
     ],
     legal: [
-      { name: "Privacy Policy", url: "/privacy" },
-      { name: "Terms of Service", url: "/terms" },
-      { name: "Cookie Policy", url: "/cookies" },
-      { name: "Disclaimer", url: "/disclaimer" },
+      { name: 'Privacy Policy', url: '/privacy' },
+      { name: 'Terms of Service', url: '/terms' },
+      { name: 'Cookie Policy', url: '/cookies' },
+      { name: 'Disclaimer', url: '/disclaimer' },
     ],
   };
 
@@ -230,38 +200,16 @@ const Footer = () => {
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold text-white">Company</h3>
                   <ul className="space-y-3">
-                    <li className="ml-4">
-                      <a
-                        href="#"
-                        className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
-                      >
-                        About Us
-                      </a>
-                    </li>
-                    <li className="ml-4">
-                      <a
-                        href="#"
-                        className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
-                      >
-                        Our Team
-                      </a>
-                    </li>
-                    <li className="ml-4">
-                      <a
-                        href="#"
-                        className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
-                      >
-                        Research
-                      </a>
-                    </li>
-                    <li className="ml-4">
-                      <a
-                        href="#"
-                        className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
-                      >
-                        Events
-                      </a>
-                    </li>
+                    {footerLinks.company.map((link) => (
+                      <li key={link.name}>
+                        <Link
+                          to={link.url}
+                          className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
+                        >
+                          {link.name}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
 
@@ -269,38 +217,16 @@ const Footer = () => {
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold text-white">Support</h3>
                   <ul className="space-y-3">
-                    <li>
-                      <a
-                        href="#"
-                        className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
-                      >
-                        Contact Us
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
-                      >
-                        FAQ
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
-                      >
-                        Community
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
-                      >
-                        Tutorials
-                      </a>
-                    </li>
+                    {footerLinks.support.map((link) => (
+                      <li key={link.name}>
+                        <Link
+                          to={link.url}
+                          className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
+                        >
+                          {link.name}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
 
@@ -310,39 +236,16 @@ const Footer = () => {
                     Resources
                   </h3>
                   <ul className="space-y-3">
-                    <li>
-                      <a
-                        href="#"
-                        className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
-                      >
-                        Documentation
-                      </a>
-                    </li>
-
-                    <li>
-                      <Link
-                        to="/blog"
-                        className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
-                      >
-                        Blog
-                      </Link>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
-                      >
-                        Case Studies
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
-                      >
-                        Whitepapers
-                      </a>
-                    </li>
+                    {footerLinks.resources.map((link) => (
+                      <li key={link.name}>
+                        <Link
+                          to={link.url}
+                          className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
+                        >
+                          {link.name}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
 
@@ -350,30 +253,16 @@ const Footer = () => {
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold text-white">Legal</h3>
                   <ul className="space-y-3">
-                    <li>
-                      <Link
-                        to="/privacy"
-                        className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
-                      >
-                        Privacy Policy
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="terms"
-                        className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
-                      >
-                        Terms of Service
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="cookies"
-                        className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
-                      >
-                        Cookie Policy
-                      </Link>
-                    </li>
+                    {footerLinks.legal.map((link) => (
+                      <li key={link.name}>
+                        <Link
+                          to={link.url}
+                          className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
+                        >
+                          {link.name}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -393,6 +282,8 @@ const Footer = () => {
                           href={social.href}
                           className={`p-3 text-slate-400 ${social.color} bg-slate-800/50 hover:bg-slate-800 rounded-xl transition-all duration-300 group hover:scale-110 hover:shadow-lg`}
                           title={social.name}
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
                           <social.icon className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
                         </a>
