@@ -51,10 +51,11 @@ cd cluster
 npm install
 npm run dev
 cd backend
+npm install
 node server.js
 ```
 
-Create a .env file in the backend and initialize MONGO_URI and JWT_SECRET
+Create a .env file in root and initialize MONGO_URI, REACT_APP_API_BASE_URL and JWT_SECRET
 
 ---
 
@@ -63,7 +64,7 @@ Create a .env file in the backend and initialize MONGO_URI and JWT_SECRET
 ```
 cluster/
 ├── public/              # Static assets
-├── src/               
+├── src/             
 │   ├── components/      # Reusable UI components
 │   ├── pages/           # Application pages
 │   └── App.jsx          # Root component
