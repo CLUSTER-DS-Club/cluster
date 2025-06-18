@@ -5,20 +5,22 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "start": "npm run dev",
-  "dev": "vite",
-  "build": "vite build && cp dist/index.html dist/404.html",
-  "lint": "eslint .",
-  "preview": "vite preview",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist"
-}
-,
+    "start": "npm run dev",
+    "dev": "vite",
+    "build": "vite build && cp dist/index.html dist/404.html",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.7",
     "lucide-react": "^0.511.0",
+    "motion": "^12.18.1",
+    "prop-types": "^15.8.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-helmet": "^6.1.0",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.6.1",
     "swiper": "^11.2.8",
