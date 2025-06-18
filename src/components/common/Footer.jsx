@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import {
   Zap,
@@ -14,13 +13,13 @@ import { SiDiscord, SiLinkedin, SiGmail, SiGithub } from 'react-icons/si';
 import logo from '/DS_CLUB_LOGO.jpeg';
 import { Link } from 'react-router-dom';
 import CaseStudy from '../case study/caseStudy';
-=======
+
 import React, { useState, useEffect } from "react";
 import { Mail, MapPin, ArrowUp, Heart } from "lucide-react";
 import { SiDiscord, SiLinkedin, SiGmail, SiGithub } from "react-icons/si";
 import logo from "/DS_CLUB_LOGO.jpeg";
 import { Link } from "react-router-dom";
->>>>>>> upstream/main
+
 
 const Footer = () => {
   // State management
