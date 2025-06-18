@@ -55,7 +55,7 @@ npm install
 node server.js
 ```
 
-Create a .env file in root and initialize MONGO_URI, REACT_APP_API_BASE_URL and JWT_SECRET
+Create a .env file in root and initialize MONGO_URI, VITE_API_BASE_URL and JWT_SECRET
 
 ---
 
