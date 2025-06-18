@@ -15,6 +15,7 @@ import Research from './components/Research.jsx'
 import Publications from './components/Publications.jsx'
 import ContactPage from './components/contact/ContactPage.jsx'
 import Privacy from './pages/Privacy/Privacy.jsx'
+import Cookies from './pages/Cookies/Cookies.jsx'
 import Blog from './pages/Blog.jsx'
 import BlogPost from './pages/BlogPost.jsx'
 
@@ -43,6 +44,8 @@ function App() {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/research" element={<Research />} />
               <Route path="/publications" element={<Publications />} />
+              <Route path='/privacy' element={<Privacy/>}/>
+              <Route path='/cookies' element={<Cookies/>}/>
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:id" element={<BlogPost />} />
