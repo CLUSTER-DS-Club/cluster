@@ -105,6 +105,7 @@ const Header = () => {
                             <Users className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
                             <span>Join Community</span>
                         </a>
+                        {/* Removed login/logout buttons as per request */}
                     </div>
 
                     {/* Mobile menu button */}
@@ -141,6 +142,7 @@ const Header = () => {
                                     <Users className="w-4 h-4" />
                                     <span>Join Community</span>
                                 </a>
+                            {/* Removed login/logout buttons as per request */}
                             </div>
                         </div>
                     </div>
