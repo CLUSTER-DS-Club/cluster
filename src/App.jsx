@@ -8,6 +8,7 @@ import FloatingElements from './components/common/FloatingElements.jsx'
 import LoadingScreen from './components/common/LoadingScreen.jsx'
 import AnimatedBackground from './components/common/AnimatedBackground.jsx'
 import ScrollToTop from './components/common/ScrollToTop.jsx'
+import CaseStudy from './components/case study/caseStudy.jsx'
 import Alumni from './pages/Alumni.jsx'
 
 import Home from './components/home/HomePage.jsx'
@@ -47,6 +48,7 @@ function App() {
               <Route path="/research" element={<Research />} />
               <Route path="/publications" element={<Publications />} />
               <Route path="/alumni" element={<Alumni />} />
+              <Route path="/case-study" element={<CaseStudy />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/cookies" element={<Cookies />} />
               <Route path="/terms" element={<Terms />} />
