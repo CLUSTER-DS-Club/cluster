@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Research.css';
 
-import projects from '../../data/projects.js';
-import featuredPublications from '../../data/featuredPublications.js';
+import projects from '../data/researchprojects.js';
+import featuredPublications from '../data/featuredPublications.js';
 
 const Research = () => {
   const [popup, setPopup] = useState(null);
