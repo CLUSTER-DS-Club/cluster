@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './App.css';
 
@@ -9,7 +9,7 @@ import LoadingScreen from './components/common/LoadingScreen.jsx';
 import AnimatedBackground from './components/common/AnimatedBackground.jsx';
 import ScrollToTop from './components/common/ScrollToTop.jsx';
 
-import CaseStudy from './components/case study/caseStudy.jsx';
+import CaseStudy from './components/caseStudy/caseStudy.jsx';
 import Alumni from './pages/Alumni.jsx';
 
 import Home from './components/home/HomePage.jsx';
@@ -32,7 +32,7 @@ function App() {
   }, []);
 
   return (
-    <Router basename="/cluster">
+    <>
       <AnimatedBackground />
       <FloatingElements />
       <ScrollToTop />
@@ -49,7 +49,7 @@ function App() {
               <Route path="/research" element={<Research />} />
               <Route path="/publications" element={<Publications />} />
               <Route path="/alumni" element={<Alumni />} />
-              <Route path="/case-study" element={<CaseStudy />} />
+              <Route path="/caseStudy" element={<CaseStudy />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/cookies" element={<Cookies />} />
               <Route path="/terms" element={<Terms />} />
@@ -60,7 +60,7 @@ function App() {
           <Footer />
         </>
       )}
-    </Router>
+    </>
   );
 }
 

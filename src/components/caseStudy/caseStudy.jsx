@@ -215,7 +215,7 @@ const stats = [
   { icon: BarChart3, value: '20+', label: 'Projects Deployed' },
 ];
 
-const CaseStudy = () => {
+const caseStudy = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTags, setSelectedTags] = useState([]);
@@ -505,4 +505,4 @@ const CaseStudy = () => {
   );
 };
 
-export default CaseStudy;
+export default caseStudy;
