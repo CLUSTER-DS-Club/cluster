@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../App.css'
 import AnimatedBackground from '../common/AnimatedBackground';
 import GlassCard from '../common/GlassCard';
 
 const ContactPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
