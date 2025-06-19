@@ -3,6 +3,13 @@ import cors from 'cors';
 import nodemailer from 'nodemailer';
 import mongoose from 'mongoose';
 import authRouter from './routes/auth.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+if (!process.env.JWT_SECRET) {
+  throw new Error('Environment variable JWT_SECRET must be set for secure operation.');
+}
 
 const app = express();
 

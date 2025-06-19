@@ -102,12 +102,7 @@ const Login = () => {
             </div>
           </div>
 
-          <div className="form-options">
-            <label className="remember-me">
-              <input type="checkbox" />
-              <span>Remember me</span>
-            </label>
-          </div>
+          {/* Removed the remember me checkbox as per request */}
 
           <button type="submit" className="auth-button">
             Sign In

@@ -8,12 +8,16 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
 
 // Signup route
 router.post('/signup', async (req, res) => {
-  const { name, email, password, role, preferences } = req.body;
+  let { name, email, password, role, preferences } = req.body;
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists' });
     }
+  // Validate role to be either 'member' or 'core', default to 'member'
+  if (typeof role !== 'string' || (role !== 'member' && role !== 'core')) {
+    role = 'member';
+  }
     const user = new User({ name, email, password, role, preferences });
     await user.save();
     res.status(201).json({ message: 'User created successfully' });

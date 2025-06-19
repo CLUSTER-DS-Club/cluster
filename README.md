@@ -55,7 +55,9 @@ npm install
 node server.js
 ```
 
-Create a .env file in root and initialize MONGO_URI, VITE_API_BASE_URL and JWT_SECRET
+Create a .env file in root directory and initialize VITE_API_BASE_URL
+
+Create another .env file in backend directory and initialize MONGO_URI and JWT_SECRET
 
 ---
 
@@ -64,7 +66,7 @@ Create a .env file in root and initialize MONGO_URI, VITE_API_BASE_URL and JWT_S
 ```
 cluster/
 ├── public/              # Static assets
-├── src/             
+├── src/           
 │   ├── components/      # Reusable UI components
 │   ├── pages/           # Application pages
 │   └── App.jsx          # Root component

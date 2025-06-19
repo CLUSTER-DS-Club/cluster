@@ -19,6 +19,7 @@ const Signup = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [passwordError, setPasswordError] = useState(null);
 
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
@@ -50,8 +51,10 @@ const Signup = () => {
 
     // Validate password and confirmPassword match
     if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match');
+      setPasswordError('Passwords do not match');
       return;
+    } else {
+      setPasswordError(null);
     }
 
     const signupData = {
@@ -108,6 +111,7 @@ const Signup = () => {
               />
             </div>
           </div>
+          {passwordError && <p className="text-red-500 mb-4" style={{marginTop: '-1rem', marginBottom: '1rem'}}>{passwordError}</p>}
 
           <div className="form-group">
             <label htmlFor="email">Email</label>
@@ -185,7 +189,6 @@ const Signup = () => {
             >
               <option value="member">Member</option>
               <option value="core">Core</option>
-              <option value="admin">Admin</option>
             </select>
           </div>
 
