@@ -1,34 +1,35 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import './App.css';
 
-import Header from './components/common/Header.jsx'
-import Footer from './components/common/Footer.jsx'
-import FloatingElements from './components/common/FloatingElements.jsx'
-import LoadingScreen from './components/common/LoadingScreen.jsx'
-import AnimatedBackground from './components/common/AnimatedBackground.jsx'
-import ScrollToTop from './components/common/ScrollToTop.jsx'
-import CaseStudy from './components/case study/caseStudy.jsx'
-import Alumni from './pages/Alumni.jsx'
+import Header from './components/common/Header.jsx';
+import Footer from './components/common/Footer.jsx';
+import FloatingElements from './components/common/FloatingElements.jsx';
+import LoadingScreen from './components/common/LoadingScreen.jsx';
+import AnimatedBackground from './components/common/AnimatedBackground.jsx';
+import ScrollToTop from './components/common/ScrollToTop.jsx';
 
-import Home from './components/home/HomePage.jsx'
-import FAQPage from './components/faq/FAQPage.jsx'
-import Research from './components/Research.jsx'
-import Publications from './components/Publications.jsx'
-import ContactPage from './components/contact/ContactPage.jsx'
-import Privacy from './pages/Privacy/Privacy.jsx'
-import Cookies from './pages/Cookies/Cookies.jsx'
-import Terms from './pages/Terms of Service/Terms.jsx'
-import Blog from './pages/Blog.jsx'
-import BlogPost from './pages/BlogPost.jsx'
+import CaseStudy from './components/case study/caseStudy.jsx';
+import Alumni from './pages/Alumni.jsx';
+
+import Home from './components/home/HomePage.jsx';
+import FAQPage from './components/faq/FAQPage.jsx';
+import Research from './components/Research.jsx';
+import Publications from './components/Publications.jsx';
+import ContactPage from './components/contact/ContactPage.jsx';
+import Privacy from './pages/Privacy/Privacy.jsx';
+import Cookies from './pages/Cookies/Cookies.jsx';
+import Terms from './pages/Terms of Service/Terms.jsx';
+import Blog from './pages/Blog.jsx';
+import BlogPost from './pages/BlogPost.jsx';
 
 function App() {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000) // simulate loading
-    return () => clearTimeout(timer)
-  }, [])
+    const timer = setTimeout(() => setLoading(false), 2000); // simulate loading
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <Router basename="/cluster">
@@ -60,7 +61,7 @@ function App() {
         </>
       )}
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
