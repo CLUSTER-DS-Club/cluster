@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Users } from 'lucide-react';
 import logo from '/DS_CLUB_LOGO.jpeg';
 
@@ -7,6 +7,7 @@ const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
+    const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -18,11 +19,18 @@ const Header = () => {
 
     const navItems = [
         { name: 'Home', href: '/', hasDropdown: false },
+        // Alumni link temporarily hidden as per client request
+        // { name: 'Alumni', href: '/alumni', hasDropdown: false },
         { name: 'Community', href: '#', hasDropdown: false },
         { name: 'Research', href: '/research', hasDropdown: false },
         { name: 'About', href: '#', hasDropdown: false },
         { name: 'Contact', href: '/contact', hasDropdown: false }
     ];
+
+    const isActive = (href) => {
+        if (href === '/') return location.pathname === '/';
+        return location.pathname === href;
+    };
 
     return (
         <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
@@ -34,22 +42,18 @@ const Header = () => {
                     {/* Logo */}
                     <Link to="/" className="flex items-center space-x-3 group cursor-pointer">
                         <div className="relative">
-                            {/* Circular background for logo */}
                             <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg shadow-cyan-500/25 group-hover:shadow-cyan-500/50 transition-all duration-300 group-hover:scale-110 overflow-hidden">
                                 <img
                                     src={logo}
                                     alt="Logo"
-                                    className="w-full h-full object-cover rounded-full" // Ensures image fills and is round
+                                    className="w-full h-full object-cover rounded-full"
                                 />
                             </div>
-                            {/* Optional glowing effect on hover */}
                             <div className="absolute -inset-1 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                         </div>
-                        <div>
-                            <h1 className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                                CLUSTER
-                            </h1>
-                        </div>
+                        <h1 className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                            CLUSTER
+                        </h1>
                     </Link>
 
                     {/* Desktop Navigation */}
@@ -63,29 +67,33 @@ const Header = () => {
                             >
                                 <Link
                                     to={item.href}
-                                    className="text-slate-300 hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 flex items-center space-x-1 group"
+                                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 flex items-center space-x-1 group ${
+                                        isActive(item.href)
+                                            ? 'text-cyan-400'
+                                            : 'text-slate-300 hover:text-cyan-400'
+                                    }`}
                                 >
                                     <span className="relative">
                                         {item.name}
-                                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 group-hover:w-full transition-all duration-300"></span>
+                                        <span className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 ${
+                                            isActive(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
+                                        }`}></span>
                                     </span>
                                     {item.hasDropdown && (
-                                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${activeDropdown === index ? 'rotate-180' : ''
-                                            }`} />
+                                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${activeDropdown === index ? 'rotate-180' : ''}`} />
                                     )}
                                 </Link>
 
-                                {/* Dropdown Menu */}
                                 {item.hasDropdown && activeDropdown === index && (
                                     <div className="absolute top-full left-0 mt-2 w-48 bg-slate-800/95 backdrop-blur-xl border border-cyan-500/20 rounded-lg shadow-xl shadow-cyan-500/10 py-2 animate-in slide-in-from-top-2 duration-200">
-                                        {item.dropdown.map((dropItem, dropIndex) => (
-                                            <a
+                                        {item.dropdown?.map((dropItem, dropIndex) => (
+                                            <Link
                                                 key={dropIndex}
-                                                href="#"
+                                                to="#"
                                                 className="block px-4 py-2 text-sm text-slate-300 hover:text-cyan-400 hover:bg-cyan-500/10 transition-colors duration-200"
                                             >
                                                 {dropItem}
-                                            </a>
+                                            </Link>
                                         ))}
                                     </div>
                                 )}
@@ -125,7 +133,12 @@ const Header = () => {
                                 <Link
                                     key={index}
                                     to={item.href}
-                                    className="text-slate-300 hover:text-cyan-400 hover:bg-cyan-500/10 block px-3 py-2 rounded-md text-base font-medium transition-all duration-300"
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className={`block px-3 py-2 rounded-md text-base font-medium transition-all duration-300 ${
+                                        isActive(item.href)
+                                            ? 'text-cyan-400 bg-cyan-500/10'
+                                            : 'text-slate-300 hover:text-cyan-400 hover:bg-cyan-500/10'
+                                    }`}
                                 >
                                     {item.name}
                                 </Link>

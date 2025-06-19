@@ -1,5 +1,5 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
 import './App.css'
 
 import Header from './components/common/Header.jsx'
@@ -9,6 +9,7 @@ import LoadingScreen from './components/common/LoadingScreen.jsx'
 import AnimatedBackground from './components/common/AnimatedBackground.jsx'
 import ScrollToTop from './components/common/ScrollToTop.jsx'
 import CaseStudy from './components/case study/caseStudy.jsx'
+import Alumni from './pages/Alumni.jsx'
 
 import Home from './components/home/HomePage.jsx'
 import FAQPage from './components/faq/FAQPage.jsx'
@@ -30,7 +31,7 @@ function App() {
   }, [])
 
   return (
-    <>
+    <Router basename="/cluster">
       <AnimatedBackground />
       <FloatingElements />
       <ScrollToTop />
@@ -46,21 +47,19 @@ function App() {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/research" element={<Research />} />
               <Route path="/publications" element={<Publications />} />
-
-              <Route path="/CaseStudy" element={<CaseStudy/>}></Route>
-              <Route path='/privacy' element={<Privacy/>}/>
-              <Route path='/cookies' element={<Cookies/>}/>
-              <Route path='/terms' element={<Terms/>}/>
+              <Route path="/alumni" element={<Alumni />} />
+              <Route path="/case-study" element={<CaseStudy />} />
               <Route path="/privacy" element={<Privacy />} />
+              <Route path="/cookies" element={<Cookies />} />
+              <Route path="/terms" element={<Terms />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:id" element={<BlogPost />} />
-
             </Routes>
           </main>
           <Footer />
         </>
       )}
-    </>
+    </Router>
   )
 }
 
