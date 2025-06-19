@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, Users } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { Menu, X, ChevronDown, Users } from 'lucide-react';
 import logo from '/DS_CLUB_LOGO.jpeg';
 
 const Header = () => {
@@ -22,15 +22,13 @@ const Header = () => {
         // Alumni link temporarily hidden as per client request
         // { name: 'Alumni', href: '/alumni', hasDropdown: false },
         { name: 'Community', href: '#', hasDropdown: false },
-        { name: 'Research', href: '#', hasDropdown: false },
+        { name: 'Research', href: '/research', hasDropdown: false },
         { name: 'About', href: '#', hasDropdown: false },
-        { name: 'Contact', href: '#', hasDropdown: false }
+        { name: 'Contact', href: '/contact', hasDropdown: false }
     ];
 
     const isActive = (href) => {
-        if (href === '/') {
-            return location.pathname === '/';
-        }
+        if (href === '/') return location.pathname === '/';
         return location.pathname === href;
     };
 
@@ -44,7 +42,6 @@ const Header = () => {
                     {/* Logo */}
                     <Link to="/" className="flex items-center space-x-3 group cursor-pointer">
                         <div className="relative">
-                            {/* Circular background for logo */}
                             <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg shadow-cyan-500/25 group-hover:shadow-cyan-500/50 transition-all duration-300 group-hover:scale-110 overflow-hidden">
                                 <img
                                     src={logo}
@@ -52,14 +49,11 @@ const Header = () => {
                                     className="w-full h-full object-cover rounded-full"
                                 />
                             </div>
-                            {/* Optional glowing effect on hover */}
                             <div className="absolute -inset-1 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                         </div>
-                        <div>
-                            <h1 className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                                CLUSTER
-                            </h1>
-                        </div>
+                        <h1 className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                            CLUSTER
+                        </h1>
                     </Link>
 
                     {/* Desktop Navigation */}
@@ -86,15 +80,13 @@ const Header = () => {
                                         }`}></span>
                                     </span>
                                     {item.hasDropdown && (
-                                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${activeDropdown === index ? 'rotate-180' : ''
-                                            }`} />
+                                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${activeDropdown === index ? 'rotate-180' : ''}`} />
                                     )}
                                 </Link>
 
-                                {/* Dropdown Menu */}
                                 {item.hasDropdown && activeDropdown === index && (
                                     <div className="absolute top-full left-0 mt-2 w-48 bg-slate-800/95 backdrop-blur-xl border border-cyan-500/20 rounded-lg shadow-xl shadow-cyan-500/10 py-2 animate-in slide-in-from-top-2 duration-200">
-                                        {item.dropdown.map((dropItem, dropIndex) => (
+                                        {item.dropdown?.map((dropItem, dropIndex) => (
                                             <Link
                                                 key={dropIndex}
                                                 to="#"
@@ -141,12 +133,12 @@ const Header = () => {
                                 <Link
                                     key={index}
                                     to={item.href}
+                                    onClick={() => setIsMenuOpen(false)}
                                     className={`block px-3 py-2 rounded-md text-base font-medium transition-all duration-300 ${
                                         isActive(item.href)
                                             ? 'text-cyan-400 bg-cyan-500/10'
                                             : 'text-slate-300 hover:text-cyan-400 hover:bg-cyan-500/10'
                                     }`}
-                                    onClick={() => setIsMenuOpen(false)}
                                 >
                                     {item.name}
                                 </Link>
