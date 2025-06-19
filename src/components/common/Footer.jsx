@@ -48,7 +48,7 @@ const Footer = () => {
       { name: 'Documentation', url: '/docs' },
       { name: 'Tutorials', url: '/tutorials' },
       { name: 'Blog', url: '/blog' },
-      { name: 'Case Studies', url: '/CaseStudy' },
+      { name: 'Case Studies', url: '/caseStudy' },
       { name: 'Whitepapers', url: '/whitepapers' },
     ],
     support: [
