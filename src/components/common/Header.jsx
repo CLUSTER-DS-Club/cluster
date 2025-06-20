@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Users } from 'lucide-react';
 import logo from '/DS_CLUB_LOGO.jpeg';
+import { AuthContext } from '../../context/AuthContext';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -112,6 +113,7 @@ const Header = () => {
                             <Users className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
                             <span>Join Community</span>
                         </a>
+                        {/* Removed login/logout buttons as per request */}
                     </div>
 
                     {/* Mobile menu button */}
@@ -153,6 +155,7 @@ const Header = () => {
                                     <Users className="w-4 h-4" />
                                     <span>Join Community</span>
                                 </a>
+                            {/* Removed login/logout buttons as per request */}
                             </div>
                         </div>
                     </div>

@@ -22,6 +22,8 @@ import Cookies from './pages/Cookies/Cookies.jsx';
 import Terms from './pages/Terms of Service/Terms.jsx';
 import Blog from './pages/Blog.jsx';
 import BlogPost from './pages/BlogPost.jsx';
+import Login from './pages/Login.jsx'
+import Signup from './pages/Signup.jsx'
 import Disclaimer from './pages/Disclaimer/Disclaimer.jsx';
 
 function App() {
@@ -56,6 +58,8 @@ function App() {
               <Route path="/terms" element={<Terms />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:id" element={<BlogPost />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
               <Route path='/disclaimer' element={<Disclaimer/>}/>
             </Routes>
           </main>

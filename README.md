@@ -50,7 +50,16 @@ git clone https://github.com/CLUSTER-DS-Club/cluster.git
 cd cluster
 npm install
 npm run dev
-````
+cd backend
+npm install
+node server.js
+```
+
+Create a .env file in root directory and initialize VITE_API_BASE_URL
+
+Create another .env file in backend directory and initialize MONGO_URI and JWT_SECRET
+
+Please check the .env.example files in the root directory and backend directory respectively.
 
 ---
 
@@ -59,7 +68,7 @@ npm run dev
 ```
 cluster/
 ├── public/              # Static assets
-├── src/                 
+├── src/         
 │   ├── components/      # Reusable UI components
 │   ├── pages/           # Application pages
 │   └── App.jsx          # Root component
