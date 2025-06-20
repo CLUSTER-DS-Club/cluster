@@ -1,35 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Research.css';
 
-const projects = [
-  {
-    title: 'AI-based Waste Detection',
-    summary: 'A machine learning system for classifying waste using image data. Uses CNNs for real-time waste detection and classification.',
-    tags: ['AI', 'Computer Vision'],
-    year: 2024,
-    developer: 'Tejaswini H.',
-    github: 'tejaswini-h/waste-detection',
-  },
-  {
-    title: 'Blockchain Voting System',
-    summary: 'A decentralized app to enable secure student council elections using blockchain technology for tamper-proof voting.',
-    tags: ['Blockchain', 'Security'],
-    year: 2023,
-    developer: 'Rahul S.',
-    github: 'rahuls/voting-blockchain',
-  },
-];
-
-const featuredPublications = [
-  {
-    title: 'Optimizing Deep Neural Networks for Waste Classification',
-    authors: 'Tejaswini H. et al.',
-    date: 'May 2024',
-    summary: 'This paper presents an optimized CNN architecture for real-time waste detection.',
-    link: 'https://ieeexplore.ieee.org/document/1234567',
-  },
-  // Add 3-4 more featured publications here as needed
-];
+import projects from '../data/researchprojects.js';
+import featuredPublications from '../data/featuredPublications.js';
 
 const Research = () => {
   const [popup, setPopup] = useState(null);
