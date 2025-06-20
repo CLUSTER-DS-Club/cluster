@@ -179,14 +179,13 @@ const ContactPage = () => {
         )}
 
         <GlassCard 
-          className="p-8" 
+          className="p-8 shadow-2xl shadow-cyan-500/30 border border-cyan-500/40 ring-2 ring-cyan-400/30 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 backdrop-blur-xl"
           variant="primary"
-          hover="lift"
           glow={true}
           blur="xl"
           gradient="primary"
           border={true}
-          interactive={true}
+          interactive={false}
         >
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
