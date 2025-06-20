@@ -23,6 +23,7 @@ import Terms from './pages/Terms of Service/Terms.jsx';
 import Blog from './pages/Blog.jsx';
 import BlogPost from './pages/BlogPost.jsx';
 import Disclaimer from './pages/Disclaimer/Disclaimer.jsx';
+import About from './pages/About.jsx'; // <-- ADD THIS LINE
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -57,6 +58,7 @@ function App() {
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:id" element={<BlogPost />} />
               <Route path='/disclaimer' element={<Disclaimer/>}/>
+              <Route path="/about" element={<About />} /> {/* <-- ADD THIS LINE */}
             </Routes>
           </main>
           <Footer />
