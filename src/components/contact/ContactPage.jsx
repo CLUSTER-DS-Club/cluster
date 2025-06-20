@@ -3,6 +3,27 @@ import '../../App.css'
 import AnimatedBackground from '../common/AnimatedBackground';
 import GlassCard from '../common/GlassCard';
 
+// CursorGlow component for interactive background effect
+const CursorGlow = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+  return (
+    <div
+      className="absolute w-96 h-96 bg-gradient-to-r from-cyan-400/10 to-blue-400/10 rounded-full blur-3xl pointer-events-none transition-all duration-300 ease-out z-0"
+      style={{
+        left: mousePosition.x - 192,
+        top: mousePosition.y - 192,
+      }}
+    ></div>
+  );
+};
+
 const ContactPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -108,15 +129,35 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen relative py-16 px-4 sm:px-6 lg:px-8 bg-slate-900">
-      <AnimatedBackground />
-      
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      {/* Enhanced Animated Background */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {/* Large gradient orbs */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-l from-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        {/* Floating geometric shapes */}
+        {Array.from({ length: 8 }).map((_, index) => (
+          <div
+            key={index}
+            className="absolute"
+            style={{
+              left: `${10 + (index * 12)}%`,
+              top: `${20 + (index * 8)}%`,
+              animation: `float ${8 + index}s ease-in-out infinite ${index * 0.5}s`
+            }}
+          >
+            <div className={`w-4 h-4 bg-gradient-to-r from-cyan-400/30 to-blue-400/30 ${index % 3 === 0 ? 'rounded-full' : index % 3 === 1 ? 'rotate-45' : 'rounded'} animate-pulse`}></div>
+          </div>
+        ))}
+      </div>
+      {/* Interactive cursor glow */}
+      <CursorGlow />
+      <div className="max-w-4xl mx-auto relative z-10">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-white mb-4">
+          <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow-[0_2px_16px_rgba(34,211,238,0.6)]">
             Contact Us
           </h1>
-          <p className="text-lg text-slate-300">
+          <p className="text-lg font-medium bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent drop-shadow-[0_2px_8px_rgba(34,211,238,0.4)]">
             Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
           </p>
         </div>
@@ -137,7 +178,16 @@ const ContactPage = () => {
           </div>
         )}
 
-        <GlassCard className="p-8 bg-slate-800/50 backdrop-blur-xl border border-cyan-500/20">
+        <GlassCard 
+          className="p-8" 
+          variant="primary"
+          hover="lift"
+          glow={true}
+          blur="xl"
+          gradient="primary"
+          border={true}
+          interactive={true}
+        >
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
@@ -151,9 +201,9 @@ const ContactPage = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className={`mt-1 block w-full rounded-md bg-slate-700/50 border ${
-                    getFieldError('name') ? 'border-red-500' : 'border-slate-600'
-                  } text-white placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-sm`}
+                  className={`mt-1 block w-full rounded-xl bg-slate-800/60 border ${
+                    getFieldError('name') ? 'border-red-500' : 'border-cyan-500/30'
+                  } text-white placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-lg shadow-cyan-500/10 transition-all duration-300`}
                   placeholder="Your name"
                 />
                 {getFieldError('name') && (
@@ -172,9 +222,9 @@ const ContactPage = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className={`mt-1 block w-full rounded-md bg-slate-700/50 border ${
-                    getFieldError('email') ? 'border-red-500' : 'border-slate-600'
-                  } text-white placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-sm`}
+                  className={`mt-1 block w-full rounded-xl bg-slate-800/60 border ${
+                    getFieldError('email') ? 'border-red-500' : 'border-cyan-500/30'
+                  } text-white placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-lg shadow-cyan-500/10 transition-all duration-300`}
                   placeholder="your.email@example.com"
                 />
                 {getFieldError('email') && (
@@ -195,9 +245,9 @@ const ContactPage = () => {
                   value={formData.number}
                   onChange={handleChange}
                   required
-                  className={`mt-1 block w-full rounded-md bg-slate-700/50 border ${
-                    getFieldError('phone') ? 'border-red-500' : 'border-slate-600'
-                  } text-white placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-sm`}
+                  className={`mt-1 block w-full rounded-xl bg-slate-800/60 border ${
+                    getFieldError('phone') ? 'border-red-500' : 'border-cyan-500/30'
+                  } text-white placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-lg shadow-cyan-500/10 transition-all duration-300`}
                   placeholder="+91 XXXXXXXXXX"
                   pattern="[0-9]{10}"
                 />
@@ -217,9 +267,9 @@ const ContactPage = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className={`mt-1 block w-full rounded-md bg-slate-700/50 border ${
-                    getFieldError('subject') ? 'border-red-500' : 'border-slate-600'
-                  } text-white placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-sm`}
+                  className={`mt-1 block w-full rounded-xl bg-slate-800/60 border ${
+                    getFieldError('subject') ? 'border-red-500' : 'border-cyan-500/30'
+                  } text-white placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-lg shadow-cyan-500/10 transition-all duration-300`}
                   placeholder="What is this regarding?"
                 />
                 {getFieldError('subject') && (
@@ -239,9 +289,9 @@ const ContactPage = () => {
                 value={formData.message}
                 onChange={handleChange}
                 required
-                className={`mt-1 block w-full rounded-md bg-slate-700/50 border ${
-                  getFieldError('message') ? 'border-red-500' : 'border-slate-600'
-                } text-white placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-sm`}
+                className={`mt-1 block w-full rounded-xl bg-slate-800/60 border ${
+                  getFieldError('message') ? 'border-red-500' : 'border-cyan-500/30'
+                } text-white placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-lg shadow-cyan-500/10 transition-all duration-300`}
                 placeholder="Your message here..."
               />
               {getFieldError('message') && (
@@ -253,7 +303,7 @@ const ContactPage = () => {
               <button
                 type="submit"
                 disabled={status.loading}
-                className={`inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-all duration-300 ${
+                className={`inline-flex justify-center py-3 px-8 border border-transparent shadow-lg text-base font-semibold rounded-xl text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-all duration-300 ${
                   status.loading ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
               >
