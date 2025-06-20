@@ -59,6 +59,8 @@ Create a .env file in root directory and initialize VITE_API_BASE_URL
 
 Create another .env file in backend directory and initialize MONGO_URI and JWT_SECRET
 
+Please check the .env.example files in the root directory and backend directory respectively.
+
 ---
 
 ## 🗂️ Project Structure
@@ -66,7 +68,7 @@ Create another .env file in backend directory and initialize MONGO_URI and JWT_S
 ```
 cluster/
 ├── public/              # Static assets
-├── src/           
+├── src/         
 │   ├── components/      # Reusable UI components
 │   ├── pages/           # Application pages
 │   └── App.jsx          # Root component
