@@ -23,7 +23,7 @@ const Header = () => {
         // { name: 'Alumni', href: '/alumni', hasDropdown: false },
         { name: 'Community', href: '#', hasDropdown: false },
         { name: 'Research', href: '/research', hasDropdown: false },
-        { name: 'About', href: '#', hasDropdown: false },
+        { name: 'About', href: '/about', hasDropdown: false }, // <-- FIXED PATH HERE
         { name: 'Contact', href: '/contact', hasDropdown: false }
     ];
 
