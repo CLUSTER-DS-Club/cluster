@@ -71,7 +71,7 @@ const ContactPage = () => {
     });
 
     try {
-      const response = await fetch('https://cluster-mapd.onrender.com/api/contact', {
+      const response = await fetch('https://localhost:5000/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
