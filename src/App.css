@@ -12,3 +12,8 @@ body {
   min-height: 100vh;
   background: none !important;
 }
+
+.no-hover-effect:hover {
+  transform: none !important;
+  transition: none !important;
+}
