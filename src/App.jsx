@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import './App.css'
 
@@ -30,7 +30,7 @@ function App() {
   }, [])
 
   return (
-    <Router basename="/cluster">
+    <>
       <AnimatedBackground />
       <FloatingElements />
       <ScrollToTop />
@@ -57,7 +57,7 @@ function App() {
           <Footer />
         </>
       )}
-    </Router>
+    </>
   )
 }
 
