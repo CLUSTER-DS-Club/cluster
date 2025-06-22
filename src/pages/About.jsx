@@ -40,7 +40,7 @@ const About = () => {
     const stats = [
         {
             icon: Users,
-            number: "1,200+",
+            number: "150+",
             label: "Active Members",
             color: "text-cyan-400",
             bgColor: "from-cyan-500/10 to-cyan-600/10",
@@ -55,36 +55,12 @@ const About = () => {
             borderColor: "border-blue-400/20"
         },
         {
-            icon: Globe,
-            number: "45+",
-            label: "Data Domains",
-            color: "text-purple-400",
-            bgColor: "from-purple-500/10 to-purple-600/10",
-            borderColor: "border-purple-400/20"
-        },
-        {
             icon: TrendingUp,
             number: "98%",
             label: "Success Rate",
             color: "text-green-400",
             bgColor: "from-green-500/10 to-green-600/10",
             borderColor: "border-green-400/20"
-        },
-        {
-            icon: Award,
-            number: "25+",
-            label: "Awards Won",
-            color: "text-yellow-400",
-            bgColor: "from-yellow-500/10 to-yellow-600/10",
-            borderColor: "border-yellow-400/20"
-        },
-        {
-            icon: Lightbulb,
-            number: "500+",
-            label: "Innovations",
-            color: "text-pink-400",
-            bgColor: "from-pink-500/10 to-pink-600/10",
-            borderColor: "border-pink-400/20"
         }
     ];
 
