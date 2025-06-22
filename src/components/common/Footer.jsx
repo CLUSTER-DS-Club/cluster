@@ -10,20 +10,6 @@ const Footer = () => {
   const [subscribed, setSubscribed] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  // Effect for scroll to top button visibility
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 500);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Scroll to top function
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   // Email subscription handler
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -333,17 +319,6 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-
-      {/* ==================== SCROLL TO TOP BUTTON ==================== */}
-      {showScrollTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 p-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-2xl shadow-2xl shadow-cyan-500/25 hover:shadow-cyan-500/50 hover:scale-110 transition-all duration-300 z-50 group"
-          aria-label="Scroll to top"
-        >
-          <ArrowUp className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
-        </button>
-      )}
     </>
   );
 };

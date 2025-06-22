@@ -7,7 +7,6 @@ import Footer from './components/common/Footer.jsx';
 import FloatingElements from './components/common/FloatingElements.jsx';
 import LoadingScreen from './components/common/LoadingScreen.jsx';
 import AnimatedBackground from './components/common/AnimatedBackground.jsx';
-import ScrollToTop from './components/common/ScrollToTop.jsx';
 
 import CaseStudy from './components/caseStudy/caseStudy.jsx';
 import Alumni from './pages/Alumni.jsx';
@@ -37,7 +36,6 @@ function App() {
     <>
       <AnimatedBackground />
       <FloatingElements />
-      <ScrollToTop />
       {loading ? (
         <LoadingScreen onComplete={() => setLoading(false)} />
       ) : (
