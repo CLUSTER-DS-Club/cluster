@@ -71,7 +71,7 @@ const ContactPage = () => {
     });
 
     try {
-      const response = await fetch('https://localhost:5000/api/contact', {
+      const response = await fetch(`http://localhost:5000/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -138,9 +138,8 @@ const ContactPage = () => {
           onChange={handleChange}
           required
           placeholder={placeholder}
-          className={`pl-10 pr-4 py-2 rounded-xl bg-slate-800/60 border ${
-            getFieldError(name) ? 'border-red-500' : 'border-cyan-500/30'
-          } text-white w-full placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-md shadow-cyan-500/10 transition-all duration-300`}
+          className={`pl-10 pr-4 py-2 rounded-xl bg-slate-800/60 border ${getFieldError(name) ? 'border-red-500' : 'border-cyan-500/30'
+            } text-white w-full placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-md shadow-cyan-500/10 transition-all duration-300`}
         />
       </div>
       {getFieldError(name) && <p className="mt-1 text-sm text-red-400">{getFieldError(name)}</p>}
@@ -160,12 +159,12 @@ const ContactPage = () => {
           <h1 className="text-4xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow-lg mb-2">
             Get in Touch
           </h1>
-          <p className="text-lg text-slate-300">We’d love to hear from you. Let’s connect!</p>
+          <p className="text-lg text-slate-300">We'd love to hear from you. Let's connect!</p>
         </div>
 
         {status.success && (
           <div className="mb-6 p-4 rounded-lg bg-green-600/10 border border-green-400/30 text-green-400 text-center">
-            Message sent successfully. We’ll reply soon!
+            Message sent successfully. We'll reply soon!
           </div>
         )}
 
@@ -197,9 +196,8 @@ const ContactPage = () => {
                 onChange={handleChange}
                 required
                 placeholder="Type your message here..."
-                className={`w-full p-4 rounded-xl bg-slate-800/60 border ${
-                  getFieldError('message') ? 'border-red-500' : 'border-cyan-500/30'
-                } text-white placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-md shadow-cyan-500/10 transition-all duration-300`}
+                className={`w-full p-4 rounded-xl bg-slate-800/60 border ${getFieldError('message') ? 'border-red-500' : 'border-cyan-500/30'
+                  } text-white placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-md shadow-cyan-500/10 transition-all duration-300`}
               />
               {getFieldError('message') && (
                 <p className="mt-1 text-sm text-red-400">{getFieldError('message')}</p>
@@ -209,9 +207,8 @@ const ContactPage = () => {
               <button
                 type="submit"
                 disabled={status.loading}
-                className={`inline-flex items-center gap-2 py-3 px-6 rounded-xl font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all duration-300 ${
-                  status.loading ? 'opacity-50 cursor-not-allowed' : ''
-                }`}
+                className={`inline-flex items-center gap-2 py-3 px-6 rounded-xl font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all duration-300 ${status.loading ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
               >
                 {status.loading ? 'Sending...' : 'Send Message'}
                 {!status.loading && <FiSend />}
