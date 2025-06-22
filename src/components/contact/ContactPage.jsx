@@ -27,8 +27,12 @@ const CursorGlow = () => {
 };
 
 const ContactPage = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    const timer = setTimeout(() => setIsVisible(true), 300);
+    return () => clearTimeout(timer);
   }, []);
 
   const [formData, setFormData] = useState({
@@ -124,7 +128,7 @@ const ContactPage = () => {
     status.validationErrors.find((err) => err.toLowerCase().includes(field.toLowerCase()));
 
   const InputField = ({ label, name, type = 'text', placeholder, Icon }) => (
-    <div>
+    <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
       <label htmlFor={name} className="block text-sm font-medium text-slate-300 mb-1">
         {label}
       </label>
@@ -147,7 +151,7 @@ const ContactPage = () => {
   );
 
   return (
-    <div className="min-h-screen relative py-20 px-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+    <div className={`min-h-screen relative py-20 px-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl top-1/4 left-1/4 animate-pulse"></div>
         <div className="absolute w-96 h-96 bg-pink-500/20 rounded-full blur-3xl bottom-1/4 right-1/4 animate-pulse delay-1000"></div>
@@ -155,7 +159,7 @@ const ContactPage = () => {
       <CursorGlow />
 
       <div className="max-w-4xl mx-auto relative z-10">
-        <div className="text-center mb-12">
+        <div className={`text-center mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
           <h1 className="text-4xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow-lg mb-2">
             Get in Touch
           </h1>
@@ -175,7 +179,7 @@ const ContactPage = () => {
         )}
 
         <GlassCard
-          className="no-hover-effect p-8 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 ring-2 ring-cyan-400/20 backdrop-blur-xl shadow-xl"
+          className="no-hover-effect p-8 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 ring-2 ring-cyan-400/20 backdrop-blur-xl shadow-xl transition-all duration-1000 ease-in-out"
         >
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -184,7 +188,7 @@ const ContactPage = () => {
               <InputField label="Phone" name="number" type="tel" placeholder="+91 1234567890" Icon={FiPhone} />
               <InputField label="Subject" name="subject" placeholder="What's this about?" Icon={FiEdit} />
             </div>
-            <div>
+            <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
               <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-1">
                 Message
               </label>
@@ -203,7 +207,7 @@ const ContactPage = () => {
                 <p className="mt-1 text-sm text-red-400">{getFieldError('message')}</p>
               )}
             </div>
-            <div className="text-right">
+            <div className={`text-right transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
               <button
                 type="submit"
                 disabled={status.loading}
