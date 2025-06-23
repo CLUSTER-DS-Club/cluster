@@ -19,6 +19,9 @@ const ContactPage = () => {
     validationErrors: []
   });
 
+  // Enhanced phone number validation and error message for UI
+  const [phoneError, setPhoneError] = useState('');
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -30,6 +33,39 @@ const ContactPage = () => {
       setStatus(prev => ({
         ...prev,
         validationErrors: prev.validationErrors.filter(err => !err.includes(name))
+      }));
+    }
+  };
+
+  const handlePhoneChange = (e) => {
+    const { value } = e.target;
+    // Only allow digits
+    if (/[^0-9]/.test(value)) {
+      setPhoneError('Only numbers are allowed in phone number');
+      setFormData(prev => ({ ...prev, number: value.replace(/[^0-9]/g, '') }));
+      return;
+    }
+    // Limit to 10 digits, but show error if more
+    if (value.length > 10) {
+      setPhoneError('Phone number must be exactly 10 digits');
+      setFormData(prev => ({ ...prev, number: value.slice(0, 10) }));
+      return;
+    }
+    // Show error if less than 10 and not empty (optional, for instant feedback)
+    if (value.length > 0 && value.length < 10) {
+      setPhoneError('Phone number must be exactly 10 digits');
+    } else {
+      setPhoneError('');
+    }
+    setFormData(prev => ({
+      ...prev,
+      number: value
+    }));
+    // Clear validation errors when user starts typing
+    if (status.validationErrors.length > 0) {
+      setStatus(prev => ({
+        ...prev,
+        validationErrors: prev.validationErrors.filter(err => !err.includes('phone'))
       }));
     }
   };
@@ -190,16 +226,17 @@ const ContactPage = () => {
                   name="number"
                   id="number"
                   value={formData.number}
-                  onChange={handleChange}
+                  onChange={handlePhoneChange}
                   required
                   className={`mt-1 block w-full rounded-md bg-slate-700/50 border ${
-                    getFieldError('phone') ? 'border-red-500' : 'border-slate-600'
+                    phoneError || getFieldError('phone') ? 'border-red-500' : 'border-slate-600'
                   } text-white placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-sm`}
                   placeholder="+91 XXXXXXXXXX"
                   pattern="[0-9]{10}"
+                  maxLength={10}
                 />
-                {getFieldError('phone') && (
-                  <p className="mt-1 text-sm text-red-400">{getFieldError('phone')}</p>
+                {(phoneError || getFieldError('phone')) && (
+                  <p className="mt-1 text-sm text-red-400">{phoneError || getFieldError('phone')}</p>
                 )}
               </div>
 
@@ -264,4 +301,4 @@ const ContactPage = () => {
   );
 };
 
-export default ContactPage; 
+export default ContactPage;
