@@ -45,6 +45,10 @@ const Whitepapers = () => {
     { icon: TrendingUp, value: "95%", label: "Quality Score", color: "text-green-400" }
   ];
 
+  const handleSubmitClick = () => {
+    window.location.href = '/cluster/submit-whitepaper';
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 relative overflow-hidden">
       {/* Background Elements */}
@@ -207,7 +211,10 @@ const Whitepapers = () => {
                   Join our community of researchers and contributors. Submit your whitepaper 
                   and help advance the field with your insights.
                 </p>
-                <button className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 font-semibold hover:scale-105">
+                <button 
+                  onClick={handleSubmitClick}
+                  className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 font-semibold hover:scale-105"
+                >
                   Submit Your Whitepaper
                 </button>
               </div>

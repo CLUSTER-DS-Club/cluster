@@ -21,6 +21,7 @@ import Terms from './pages/Terms of Service/Terms.jsx'
 import Blog from './pages/Blog.jsx'
 import BlogPost from './pages/BlogPost.jsx'
 import Whitepapers from './pages/Whitepapers.jsx'
+import SubmitWhitepaper from './pages/SubmitWhitepaper.jsx'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -54,6 +55,7 @@ function App() {
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:id" element={<BlogPost />} />
               <Route path="/whitepapers" element={<Whitepapers />} />
+              <Route path="/submit-whitepaper" element={<SubmitWhitepaper />} />
             </Routes>
           </main>
           <Footer />

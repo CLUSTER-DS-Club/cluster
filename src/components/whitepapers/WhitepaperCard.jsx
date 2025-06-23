@@ -7,168 +7,8 @@ const WhitepaperCard = ({ title, abstract, author, date, tags, url }) => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  const generateSamplePDF = () => {
-    // Create a simple PDF-like content using HTML and convert to blob
-    const pdfContent = `
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>${title}</title>
-    <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            line-height: 1.6; 
-            max-width: 800px; 
-            margin: 0 auto; 
-            padding: 40px 20px;
-            color: #333;
-        }
-        .header { 
-            text-align: center; 
-            border-bottom: 2px solid #0ea5e9; 
-            padding-bottom: 20px; 
-            margin-bottom: 30px;
-        }
-        .title { 
-            font-size: 24px; 
-            font-weight: bold; 
-            color: #0ea5e9; 
-            margin-bottom: 10px;
-        }
-        .meta { 
-            color: #666; 
-            margin-bottom: 20px;
-        }
-        .tags { 
-            margin: 20px 0;
-        }
-        .tag { 
-            background: #e0f2fe; 
-            color: #0369a1; 
-            padding: 4px 8px; 
-            border-radius: 4px; 
-            font-size: 12px; 
-            margin-right: 8px;
-        }
-        .content { 
-            margin-top: 30px;
-        }
-        .section { 
-            margin-bottom: 25px;
-        }
-        .section-title { 
-            font-size: 18px; 
-            font-weight: bold; 
-            color: #0ea5e9; 
-            margin-bottom: 10px;
-        }
-        .footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-            text-align: center;
-            color: #666;
-            font-size: 12px;
-        }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <div class="title">${title}</div>
-        <div class="meta">
-            <strong>Author:</strong> ${author}<br>
-            <strong>Published:</strong> ${formatDate(date)}<br>
-            <strong>Source:</strong> CLUSTER Community Portal
-        </div>
-        <div class="tags">
-            ${tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-        </div>
-    </div>
-
-    <div class="content">
-        <div class="section">
-            <div class="section-title">Abstract</div>
-            <p>${abstract}</p>
-        </div>
-
-        <div class="section">
-            <div class="section-title">1. Introduction</div>
-            <p>This whitepaper explores the fundamental concepts and practical applications outlined in the title. Our research demonstrates innovative approaches to solving complex technical challenges in the modern development landscape.</p>
-            <p>The methodology presented here has been tested across multiple environments and has shown significant improvements in performance, scalability, and maintainability.</p>
-        </div>
-
-        <div class="section">
-            <div class="section-title">2. Technical Overview</div>
-            <p>The core implementation focuses on leveraging cutting-edge technologies and best practices. Key components include:</p>
-            <ul>
-                <li>Advanced algorithmic approaches for optimization</li>
-                <li>Scalable architecture patterns</li>
-                <li>Performance monitoring and analytics</li>
-                <li>Security considerations and implementations</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <div class="section-title">3. Implementation Details</div>
-            <p>Our implementation strategy involves a multi-phase approach that ensures minimal disruption while maximizing benefits. The process includes comprehensive testing, gradual rollout, and continuous monitoring.</p>
-            <p>Performance benchmarks show improvements of up to 40% in key metrics, with enhanced user experience and reduced operational overhead.</p>
-        </div>
-
-        <div class="section">
-            <div class="section-title">4. Results and Analysis</div>
-            <p>Extensive testing and real-world deployment have validated our approach. Key findings include:</p>
-            <ul>
-                <li>Significant performance improvements across all tested scenarios</li>
-                <li>Enhanced reliability and fault tolerance</li>
-                <li>Improved developer experience and productivity</li>
-                <li>Reduced maintenance overhead and operational costs</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <div class="section-title">5. Conclusion</div>
-            <p>This research demonstrates the viability and benefits of the proposed approach. Future work will focus on expanding the methodology to additional use cases and further optimization opportunities.</p>
-            <p>We encourage the community to adopt these practices and contribute to ongoing development and refinement of these techniques.</p>
-        </div>
-
-        <div class="section">
-            <div class="section-title">6. References</div>
-            <p>[1] Industry Best Practices in Modern Development (2024)<br>
-            [2] Performance Optimization Techniques (2024)<br>
-            [3] Scalable Architecture Patterns (2023)<br>
-            [4] Security in Modern Applications (2024)</p>
-        </div>
-    </div>
-
-    <div class="footer">
-        <p>© 2025 CLUSTER Community Portal. This is a sample document for demonstration purposes.</p>
-        <p>For more information, visit our community portal or contact the author.</p>
-    </div>
-</body>
-</html>`;
-
-    // Create blob and download
-    const blob = new Blob([pdfContent], { type: 'text/html' });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `${title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_whitepaper.html`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    window.URL.revokeObjectURL(url);
-  };
-
-  const handleDownload = (e) => {
-    e.preventDefault();
-    generateSamplePDF();
-  };
-
-  const handleViewOnline = (e) => {
-    e.preventDefault();
-    // Open the same content in a new window for online viewing
-    const viewContent = `
+  const generateSampleContent = () => {
+    return `
 <!DOCTYPE html>
 <html>
 <head>
@@ -176,90 +16,142 @@ const WhitepaperCard = ({ title, abstract, author, date, tags, url }) => {
     <title>${title} - CLUSTER Whitepaper</title>
     <style>
         body { 
-            font-family: Arial, sans-serif; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             line-height: 1.6; 
-            max-width: 800px; 
+            max-width: 900px; 
             margin: 0 auto; 
             padding: 40px 20px;
             color: #333;
-            background: #f8fafc;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
         }
         .container {
             background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
         }
         .header { 
             text-align: center; 
-            border-bottom: 2px solid #0ea5e9; 
-            padding-bottom: 20px; 
-            margin-bottom: 30px;
+            border-bottom: 3px solid #0ea5e9; 
+            padding-bottom: 30px; 
+            margin-bottom: 40px;
         }
         .title { 
-            font-size: 28px; 
-            font-weight: bold; 
-            color: #0ea5e9; 
-            margin-bottom: 10px;
-        }
-        .meta { 
-            color: #666; 
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-        .tags { 
-            margin: 20px 0;
-        }
-        .tag { 
-            background: #e0f2fe; 
-            color: #0369a1; 
-            padding: 6px 12px; 
-            border-radius: 6px; 
-            font-size: 12px; 
-            margin-right: 8px;
-            display: inline-block;
-            margin-bottom: 4px;
-        }
-        .content { 
-            margin-top: 30px;
-        }
-        .section { 
-            margin-bottom: 30px;
-        }
-        .section-title { 
-            font-size: 20px; 
+            font-size: 32px; 
             font-weight: bold; 
             color: #0ea5e9; 
             margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        .meta { 
+            color: #666; 
+            margin-bottom: 25px;
+            font-size: 16px;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
             border-left: 4px solid #0ea5e9;
-            padding-left: 15px;
+        }
+        .tags { 
+            margin: 25px 0;
+            text-align: center;
+        }
+        .tag { 
+            background: linear-gradient(135deg, #0ea5e9, #3b82f6); 
+            color: white; 
+            padding: 8px 16px; 
+            border-radius: 20px; 
+            font-size: 13px; 
+            margin: 0 6px 8px 0;
+            display: inline-block;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(14, 165, 233, 0.3);
+        }
+        .content { 
+            margin-top: 40px;
+        }
+        .section { 
+            margin-bottom: 35px;
+        }
+        .section-title { 
+            font-size: 22px; 
+            font-weight: bold; 
+            color: #0ea5e9; 
+            margin-bottom: 18px;
+            border-left: 5px solid #0ea5e9;
+            padding-left: 20px;
+            background: linear-gradient(90deg, #f0f9ff, transparent);
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .abstract-section {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #0ea5e9;
+            margin-bottom: 30px;
         }
         .footer {
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e5e7eb;
             text-align: center;
             color: #666;
-            font-size: 12px;
+            font-size: 14px;
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 8px;
         }
         ul {
-            padding-left: 20px;
+            padding-left: 25px;
         }
         li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        p {
+            margin-bottom: 15px;
+            color: #444;
+            text-align: justify;
         }
         .download-btn {
-            background: #0ea5e9;
+            background: linear-gradient(135deg, #0ea5e9, #3b82f6);
             color: white;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 14px;
-            margin-top: 20px;
+            font-size: 16px;
+            margin: 20px 10px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+            transition: all 0.3s ease;
         }
         .download-btn:hover {
-            background: #0284c7;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
+        }
+        .highlight {
+            background: linear-gradient(120deg, #fef3c7, #fbbf24);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        @media print {
+            body { background: white; }
+            .container { box-shadow: none; }
+            .download-btn { display: none; }
         }
     </style>
 </head>
@@ -270,79 +162,180 @@ const WhitepaperCard = ({ title, abstract, author, date, tags, url }) => {
             <div class="meta">
                 <strong>Author:</strong> ${author}<br>
                 <strong>Published:</strong> ${formatDate(date)}<br>
-                <strong>Source:</strong> CLUSTER Community Portal
+                <strong>Source:</strong> CLUSTER Community Portal<br>
+                <strong>Document Type:</strong> Technical Whitepaper
             </div>
             <div class="tags">
                 ${tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
             </div>
-            <button class="download-btn" onclick="window.print()">Print / Save as PDF</button>
+            <button class="download-btn" onclick="window.print()">📄 Print / Save as PDF</button>
+            <button class="download-btn" onclick="window.close()">✖️ Close Window</button>
         </div>
 
         <div class="content">
-            <div class="section">
-                <div class="section-title">Abstract</div>
-                <p>${abstract}</p>
+            <div class="abstract-section">
+                <div class="section-title">📋 Abstract</div>
+                <p><strong>${abstract}</strong></p>
+                <p>This comprehensive whitepaper provides detailed insights into the methodologies, implementations, and results of our research. The document serves as a complete guide for practitioners and researchers interested in applying these concepts in real-world scenarios.</p>
             </div>
 
             <div class="section">
-                <div class="section-title">1. Introduction</div>
-                <p>This whitepaper explores the fundamental concepts and practical applications outlined in the title. Our research demonstrates innovative approaches to solving complex technical challenges in the modern development landscape.</p>
-                <p>The methodology presented here has been tested across multiple environments and has shown significant improvements in performance, scalability, and maintainability.</p>
-            </div>
-
-            <div class="section">
-                <div class="section-title">2. Technical Overview</div>
-                <p>The core implementation focuses on leveraging cutting-edge technologies and best practices. Key components include:</p>
+                <div class="section-title">🚀 1. Introduction</div>
+                <p>In today's rapidly evolving technological landscape, the need for <span class="highlight">innovative solutions</span> has never been more critical. This whitepaper explores the fundamental concepts and practical applications outlined in our research title.</p>
+                <p>Our methodology demonstrates cutting-edge approaches to solving complex technical challenges, with a focus on scalability, performance, and maintainability. The research presented here has been validated through extensive testing and real-world implementations.</p>
+                <p>Key objectives of this research include:</p>
                 <ul>
-                    <li>Advanced algorithmic approaches for optimization</li>
-                    <li>Scalable architecture patterns</li>
-                    <li>Performance monitoring and analytics</li>
-                    <li>Security considerations and implementations</li>
+                    <li>Establishing best practices for modern development workflows</li>
+                    <li>Demonstrating measurable performance improvements</li>
+                    <li>Providing actionable insights for implementation teams</li>
+                    <li>Contributing to the broader community knowledge base</li>
                 </ul>
             </div>
 
             <div class="section">
-                <div class="section-title">3. Implementation Details</div>
-                <p>Our implementation strategy involves a multi-phase approach that ensures minimal disruption while maximizing benefits. The process includes comprehensive testing, gradual rollout, and continuous monitoring.</p>
-                <p>Performance benchmarks show improvements of up to 40% in key metrics, with enhanced user experience and reduced operational overhead.</p>
+                <div class="section-title">🔧 2. Technical Overview</div>
+                <p>The core implementation leverages state-of-the-art technologies and industry best practices. Our approach focuses on creating robust, scalable solutions that can adapt to changing requirements.</p>
+                
+                <p><strong>Architecture Components:</strong></p>
+                <ul>
+                    <li><strong>Advanced Algorithmic Approaches:</strong> Optimized algorithms for enhanced performance</li>
+                    <li><strong>Scalable Architecture Patterns:</strong> Microservices and distributed system design</li>
+                    <li><strong>Performance Monitoring:</strong> Real-time analytics and monitoring solutions</li>
+                    <li><strong>Security Framework:</strong> Comprehensive security implementations and best practices</li>
+                </ul>
+
+                <div class="code-block">
+// Example implementation snippet
+function optimizedAlgorithm(data) {
+    return data
+        .filter(item => item.isValid)
+        .map(item => processItem(item))
+        .reduce((acc, curr) => acc + curr.value, 0);
+}
+                </div>
             </div>
 
             <div class="section">
-                <div class="section-title">4. Results and Analysis</div>
-                <p>Extensive testing and real-world deployment have validated our approach. Key findings include:</p>
+                <div class="section-title">⚙️ 3. Implementation Strategy</div>
+                <p>Our implementation follows a <span class="highlight">multi-phase approach</span> designed to minimize disruption while maximizing benefits. The strategy encompasses comprehensive planning, testing, and deployment phases.</p>
+                
+                <p><strong>Phase 1: Planning & Analysis</strong></p>
                 <ul>
-                    <li>Significant performance improvements across all tested scenarios</li>
-                    <li>Enhanced reliability and fault tolerance</li>
-                    <li>Improved developer experience and productivity</li>
-                    <li>Reduced maintenance overhead and operational costs</li>
+                    <li>Requirements gathering and stakeholder alignment</li>
+                    <li>Technical feasibility assessment</li>
+                    <li>Risk analysis and mitigation strategies</li>
+                </ul>
+
+                <p><strong>Phase 2: Development & Testing</strong></p>
+                <ul>
+                    <li>Iterative development with continuous integration</li>
+                    <li>Comprehensive unit and integration testing</li>
+                    <li>Performance benchmarking and optimization</li>
+                </ul>
+
+                <p><strong>Phase 3: Deployment & Monitoring</strong></p>
+                <ul>
+                    <li>Gradual rollout with feature flags</li>
+                    <li>Real-time monitoring and alerting</li>
+                    <li>Continuous improvement based on feedback</li>
                 </ul>
             </div>
 
             <div class="section">
-                <div class="section-title">5. Conclusion</div>
-                <p>This research demonstrates the viability and benefits of the proposed approach. Future work will focus on expanding the methodology to additional use cases and further optimization opportunities.</p>
-                <p>We encourage the community to adopt these practices and contribute to ongoing development and refinement of these techniques.</p>
+                <div class="section-title">📊 4. Results and Analysis</div>
+                <p>Extensive testing and real-world deployment have validated our approach across multiple environments and use cases. The results demonstrate significant improvements in key performance indicators.</p>
+                
+                <p><strong>Performance Metrics:</strong></p>
+                <ul>
+                    <li><strong>Response Time:</strong> 40% improvement in average response times</li>
+                    <li><strong>Throughput:</strong> 60% increase in request handling capacity</li>
+                    <li><strong>Resource Utilization:</strong> 25% reduction in computational overhead</li>
+                    <li><strong>Error Rate:</strong> 80% decrease in system errors and failures</li>
+                </ul>
+
+                <p><strong>Business Impact:</strong></p>
+                <ul>
+                    <li>Enhanced user experience and satisfaction</li>
+                    <li>Reduced operational costs and maintenance overhead</li>
+                    <li>Improved developer productivity and workflow efficiency</li>
+                    <li>Increased system reliability and fault tolerance</li>
+                </ul>
             </div>
 
             <div class="section">
-                <div class="section-title">6. References</div>
-                <p>[1] Industry Best Practices in Modern Development (2024)<br>
-                [2] Performance Optimization Techniques (2024)<br>
-                [3] Scalable Architecture Patterns (2023)<br>
-                [4] Security in Modern Applications (2024)</p>
+                <div class="section-title">🎯 5. Best Practices & Recommendations</div>
+                <p>Based on our research and implementation experience, we recommend the following best practices for organizations looking to adopt similar approaches:</p>
+                
+                <ul>
+                    <li><strong>Start Small:</strong> Begin with pilot projects to validate the approach</li>
+                    <li><strong>Invest in Training:</strong> Ensure team members are properly trained on new methodologies</li>
+                    <li><strong>Monitor Continuously:</strong> Implement comprehensive monitoring from day one</li>
+                    <li><strong>Document Everything:</strong> Maintain detailed documentation for future reference</li>
+                    <li><strong>Iterate Frequently:</strong> Use feedback loops to continuously improve the implementation</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <div class="section-title">🔮 6. Future Work & Conclusion</div>
+                <p>This research demonstrates the <span class="highlight">viability and significant benefits</span> of our proposed approach. The methodology has proven effective across diverse scenarios and environments.</p>
+                
+                <p><strong>Future Research Directions:</strong></p>
+                <ul>
+                    <li>Expansion to additional use cases and domains</li>
+                    <li>Integration with emerging technologies and platforms</li>
+                    <li>Development of automated optimization tools</li>
+                    <li>Community-driven enhancements and contributions</li>
+                </ul>
+
+                <p>We encourage the broader community to adopt these practices and contribute to the ongoing development and refinement of these techniques. The open-source nature of our approach ensures that improvements benefit everyone.</p>
+            </div>
+
+            <div class="section">
+                <div class="section-title">📚 7. References & Further Reading</div>
+                <p><strong>Primary Sources:</strong></p>
+                <p>[1] Smith, J. et al. "Advanced Patterns in Modern Development" (2024)<br>
+                [2] Johnson, A. "Performance Optimization Techniques for Scalable Systems" (2024)<br>
+                [3] Chen, L. "Security Best Practices in Distributed Architectures" (2023)<br>
+                [4] Rodriguez, M. "Monitoring and Observability in Production Systems" (2024)</p>
+
+                <p><strong>Additional Resources:</strong></p>
+                <p>[5] CLUSTER Community Portal - Technical Documentation<br>
+                [6] Industry Standards and Guidelines (ISO/IEC 27001:2022)<br>
+                [7] Open Source Tools and Frameworks Documentation<br>
+                [8] Performance Benchmarking Methodologies (IEEE Standards)</p>
             </div>
         </div>
 
         <div class="footer">
-            <p>© 2025 CLUSTER Community Portal. This is a sample document for demonstration purposes.</p>
-            <p>For more information, visit our community portal or contact the author.</p>
+            <p><strong>© 2025 CLUSTER Community Portal</strong></p>
+            <p>This is a comprehensive sample document demonstrating the structure and content of a technical whitepaper.</p>
+            <p>For more information about our research and community, visit our portal or contact the author directly.</p>
+            <p><em>Document generated on ${new Date().toLocaleDateString()} for demonstration purposes.</em></p>
         </div>
     </div>
 </body>
 </html>`;
+  };
 
-    const newWindow = window.open('', '_blank');
-    newWindow.document.write(viewContent);
+  const handleDownload = (e) => {
+    e.preventDefault();
+    const content = generateSampleContent();
+    const blob = new Blob([content], { type: 'text/html' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_whitepaper.html`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  };
+
+  const handleViewOnline = (e) => {
+    e.preventDefault();
+    const content = generateSampleContent();
+    const newWindow = window.open('', '_blank', 'width=1000,height=800,scrollbars=yes,resizable=yes');
+    newWindow.document.write(content);
     newWindow.document.close();
   };
 
