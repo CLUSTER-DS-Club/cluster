@@ -50,7 +50,6 @@ const ContactPage = () => {
     validationErrors: [],
   });
 
-  // Enhanced phone number validation and error message for UI
   const [phoneError, setPhoneError] = useState('');
 
   const handleChange = (e) => {
@@ -70,29 +69,27 @@ const ContactPage = () => {
 
   const handlePhoneChange = (e) => {
     const { value } = e.target;
-    // Only allow digits
+
     if (/[^0-9]/.test(value)) {
       setPhoneError('Only numbers are allowed in phone number');
       setFormData(prev => ({ ...prev, number: value.replace(/[^0-9]/g, '') }));
       return;
     }
-    // Limit to 10 digits, but show error if more
+
     if (value.length > 10) {
       setPhoneError('Phone number must be exactly 10 digits');
       setFormData(prev => ({ ...prev, number: value.slice(0, 10) }));
       return;
     }
-    // Show error if less than 10 and not empty (optional, for instant feedback)
+
     if (value.length > 0 && value.length < 10) {
       setPhoneError('Phone number must be exactly 10 digits');
     } else {
       setPhoneError('');
     }
-    setFormData(prev => ({
-      ...prev,
-      number: value
-    }));
-    // Clear validation errors when user starts typing
+
+    setFormData(prev => ({ ...prev, number: value }));
+
     if (status.validationErrors.length > 0) {
       setStatus(prev => ({
         ...prev,
@@ -163,10 +160,10 @@ const ContactPage = () => {
   const getFieldError = (field) =>
     status.validationErrors.find((err) => err.toLowerCase().includes(field.toLowerCase()));
 
-  const InputField = ({ label, name, type = 'text', placeholder, Icon }) => (
+  const InputField = ({ label, name, type = 'text', placeholder, Icon, onChangeOverride }) => (
     <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
       <label htmlFor={name} className="block text-sm font-medium text-slate-300 mb-1">
-        {label}
+        {label} {(name === 'name' || name === 'email') && <span className="text-red-500">*</span>}
       </label>
       <div className="relative">
         {Icon && <Icon className="absolute left-3 top-3.5 text-cyan-400" />}
@@ -175,7 +172,7 @@ const ContactPage = () => {
           name={name}
           id={name}
           value={formData[name]}
-          onChange={handleChange}
+          onChange={onChangeOverride || handleChange}
           required
           placeholder={placeholder}
           className={`pl-10 pr-4 py-2 rounded-xl bg-slate-800/60 border ${getFieldError(name) ? 'border-red-500' : 'border-cyan-500/30'
@@ -214,72 +211,34 @@ const ContactPage = () => {
           </div>
         )}
 
-        <GlassCard
-          className="no-hover-effect p-8 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 ring-2 ring-cyan-400/20 backdrop-blur-xl shadow-xl transition-all duration-1000 ease-in-out"
-        >
+        <GlassCard className="no-hover-effect p-8 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 ring-2 ring-cyan-400/20 backdrop-blur-xl shadow-xl transition-all duration-1000 ease-in-out">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <InputField label="Name" name="name" placeholder="Your name" Icon={FiUser} />
               <InputField label="Email" name="email" type="email" placeholder="you@example.com" Icon={FiMail} />
-              <InputField label="Phone" name="number" type="tel" placeholder="+91 1234567890" Icon={FiPhone} />
+              <div className="space-y-1">
+                <InputField
+                  label="Phone"
+                  name="number"
+                  type="tel"
+                  placeholder="+91 1234567890"
+                  Icon={FiPhone}
+                  onChangeOverride={handlePhoneChange}
+                />
+                {phoneError && (
+                  <div className="relative">
+                    <div className="bg-red-500 text-white text-sm px-4 py-2 rounded-xl shadow-lg w-fit max-w-xs">
+                      {phoneError}
+                    </div>
+                    <div className="absolute left-4 -top-2 w-3 h-3 bg-red-500 rotate-45 transform origin-center"></div>
+                  </div>
+                )}
+              </div>
               <InputField label="Subject" name="subject" placeholder="What's this about?" Icon={FiEdit} />
             </div>
 
-
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-              <div>
-                <label htmlFor="number" className="block text-sm font-medium text-slate-300">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  name="number"
-                  id="number"
-                  value={formData.number}
-                  onChange={handlePhoneChange}
-                  required
-                  className={`mt-1 block w-full rounded-md bg-slate-700/50 border ${
-                    phoneError || getFieldError('phone') ? 'border-red-500' : 'border-slate-600'
-                  } text-white placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-sm`}
-                  placeholder="+91 XXXXXXXXXX"
-                  pattern="[0-9]{10}"
-                  maxLength={10}
-                />
-                {(phoneError || getFieldError('phone')) && (
-                  <p className="mt-1 text-sm text-red-400">{phoneError || getFieldError('phone')}</p>
-                )}
-              </div>
-
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-slate-300">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  name="subject"
-                  id="subject"
-                  value={formData.subject}
-                  onChange={handleChange
-                  }
-                  required
-                  className={`mt-1 block w-full rounded-md bg-slate-700/50 border ${
-                    getFieldError('subject') ? 'border-red-500' : 'border-slate-600'
-                  } text-white placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-sm`}
-                  placeholder="What is this regarding?"
-                />
-                {getFieldError('subject') && (
-                  <p className="mt-1 text-sm text-red-400">{getFieldError('subject')}</p>
-                )}
-              </div>
-            </div>
-
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-slate-300">
-
-            
-
-                Message
-              </label>
+              <label htmlFor="message" className="block text-sm font-medium text-slate-300">Message</label>
               <textarea
                 name="message"
                 id="message"
@@ -295,6 +254,7 @@ const ContactPage = () => {
                 <p className="mt-1 text-sm text-red-400">{getFieldError('message')}</p>
               )}
             </div>
+
             <div className={`text-right transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
               <button
                 type="submit"
