@@ -306,12 +306,12 @@ const Footer = () => {
                       </a>
                     </li>
                     <li>
-                      <a
-                        href="#"
+                      <Link
+                        to="/whitepapers"
                         className="inline-block text-slate-300 hover:text-cyan-400 transition-colors duration-200"
                       >
                         Whitepapers
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
