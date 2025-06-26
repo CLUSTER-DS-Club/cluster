@@ -14,7 +14,7 @@ const Publications = () => {
   return (
     <div className={`publications-page transition-all duration-1000 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
       <h1 className={`transition-all duration-1000 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>All Publications</h1>
-      <div className="publications-list">
+      <div className="publications-grid">
         {publications.map((pub, idx) => (
           <a
             className={`publication-card transition-all duration-700 ease-in-out delay-[${idx * 100}ms] ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}

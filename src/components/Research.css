@@ -10,11 +10,13 @@
   flex-direction: column;
   align-items: center;
 }
+
 .research-header {
   width: 100%;
   text-align: center;
   margin-bottom: 2.5rem;
 }
+
 .research-header h1 {
   font-size: 2.8rem;
   font-weight: 700;
@@ -23,11 +25,13 @@
   letter-spacing: 1px;
   text-shadow: 0 2px 16px #0ea5e9cc;
 }
+
 .research-header p {
   color: #b6d6f6;
   margin-bottom: 2rem;
   font-size: 1.15rem;
 }
+
 .research-stats {
   display: flex;
   justify-content: center;
@@ -35,6 +39,7 @@
   flex-wrap: wrap;
   margin-bottom: 2.5rem;
 }
+
 .stat-card {
   background: linear-gradient(120deg, #1e335c 60%, #233a6a 100%);
   border-radius: 1rem;
@@ -44,22 +49,26 @@
   border: 1px solid #1e90ff33;
   min-width: 170px;
 }
+
 .stat-card span {
   font-size: 2.1rem;
   font-weight: 600;
   color: #38bdf8;
   text-shadow: 0 2px 8px #0ea5e9cc;
 }
+
 .stat-card small {
   display: block;
   color: #b6d6f6;
   margin-top: 0.3rem;
   font-size: 1.05rem;
 }
+
 .featured-projects {
   width: 100%;
   margin-bottom: 2.5rem;
 }
+
 .featured-projects h2,
 .publications h2 {
   font-size: 1.6rem;
@@ -69,12 +78,24 @@
   text-shadow: 0 2px 8px #0ea5e9cc;
   text-align: left;
 }
-.projects-grid {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+
+.projects-grid,
+.publications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  justify-items: center;
 }
+
+.horizontal-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  aspect-ratio: 1 / 1;
+  padding: 1.5rem;
+}
+
 .project-card {
   background: linear-gradient(120deg, #1e335c 60%, #233a6a 100%);
   border-radius: 1rem;
@@ -88,6 +109,7 @@
   justify-content: space-between;
   border: 1px solid #1e90ff33;
 }
+
 .project-card h3 {
   font-size: 1.25rem;
   font-weight: 600;
@@ -95,16 +117,19 @@
   margin-bottom: 0.5rem;
   text-shadow: 0 2px 8px #0ea5e9cc;
 }
+
 .project-card p {
   color: #b6d6f6;
   margin-bottom: 0.7rem;
   font-size: 1.05rem;
 }
+
 .tags {
   display: flex;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
 }
+
 .tags span {
   background: #0ea5e9;
   color: #fff;
@@ -113,11 +138,13 @@
   font-size: 0.92rem;
   box-shadow: 0 2px 8px #0ea5e955;
 }
+
 .year {
   color: #b6d6f6;
   font-size: 1.05rem;
   margin-bottom: 0.7rem;
 }
+
 .view-project {
   color: #38bdf8;
   text-decoration: none;
@@ -126,21 +153,36 @@
   transition: color 0.2s;
   font-size: 1.05rem;
 }
+
 .view-project:hover {
   color: #6ee0ff;
 }
+
 .publications {
   width: 100%;
   margin-bottom: 2rem;
 }
+
 .publication-card {
   background: linear-gradient(120deg, #1e335c 60%, #233a6a 100%);
   border-radius: 1rem;
   padding: 1.2rem 1.5rem;
   box-shadow: 0 2px 16px #0ea5e91a;
-  margin-bottom: 1rem;
   border: 1px solid #1e90ff33;
+  color: #e0e7ef;
+  text-decoration: none;
+  transition: box-shadow 0.2s, border 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  aspect-ratio: 1 / 1;
 }
+
+.publication-card:hover {
+  box-shadow: 0 4px 32px #0ea5e955;
+  border: 1px solid #38bdf8;
+}
+
 .publication-card h3 {
   font-size: 1.13rem;
   font-weight: 600;
@@ -148,11 +190,18 @@
   margin-bottom: 0.3rem;
   text-shadow: 0 2px 8px #0ea5e9cc;
 }
-.authors {
+
+.publication-card .authors {
   color: #b6d6f6;
   font-size: 1.02rem;
   margin-bottom: 0.5rem;
 }
+
+.publication-card p {
+  color: #e0e7ef;
+  font-size: 1.05rem;
+}
+
 .dev-info {
   display: flex;
   align-items: center;
@@ -160,11 +209,13 @@
   margin-bottom: 0.7rem;
   margin-top: 0.5rem;
 }
+
 .dev-name {
   color: #6ee0ff;
   font-weight: 500;
   font-size: 1.05rem;
 }
+
 .github-id {
   color: #38bdf8;
   background: #0a1836;
@@ -174,10 +225,12 @@
   text-decoration: none;
   transition: background 0.2s, color 0.2s;
 }
+
 .github-id:hover {
   background: #38bdf8;
   color: #0a1836;
 }
+
 .view-summary {
   background: #38bdf8;
   color: #fff;
@@ -191,9 +244,11 @@
   box-shadow: 0 2px 8px #0ea5e955;
   transition: background 0.2s;
 }
+
 .view-summary:hover {
   background: #6ee0ff;
 }
+
 .popup-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -203,6 +258,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .popup-window {
   background: linear-gradient(120deg, #1e335c 60%, #233a6a 100%);
   border-radius: 1.2rem;
@@ -215,16 +271,19 @@
   position: relative;
   text-align: center;
 }
+
 .popup-window h3 {
   color: #6ee0ff;
   margin-bottom: 1rem;
   font-size: 1.3rem;
 }
+
 .popup-window p {
   color: #b6d6f6;
   margin-bottom: 1.1rem;
   font-size: 1.08rem;
 }
+
 .close-popup {
   background: #38bdf8;
   color: #fff;
@@ -238,9 +297,11 @@
   box-shadow: 0 2px 8px #0ea5e955;
   transition: background 0.2s;
 }
+
 .close-popup:hover {
   background: #6ee0ff;
 }
+
 .view-all-pubs {
   color: #38bdf8;
   font-weight: 500;
@@ -248,9 +309,11 @@
   font-size: 1.08rem;
   transition: color 0.2s;
 }
+
 .view-all-pubs:hover {
   color: #6ee0ff;
 }
+
 @media (max-width: 900px) {
   .research-page {
     padding: 2.2rem 0.5rem 1.5rem 0.5rem;

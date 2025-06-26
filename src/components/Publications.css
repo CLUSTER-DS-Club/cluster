@@ -10,6 +10,7 @@
   flex-direction: column;
   align-items: center;
 }
+
 .publications-page h1 {
   font-size: 2.2rem;
   font-weight: 700;
@@ -18,12 +19,15 @@
   letter-spacing: 1px;
   text-shadow: 0 2px 16px #0ea5e9cc;
 }
-.publications-list {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+
+/* ✅ GRID Layout for 3-per-row effect */
+.publications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
+  width: 100%;
 }
+
 .publication-card {
   background: linear-gradient(120deg, #1e335c 60%, #233a6a 100%);
   border-radius: 1rem;
@@ -33,12 +37,19 @@
   color: #e0e7ef;
   text-decoration: none;
   transition: box-shadow 0.2s, border 0.2s;
-  display: block;
+
+  width: 100%;
+  aspect-ratio: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
 .publication-card:hover {
   box-shadow: 0 4px 32px #0ea5e955;
   border: 1px solid #38bdf8;
 }
+
 .publication-card h3 {
   font-size: 1.13rem;
   font-weight: 600;
@@ -46,12 +57,29 @@
   margin-bottom: 0.3rem;
   text-shadow: 0 2px 8px #0ea5e9cc;
 }
+
 .publication-card .authors {
   color: #b6d6f6;
   font-size: 1.02rem;
   margin-bottom: 0.5rem;
 }
+
 .publication-card p {
   color: #e0e7ef;
   font-size: 1.05rem;
+}
+
+/* ✅ Responsive Tweaks */
+@media (max-width: 768px) {
+  .publications-page {
+    padding: 2rem 1rem;
+  }
+
+  .publications-page h1 {
+    font-size: 1.8rem;
+  }
+
+  .publication-card {
+    padding: 1rem 1.2rem;
+  }
 }
