@@ -1,3 +1,4 @@
+/* Research.css */
 .research-page {
   padding: 3.5rem 1.5rem 2.5rem 1.5rem;
   max-width: 1200px;
@@ -88,20 +89,11 @@
   justify-items: center;
 }
 
-.horizontal-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  aspect-ratio: 1 / 1;
-  padding: 1.5rem;
-}
-
 .project-card {
   background: linear-gradient(120deg, #1e335c 60%, #233a6a 100%);
   border-radius: 1rem;
   box-shadow: 0 2px 16px #0ea5e91a;
   padding: 1.5rem;
-  flex: 1 1 320px;
   min-width: 320px;
   max-width: 400px;
   display: flex;
@@ -128,6 +120,7 @@
   display: flex;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .tags span {
@@ -145,17 +138,22 @@
   margin-bottom: 0.7rem;
 }
 
-.view-project {
-  color: #38bdf8;
-  text-decoration: none;
+.view-summary {
+  background: #38bdf8;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.4rem 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
-  margin-top: auto;
-  transition: color 0.2s;
-  font-size: 1.05rem;
+  margin-top: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #0ea5e955;
+  transition: background 0.2s;
 }
 
-.view-project:hover {
-  color: #6ee0ff;
+.view-summary:hover {
+  background: #6ee0ff;
 }
 
 .publications {
@@ -208,6 +206,7 @@
   gap: 0.7rem;
   margin-bottom: 0.7rem;
   margin-top: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .dev-name {
@@ -229,24 +228,6 @@
 .github-id:hover {
   background: #38bdf8;
   color: #0a1836;
-}
-
-.view-summary {
-  background: #38bdf8;
-  color: #fff;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0.4rem 1.1rem;
-  font-size: 1rem;
-  font-weight: 500;
-  margin-top: 0.7rem;
-  cursor: pointer;
-  box-shadow: 0 2px 8px #0ea5e955;
-  transition: background 0.2s;
-}
-
-.view-summary:hover {
-  background: #6ee0ff;
 }
 
 .popup-overlay {
@@ -319,8 +300,7 @@
     padding: 2.2rem 0.5rem 1.5rem 0.5rem;
   }
   .projects-grid {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
   }
   .project-card {
     max-width: 100%;
