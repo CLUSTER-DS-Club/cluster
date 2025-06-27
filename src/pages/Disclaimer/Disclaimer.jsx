@@ -48,12 +48,12 @@ function Disclaimer() {
       <p className="disclaimer-text">
         If you have any questions about this disclaimer, you can contact us at {" "}
         <a
-          href="https://mail.google.com/mail/?view=cm&to=support@cluster.com"
+          href="https://mail.google.com/mail/?view=cm&to=dsclub.cluster@vips.edu"
           target="_blank"
           rel="noopener noreferrer"
           className="disclaimer-link"
         >
-          support@cluster.com
+          dsclub.cluster@vips.edu
 
         </a>
         .
