@@ -22,6 +22,8 @@ import Cookies from './pages/Cookies/Cookies.jsx';
 import Terms from './pages/Terms of Service/Terms.jsx';
 import Blog from './pages/Blog.jsx';
 import BlogPost from './pages/BlogPost.jsx';
+import Community from './pages/Community';
+import About from './pages/About.jsx';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -55,6 +57,8 @@ function App() {
               <Route path="/terms" element={<Terms />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:id" element={<BlogPost />} />
+              <Route path="/community" element={<Community />} />
+              <Route path="/about" element={<About />} />
             </Routes>
           </main>
           <Footer />

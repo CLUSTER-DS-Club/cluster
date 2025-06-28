@@ -84,7 +84,7 @@ const Footer = () => {
   return (
     <>
       {/* ==================== CTA SECTION ==================== */}
-      <section className="bg-slate-800 py-12 px-4 border-t border-b border-slate-700">
+      <section className="bg-slate-800 py-8 px-4 border-b border-slate-700 -mt-3">
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="text-2xl font-bold text-white mb-4">Stay In Loop</h3>
           <p className="text-slate-300 mb-6">
