@@ -20,7 +20,6 @@
   text-shadow: 0 2px 16px #0ea5e9cc;
 }
 
-/* ✅ GRID Layout for 3-per-row effect */
 .publications-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -69,7 +68,6 @@
   font-size: 1.05rem;
 }
 
-/* ✅ Responsive Tweaks */
 @media (max-width: 768px) {
   .publications-page {
     padding: 2rem 1rem;
