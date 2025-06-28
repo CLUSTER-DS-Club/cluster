@@ -51,6 +51,7 @@ const Footer = () => {
     ],
   };
 
+
   // Social media links
   const socialLinks = [
     {
