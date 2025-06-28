@@ -25,13 +25,13 @@ const Footer = () => {
   // Footer link data - organized by category
   const footerLinks = {
     company: [
-      { name: 'About Us', url: '/about' },
+        { name: 'About Us', url: '/about' },
       { name: 'Our Team', url: '/team' },
       { name: 'Research', url: '/research' },
       { name: 'Events', url: '/events' },
     ],
     resources: [
-      { name: 'Documentation', url: '/docs' },
+          { name: 'Documentation', url: '/docs' },
       { name: 'Tutorials', url: '/tutorials' },
       { name: 'Blog', url: '/blog' },
       { name: 'Case Studies', url: '/caseStudy' },
@@ -64,7 +64,11 @@ const Footer = () => {
       name: "LinkedIn",
     },
     { icon: SiDiscord, href: "https://discord.gg/6QN83D89vx", name: "Discord" },
-    { icon: SiGmail, href: "mailto:dsclub.cluster@vips.edu", name: "Email" },
+    {
+      icon: SiGmail,
+      href: "https://mail.google.com/mail/?view=cm&to=dsclub.cluster@vips.edu",
+      name: "Email",
+    },
   ];
 
   return (

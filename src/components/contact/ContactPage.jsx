@@ -4,7 +4,6 @@ import AnimatedBackground from '../common/AnimatedBackground';
 import GlassCard from '../common/GlassCard';
 import { FiMail, FiUser, FiPhone, FiEdit, FiSend } from 'react-icons/fi';
 
-
 const InputField = ({ label, name, type = 'text', placeholder, Icon, onChangeOverride, value, error }) => (
   <div className="transition-all duration-700 opacity-100 translate-y-0">
     <label htmlFor={name} className="block text-sm font-medium text-slate-300 mb-1">
