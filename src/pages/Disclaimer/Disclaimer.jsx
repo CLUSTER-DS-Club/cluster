@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import "./Disclaimer.css";
+import React, { useEffect } from 'react';
+import './Disclaimer.css';
 
 function Disclaimer() {
   useEffect(() => {
