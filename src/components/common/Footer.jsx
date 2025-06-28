@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { Mail, MapPin, ArrowUp, Heart } from "lucide-react";
-import { SiDiscord, SiLinkedin, SiGmail, SiGithub } from "react-icons/si";
-import logo from "/DS_CLUB_LOGO.jpeg";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { Mail, MapPin, ArrowUp, Heart } from 'lucide-react';
+import { SiDiscord, SiLinkedin, SiGmail, SiGithub } from 'react-icons/si';
+import logo from '/DS_CLUB_LOGO.jpeg';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   // State management
@@ -25,31 +25,32 @@ const Footer = () => {
   // Footer link data - organized by category
   const footerLinks = {
     company: [
-      { name: "About Us", url: "/about" },
-      { name: "Our Team", url: "/team" },
-      { name: "Research", url: "/research" },
-      { name: "Events", url: "/events" },
+        { name: 'About Us', url: '/about' },
+      { name: 'Our Team', url: '/team' },
+      { name: 'Research', url: '/research' },
+      { name: 'Events', url: '/events' },
     ],
     resources: [
-      { name: "Documentation", url: "/docs" },
-      { name: "Tutorials", url: "/tutorials" },
-      { name: "Blog", url: "/blog" },
-      { name: "Case Studies", url: "/caseStudy" },
-      { name: "Whitepapers", url: "/whitepapers" },
+          { name: 'Documentation', url: '/docs' },
+      { name: 'Tutorials', url: '/tutorials' },
+      { name: 'Blog', url: '/blog' },
+      { name: 'Case Studies', url: '/caseStudy' },
+      { name: 'Whitepapers', url: '/whitepapers' },
     ],
     support: [
-      { name: "Contact Us", url: "/contact" },
-      { name: "FAQ", url: "/faq" },
-      { name: "Community", url: "/community" },
-      { name: "Help Center", url: "/help" },
+      { name: 'Contact Us', url: '/contact' },
+      { name: 'FAQ', url: '/faq' },
+      { name: 'Community', url: '/community' },
+      { name: 'Help Center', url: '/help' },
     ],
     legal: [
-      { name: "Privacy Policy", url: "/privacy" },
-      { name: "Terms of Service", url: "/terms" },
-      { name: "Cookie Policy", url: "/cookies" },
-      { name: "Disclaimer", url: "/disclaimer" },
+      { name: 'Privacy Policy', url: '/privacy' },
+      { name: 'Terms of Service', url: '/terms' },
+      { name: 'Cookie Policy', url: '/cookies' },
+      { name: 'Disclaimer', url: '/disclaimer' },
     ],
   };
+
 
   // Social media links
   const socialLinks = [
