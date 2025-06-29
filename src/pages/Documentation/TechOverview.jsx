@@ -11,27 +11,37 @@ function TechOverview() {
     <div className="flex min-h-screen bg-[#0f172a] mt-16">
       <SideNav />
 
-      <div className="flex-1 py-20 px-6">
-        <div className="max-w-3xl mx-auto text-white bg-[#1e293b]/80 backdrop-blur-md p-8 rounded-xl shadow-md border border-gray-700">
+      <main className="flex-1 py-20 px-6">
+        <section className="max-w-4xl mx-auto text-white bg-[#1e293b]/80 backdrop-blur-md p-10 rounded-2xl shadow-xl border border-gray-700 transition-all duration-300 hover:shadow-2xl">
           <DocSection title="🧠 Tech Stack Overview" id="tech-overview">
-            <p className="mb-4 text-lg ">
-              The Cluster project uses modern tools and libraries for performance, maintainability, and community contributions.
+            <p className="mb-6 text-lg text-gray-300 leading-relaxed">
+              <span className="text-white font-semibold">Cluster</span> is built with modern technologies focused on performance, flexibility, and ease of collaboration. Below is a quick overview of the core stack:
             </p>
 
-            <ul className="list-disc list-inside text-lg space-y-2 text-gray-300">
-              <li><strong>React.js</strong> – UI framework for building interactive components</li>
-              <li><strong>Tailwind CSS</strong> – Utility-first CSS framework for fast UI styling</li>
-              <li><strong>Vite</strong> – Lightning-fast dev server and build tool</li>
-              <li><strong>React Router</strong> – For client-side routing and navigation</li>
-              <li><strong>GitHub</strong> – Collaboration, version control, and issue tracking</li>
+            <ul className="list-inside space-y-4 text-base text-gray-300">
+              <li>
+                <span className="text-blue-400 font-semibold">⚛️ <a href="https://react.dev/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-300">React.js</a></span> – Powerful JavaScript library for building dynamic UIs.
+              </li>
+              <li>
+                <span className="text-cyan-400 font-semibold">🎨 <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-cyan-300">Tailwind CSS</a></span> – Utility-first CSS framework for building custom interfaces efficiently.
+              </li>
+              <li>
+                <span className="text-yellow-400 font-semibold">⚡ <a href="https://vitejs.dev/" target="_blank" rel="noopener noreferrer" className="underline hover:text-yellow-300">Vite</a></span> – Fast, modern frontend build tool with instant HMR (Hot Module Replacement).
+              </li>
+              <li>
+                <span className="text-pink-400 font-semibold">🧭 <a href="https://reactrouter.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-pink-300">React Router</a></span> – Enables seamless client-side routing for a single-page app experience.
+              </li>
+              <li>
+                <span className="text-gray-400 font-semibold">🐙 <a href="https://github.com/CLUSTER-DS-Club/cluster" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-300">GitHub</a></span> – Provides version control, collaboration, and issue tracking for team workflows.
+              </li>
             </ul>
 
-            <p className="mt-6 text-lg text-gray-300">
-              The tech stack is chosen for speed, flexibility, and scalability across contributors and deployments.
+            <p className="mt-8 text-lg text-gray-400 leading-relaxed">
+              This tech stack was carefully chosen to balance <span className="text-white font-medium">developer experience</span>, <span className="text-white font-medium">performance</span>, and <span className="text-white font-medium">scalability</span> for open-source and team collaboration.
             </p>
           </DocSection>
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
   );
 }
