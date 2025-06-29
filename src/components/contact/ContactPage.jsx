@@ -4,6 +4,30 @@ import AnimatedBackground from '../common/AnimatedBackground';
 import GlassCard from '../common/GlassCard';
 import { FiMail, FiUser, FiPhone, FiEdit, FiSend } from 'react-icons/fi';
 
+const InputField = ({ label, name, type = 'text', placeholder, Icon, onChangeOverride, value, error }) => (
+  <div className="transition-all duration-700 opacity-100 translate-y-0">
+    <label htmlFor={name} className="block text-sm font-medium text-slate-300 mb-1">
+      {label} {(name === 'name' || name === 'email') && <span className="text-red-500">*</span>}
+    </label>
+    <div className="relative">
+      {Icon && <Icon className="absolute left-3 top-3.5 text-cyan-400" />}
+      <input
+        type={type}
+        name={name}
+        id={name}
+        value={value}
+        onChange={onChangeOverride}
+        required
+        placeholder={placeholder}
+        className={`pl-10 pr-4 py-2 rounded-xl bg-slate-800/60 border ${
+          error ? 'border-red-500' : 'border-cyan-500/30'
+        } text-white w-full placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-md shadow-cyan-500/10 transition-all duration-300`}
+      />
+    </div>
+    {error && <p className="mt-1 text-sm text-red-400">{error}</p>}
+  </div>
+);
+
 const CursorGlow = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -160,29 +184,6 @@ const ContactPage = () => {
   const getFieldError = (field) =>
     status.validationErrors.find((err) => err.toLowerCase().includes(field.toLowerCase()));
 
-  const InputField = ({ label, name, type = 'text', placeholder, Icon, onChangeOverride }) => (
-    <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-      <label htmlFor={name} className="block text-sm font-medium text-slate-300 mb-1">
-        {label} {(name === 'name' || name === 'email') && <span className="text-red-500">*</span>}
-      </label>
-      <div className="relative">
-        {Icon && <Icon className="absolute left-3 top-3.5 text-cyan-400" />}
-        <input
-          type={type}
-          name={name}
-          id={name}
-          value={formData[name]}
-          onChange={onChangeOverride || handleChange}
-          required
-          placeholder={placeholder}
-          className={`pl-10 pr-4 py-2 rounded-xl bg-slate-800/60 border ${getFieldError(name) ? 'border-red-500' : 'border-cyan-500/30'
-            } text-white w-full placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-md shadow-cyan-500/10 transition-all duration-300`}
-        />
-      </div>
-      {getFieldError(name) && <p className="mt-1 text-sm text-red-400">{getFieldError(name)}</p>}
-    </div>
-  );
-
   return (
     <div className={`min-h-screen relative py-20 px-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -214,8 +215,8 @@ const ContactPage = () => {
         <GlassCard className="no-hover-effect p-8 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 ring-2 ring-cyan-400/20 backdrop-blur-xl shadow-xl transition-all duration-1000 ease-in-out">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <InputField label="Name" name="name" placeholder="Your name" Icon={FiUser} />
-              <InputField label="Email" name="email" type="email" placeholder="you@example.com" Icon={FiMail} />
+              <InputField label="Name" name="name" placeholder="Your name" Icon={FiUser} value={formData.name} onChangeOverride={handleChange} error={getFieldError("name")} />
+              <InputField label="Email" name="email" type="email" placeholder="you@example.com" Icon={FiMail} value={formData.email} onChangeOverride={handleChange} error={getFieldError("email")} />
               <div className="space-y-1">
                 <InputField
                   label="Phone"
@@ -223,7 +224,9 @@ const ContactPage = () => {
                   type="tel"
                   placeholder="+91 1234567890"
                   Icon={FiPhone}
+                  value={formData.number}
                   onChangeOverride={handlePhoneChange}
+                  error={getFieldError("number")}
                 />
                 {phoneError && (
                   <div className="relative">
@@ -234,7 +237,7 @@ const ContactPage = () => {
                   </div>
                 )}
               </div>
-              <InputField label="Subject" name="subject" placeholder="What's this about?" Icon={FiEdit} />
+              <InputField label="Subject" name="subject" placeholder="What's this about?" Icon={FiEdit} value={formData.subject} onChangeOverride={handleChange} error={getFieldError("subject")} />
             </div>
 
             <div>
