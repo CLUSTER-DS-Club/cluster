@@ -98,7 +98,7 @@ const About = () => {
             <div className="max-w-7xl mx-auto relative z-10">
                 {/* Header */}
                 <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                    <div className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 backdrop-blur-sm border border-cyan-400/30 rounded-full px-6 py-2 mb-6">
+                    <div className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 backdrop-blur-sm border border-cyan-400/30 rounded-full px-6 py-2 mb-6 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/50 transition ease-in-out duration-300 hover:scale-105 overflow-hidden cursor-pointer">
                         <Target className="w-5 h-5 text-cyan-400" />
                         <span className="text-cyan-300 font-medium">About CLUSTER</span>
                     </div>
@@ -116,7 +116,7 @@ const About = () => {
 
                 {/* Navigation Tabs */}
                 <div className={`flex justify-center mb-16 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                    <div className="flex flex-row gap-4 bg-gradient-to-r from-slate-800/50 to-blue-900/30 backdrop-blur-xl rounded-2xl p-2 border border-white/10">
+                    <div className="flex flex-row gap-4 bg-gradient-to-r from-slate-800/50  to-blue-900/30 backdrop-blur-xl rounded-2xl p-2 border border-cyan-400/30 shadow-lg shadow-cyan-500/25 transition ease-in-out duration-300">
                         {Object.keys(sections).map((key) => {
                             const section = sections[key];
                             const IconComponent = section.icon;
@@ -138,13 +138,13 @@ const About = () => {
                 </div>
 
                 {/* Main Section Content */}
-                <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+                <div className="grid lg:grid-cols-2 gap-16 items-center mb-20 ">
                     {/* Text Content */}
                     <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-                        <div className={`bg-gradient-to-br from-slate-800/50 to-blue-900/30 backdrop-blur-xl rounded-3xl p-10 border ${sections[activeSection].borderColor} hover:border-opacity-60 transition-all duration-500 relative overflow-hidden`}>
+                        <div className={`bg-gradient-to-br from-slate-800/50 to-blue-900/30 backdrop-blur-xl rounded-3xl p-10 border ${sections[activeSection].borderColor} hover:border-opacity-60 transition-all duration-500 relative overflow-hidden shadow-lg shadow-cyan-500/25 hover:scale-103`}>
                             <div className={`absolute inset-0 bg-gradient-to-br ${sections[activeSection].bgGradient} opacity-50`}></div>
                             <div className="relative z-10">
-                                <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 mb-6">
+                                <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 mb-6 ">
                                     <div className={`w-20 h-20 bg-gradient-to-r ${sections[activeSection].gradient} rounded-3xl flex items-center justify-center shadow-xl flex-shrink-0`}>
                                         {React.createElement(sections[activeSection].icon, {
                                             className: `w-10 h-10 text-white`
@@ -163,15 +163,15 @@ const About = () => {
 
                     {/* Visual Element: Stats */}
                     <div className={`transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-                        <div className="bg-gradient-to-br from-slate-800/40 to-blue-900/20 backdrop-blur-xl rounded-3xl p-8 border border-white/10 relative overflow-hidden">
+                        <div className="bg-gradient-to-br from-slate-800/40 to-blue-900/20 backdrop-blur-xl rounded-3xl p-8 border border-white/10 relative overflow-hidden shadow-lg shadow-cyan-500/25 hover:scale-103">
                             <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
                             <div className="relative z-10">
                                 <h4 className="text-xl font-bold text-white mb-8 text-center">Our Impact in Numbers</h4>
                                 <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
                                     {stats.map((stat, index) => (
                                         <div key={index} className="text-center group">
-                                            <div className={`bg-gradient-to-br ${stat.bgColor} backdrop-blur-lg rounded-2xl p-6 border ${stat.borderColor} hover:border-opacity-60 transition-all duration-300 hover:scale-105 hover:shadow-xl relative overflow-hidden`}>
-                                                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                            <div className={`w-40 bg-gradient-to-br ${stat.bgColor} backdrop-blur-lg rounded-2xl p-6 border ${stat.borderColor} hover:border-opacity-60 transition duration-300 ease-in-out hover:scale-105 hover:shadow-xl relative overflow-hidden `}>
+                                                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 "></div>
                                                 <div className="relative z-10">
                                                     {React.createElement(stat.icon, {
                                                         className: `w-10 h-10 mx-auto mb-4 ${stat.color}`
@@ -198,13 +198,13 @@ const About = () => {
                 <div className={`mb-20 transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                     <div className="text-center mb-12">
                         <h3 className="text-3xl font-bold text-white mb-4">Our Core Principles</h3>
-                        <p className="text-slate-300 text-lg max-w-2xl mx-auto">
+                        <p className="text-slate-300 text-lg max-w-2xl mx-auto ">
                             The fundamental beliefs that guide our community and drive our mission forward
                         </p>
                     </div>
-                    <div className="grid md:grid-cols-3 gap-8">
+                    <div className="grid md:grid-cols-3 gap-8 ">
                         {principles.map((principle, index) => (
-                            <div key={index} className="bg-gradient-to-br from-slate-800/40 to-blue-900/20 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-cyan-400/30 transition-all duration-300 hover:scale-105 text-center">
+                            <div key={index} className="bg-gradient-to-br from-slate-800/40 to-blue-900/20 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-cyan-400/30 transition-all duration-300 hover:scale-105 text-center shadow-lg shadow-cyan-500/25 ">
                                 <div className="w-16 h-16 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl">
                                     {React.createElement(principle.icon, {
                                         className: `w-8 h-8 text-white`

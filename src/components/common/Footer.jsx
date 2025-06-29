@@ -51,6 +51,7 @@ const Footer = () => {
     ],
   };
 
+
   // Social media links
   const socialLinks = [
     {
@@ -91,13 +92,13 @@ const Footer = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Your email address"
-              className="px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-cyan-500 flex-grow max-w-md"
+              className="px-4 py-3 bg-slate-700 border border-cyan-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-cyan-500 flex-grow max-w-md"
               required
             />
             <button
               type="submit"
               disabled={subscribed}
-              className="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-medium rounded-lg transition-colors disabled:opacity-70"
+              className="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-white font-medium rounded-lg transition duration-300 ease-in-out disabled:opacity-90 shadow-lg shadow-cyan-500/25 hover:scale-105"
             >
               {subscribed ? "Subscribed!" : "Subscribe"}
             </button>
