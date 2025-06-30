@@ -17,3 +17,19 @@ body {
   transform: none !important;
   transition: none !important;
 }
+
+/* app.css */
+.sidebar-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.sidebar-scrollbar::-webkit-scrollbar-thumb {
+  background: #06b6d4; /* cyan-500 */
+  border-radius: 8px;
+}
+.sidebar-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #06b6d4 transparent;
+}
