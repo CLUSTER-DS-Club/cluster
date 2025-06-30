@@ -20,6 +20,7 @@ import Privacy from './pages/Privacy/Privacy.jsx';
 import Cookies from './pages/Cookies/Cookies.jsx';
 import Terms from './pages/Terms of Service/Terms.jsx';
 import Blog from './pages/Blog.jsx';
+import Events from './pages/Events.jsx';
 import BlogPost from './pages/BlogPost.jsx';
 import Whitepapers from './pages/Whitepapers.jsx';
 import SubmitWhitepaper from './pages/SubmitWhitepaper.jsx';
@@ -64,6 +65,7 @@ function App() {
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/cookies" element={<Cookies />} />
               <Route path="/terms" element={<Terms />} />
+              <Route path="/events" element={<Events />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:id" element={<BlogPost />} />
               <Route path="/whitepapers" element={<Whitepapers />} />
