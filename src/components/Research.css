@@ -56,6 +56,13 @@
   margin-top: 0.3rem;
   font-size: 1.05rem;
 }
+
+.stat-card:hover{
+  transform: scale(1.04);
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 6px 24px #0ea5e955;
+  cursor: pointer;
+}
 .featured-projects {
   width: 100%;
   margin-bottom: 2.5rem;
@@ -87,6 +94,11 @@
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid #1e90ff33;
+}
+.project-card:hover{
+  transform: scale(1.05);
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 6px 24px #0ea5e955;
 }
 .project-card h3 {
   font-size: 1.25rem;
@@ -127,7 +139,8 @@
   font-size: 1.05rem;
 }
 .view-project:hover {
-  color: #6ee0ff;
+  color: #5accfd;
+  
 }
 .publications {
   width: 100%;
@@ -147,6 +160,12 @@
   color: #6ee0ff;
   margin-bottom: 0.3rem;
   text-shadow: 0 2px 8px #0ea5e9cc;
+}
+
+.publication-card:hover{
+  transform: scale(1.04);
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 6px 24px #0ea5e955;
 }
 .authors {
   color: #b6d6f6;
@@ -192,7 +211,10 @@
   transition: background 0.2s;
 }
 .view-summary:hover {
-  background: #6ee0ff;
+  background: #69d2ff;
+  transform: scale(1.04);
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 6px 24px #0ea5e955;
 }
 .popup-overlay {
   position: fixed;

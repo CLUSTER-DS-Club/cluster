@@ -39,7 +39,7 @@ const Research = () => {
         <h2>Featured Research Projects</h2>
         <div className="projects-grid">
           {projects.map((proj, idx) => (
-            <div className={`project-card transition-all duration-700 ease-in-out ${zoomIn ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`} key={proj.title}>
+            <div className={`project-card transition-all duration-700 bg-grey-800 ease-in-out ${zoomIn ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`} key={proj.title}>
               <h3>{proj.title}</h3>
               <p>{proj.summary.slice(0, 55)}...</p>
               <div className="tags">
