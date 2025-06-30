@@ -25,6 +25,13 @@ import SubmitWhitepaper from './pages/SubmitWhitepaper.jsx';
 import CaseStudy from './components/caseStudy/caseStudy.jsx';
 import Disclaimer from './pages/Disclaimer/Disclaimer.jsx';
 import About from './pages/About.jsx';
+import Documentation from './pages/Documentation/Documentation.jsx';
+import SetUpSteps from './pages/Documentation/SetUpSteps.jsx';
+import Contribute from './pages/Documentation/Contribute.jsx';
+import TechOverview from './pages/Documentation/TechOverview.jsx';
+import CLICommands from './pages/Documentation/CLICommands.jsx';
+import DocumentationLayout from './pages/Documentation/DocumentationLayout';
+
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -62,6 +69,11 @@ function App() {
               <Route path="/caseStudy" element={<CaseStudy />} />
               <Route path="/disclaimer" element={<Disclaimer />} />
               <Route path="/about" element={<About />} />
+              <Route path="/docs" element={<SetUpSteps />} />
+              <Route path="/docs/setup-steps" element={<SetUpSteps />} />
+              <Route path="/docs/contribute" element={<Contribute />} />
+              <Route path="/docs/tech-overview" element={<TechOverview />} />
+              <Route path="/docs/cli" element={<CLICommands />} />
             </Routes>
           </main>
           <Footer />
