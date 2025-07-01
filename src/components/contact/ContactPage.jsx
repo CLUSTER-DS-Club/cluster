@@ -3,26 +3,45 @@ import '../../App.css';
 import AnimatedBackground from '../common/AnimatedBackground';
 import GlassCard from '../common/GlassCard';
 import { FiMail, FiUser, FiPhone, FiEdit, FiSend } from 'react-icons/fi';
+import { countryCodes } from '../../data/country-data.js';
 
-const InputField = ({ label, name, type = 'text', placeholder, Icon, onChangeOverride, value, error }) => (
+const CountryCodeSelector = ({ value, onChange }) => (
+  <select
+    value={value}
+    onChange={onChange}
+    name="countryCode"
+    className="bg-slate-800/60 text-white border border-cyan-500/30 px-3 py-2 rounded-xl focus:ring-cyan-500 focus:border-cyan-500 shadow-md shadow-cyan-500/10"
+  >
+    {countryCodes.map((country) => (
+      <option key={country.code} value={country.code}>
+        {country.name} ({country.code})
+      </option>
+    ))}
+  </select>
+);
+
+const InputField = ({ label, name, type = 'text', placeholder, Icon, onChangeOverride, value, error, extraBeforeInput }) => (
   <div className="transition-all duration-700 opacity-100 translate-y-0">
     <label htmlFor={name} className="block text-sm font-medium text-slate-300 mb-1">
       {label} {(name === 'name' || name === 'email') && <span className="text-red-500">*</span>}
     </label>
-    <div className="relative">
-      {Icon && <Icon className="absolute left-3 top-3.5 text-cyan-400" />}
-      <input
-        type={type}
-        name={name}
-        id={name}
-        value={value}
-        onChange={onChangeOverride}
-        required
-        placeholder={placeholder}
-        className={`pl-10 pr-4 py-2 rounded-xl bg-slate-800/60 border ${
-          error ? 'border-red-500' : 'border-cyan-500/30'
-        } text-white w-full placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-md shadow-cyan-500/10 transition-all duration-300`}
-      />
+    <div className="relative flex items-center gap-2">
+      {extraBeforeInput}
+      <div className="relative w-full">
+        {Icon && <Icon className="absolute left-3 top-3.5 text-cyan-400" />}
+        <input
+          type={type}
+          name={name}
+          id={name}
+          value={value}
+          onChange={onChangeOverride}
+          required
+          placeholder={placeholder}
+          className={`pl-10 pr-4 py-2 rounded-xl bg-slate-800/60 border ${
+            error ? 'border-red-500' : 'border-cyan-500/30'
+          } text-white w-full placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-md shadow-cyan-500/10 transition-all duration-300`}
+        />
+      </div>
     </div>
     {error && <p className="mt-1 text-sm text-red-400">{error}</p>}
   </div>
@@ -65,6 +84,7 @@ const ContactPage = () => {
     number: '',
     subject: '',
     message: '',
+    countryCode: '+91',
   });
 
   const [status, setStatus] = useState({
@@ -78,10 +98,7 @@ const ContactPage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
 
     if (status.validationErrors.length > 0) {
       setStatus((prev) => ({
@@ -124,12 +141,7 @@ const ContactPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus({
-      loading: true,
-      success: false,
-      error: null,
-      validationErrors: [],
-    });
+    setStatus({ loading: true, success: false, error: null, validationErrors: [] });
 
     try {
       const response = await fetch('http://localhost:5000/api/contact', {
@@ -142,42 +154,18 @@ const ContactPage = () => {
 
       if (!response.ok) {
         if (response.status === 400 && data.details) {
-          setStatus((prev) => ({
-            ...prev,
-            loading: false,
-            validationErrors: data.details,
-          }));
+          setStatus({ loading: false, success: false, error: null, validationErrors: data.details });
         } else {
           throw new Error(data.details || data.error || 'Failed to send message');
         }
         return;
       }
 
-      setStatus({
-        loading: false,
-        success: true,
-        error: null,
-        validationErrors: [],
-      });
-
-      setFormData({
-        name: '',
-        email: '',
-        number: '',
-        subject: '',
-        message: '',
-      });
-
-      setTimeout(() => {
-        setStatus((prev) => ({ ...prev, success: false }));
-      }, 5000);
+      setStatus({ loading: false, success: true, error: null, validationErrors: [] });
+      setFormData({ name: '', email: '', number: '', subject: '', message: '', countryCode: '+91' });
+      setTimeout(() => setStatus((prev) => ({ ...prev, success: false })), 5000);
     } catch (error) {
-      setStatus({
-        loading: false,
-        success: false,
-        error: error.message || 'An unexpected error occurred',
-        validationErrors: [],
-      });
+      setStatus({ loading: false, success: false, error: error.message || 'An unexpected error occurred', validationErrors: [] });
     }
   };
 
@@ -222,11 +210,12 @@ const ContactPage = () => {
                   label="Phone"
                   name="number"
                   type="tel"
-                  placeholder="+91 1234567890"
+                  placeholder="1234567890"
                   Icon={FiPhone}
                   value={formData.number}
                   onChangeOverride={handlePhoneChange}
                   error={getFieldError("number")}
+                  extraBeforeInput={<CountryCodeSelector value={formData.countryCode} onChange={handleChange} />}
                 />
                 {phoneError && (
                   <div className="relative">
@@ -250,8 +239,7 @@ const ContactPage = () => {
                 onChange={handleChange}
                 required
                 placeholder="Type your message here..."
-                className={`w-full p-4 rounded-xl bg-slate-800/60 border ${getFieldError('message') ? 'border-red-500' : 'border-cyan-500/30'
-                  } text-white placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-md shadow-cyan-500/10 transition-all duration-300`}
+                className={`w-full p-4 rounded-xl bg-slate-800/60 border ${getFieldError('message') ? 'border-red-500' : 'border-cyan-500/30'} text-white placeholder-slate-400 focus:border-cyan-500 focus:ring-cyan-500 shadow-md shadow-cyan-500/10 transition-all duration-300`}
               />
               {getFieldError('message') && (
                 <p className="mt-1 text-sm text-red-400">{getFieldError('message')}</p>
@@ -262,8 +250,7 @@ const ContactPage = () => {
               <button
                 type="submit"
                 disabled={status.loading}
-                className={`inline-flex items-center gap-2 py-3 px-6 rounded-xl font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all duration-300 ${status.loading ? 'opacity-50 cursor-not-allowed' : ''
-                  }`}
+                className={`inline-flex items-center gap-2 py-3 px-6 rounded-xl font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all duration-300 ${status.loading ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 {status.loading ? 'Sending...' : 'Send Message'}
                 {!status.loading && <FiSend />}
