@@ -25,6 +25,7 @@ import Privacy from './pages/Privacy/Privacy.jsx';
 import Cookies from './pages/Cookies/Cookies.jsx';
 import Terms from './pages/Terms of Service/Terms.jsx';
 import Blog from './pages/Blog.jsx';
+import Events from './pages/Events.jsx';
 import BlogPost from './pages/BlogPost.jsx';
 import Community from './pages/Community.jsx';
 import About from './pages/About.jsx';
@@ -84,6 +85,7 @@ function App() {
               <Route path="/alumni" element={<Alumni />} />
               <Route path="/about" element={<About />} />
               <Route path="/community" element={<Community />} />
+              <Route path="/events" element={<Events />} />
 
               {/* Blog and dynamic post view */}
               <Route path="/blog" element={<Blog />} />
