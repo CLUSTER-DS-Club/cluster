@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 import '../../App.css';
 import AnimatedBackground from '../common/AnimatedBackground';
 import GlassCard from '../common/GlassCard';
@@ -425,17 +427,61 @@ setShowConfirmation(true);
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1">
-                    <InputField
-                      label="Phone"
-                      name="number"
-                      type="tel"
-                      placeholder="+91 1234567890"
-                      Icon={FiPhone}
-                      value={formData.number}
-                      onChangeOverride={handlePhoneChange}
-                      error={getFieldError("number")}
-                    />
+                    <div className="space-y-1">
+  <label htmlFor="number" className="block text-sm font-medium text-slate-300 mb-1">
+    Phone <span className="text-red-500">*</span>
+  </label>
+  <PhoneInput
+  country={'in'}
+  value={formData.number}
+  onChange={(phone) =>
+    setFormData((prev) => ({ ...prev, number: phone }))
+  }
+  enableSearch
+  disableSearchIcon
+  disableCountryCode={false} // This is key: hide `+91` inside input
+  disableDropdown={false}
+  inputStyle={{
+    width: '100%',
+    backgroundColor: 'rgba(30, 41, 59, 0.6)',
+    border: '1px solid rgba(6, 182, 212, 0.3)',
+    borderRadius: '0.75rem',
+    height: '42px',
+    color: 'white',
+    paddingLeft: '80px', // leave space for the button
+    fontSize: '14px',
+  }}
+  buttonStyle={{
+    backgroundColor: 'rgba(30, 41, 59, 0.6)',
+    borderTopLeftRadius: '0.75rem',
+    borderBottomLeftRadius: '0.75rem',
+    border: '1px solid rgba(6, 182, 212, 0.3)',
+    width: '70px',
+    paddingLeft: '10px',
+    color: 'white',
+    fontSize: '14px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  }}
+  buttonComponent={(props) => {
+    const countryData = props.selectedCountry;
+    return (
+      <div {...props}>
+        {countryData
+          ? `${countryData.name} (+${countryData.dialCode})`
+          : 'Select'}
+      </div>
+    );
+  }}
+  dropdownStyle={{
+    color: 'black',
+    borderRadius: '0.5rem',
+  }}
+/>
+  {getFieldError("number") && (
+    <p className="mt-1 text-sm text-red-400">{getFieldError("number")}</p>
+  )}
                     {phoneError && (
                       <div className="relative">
                         <div className="bg-red-500 text-white text-sm px-4 py-2 rounded-xl shadow-lg w-fit max-w-xs">
