@@ -40,9 +40,11 @@ function App() {
     const timer = setTimeout(() => setLoading(false), 2000); // simulate loading
     return () => clearTimeout(timer);
   }, []);
+   const showStars = ["/terms", "/cookies", "/privacy", "/disclaimer"].includes(location.pathname);
 
   return (
     <>
+     {showStars && <div className="stars"></div>}
       <AnimatedBackground />
       <FloatingElements />
       {loading ? (
