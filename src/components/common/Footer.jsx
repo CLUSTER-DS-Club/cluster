@@ -25,13 +25,13 @@ const Footer = () => {
   // Footer link data - organized by category
   const footerLinks = {
     company: [
-        { name: 'About Us', url: '/about' },
+      { name: 'About Us', url: '/about' },
       { name: 'Our Team', url: '/team' },
       { name: 'Research', url: '/research' },
       { name: 'Events', url: '/events' },
     ],
     resources: [
-          { name: 'Documentation', url: '/docs' },
+      { name: 'Documentation', url: '/docs' },
       { name: 'Tutorials', url: '/tutorials' },
       { name: 'Blog', url: '/blog' },
       { name: 'Case Studies', url: '/caseStudy' },
