@@ -21,9 +21,9 @@ const Header = () => {
         { name: 'Home', href: '/', hasDropdown: false },
         // Alumni link temporarily hidden as per client request
         // { name: 'Alumni', href: '/alumni', hasDropdown: false },
-        { name: 'Community', href: '/community', hasDropdown: false },
-        { name: 'Research', href: '/research', hasDropdown: false },
         { name: 'About', href: '/about', hasDropdown: false },
+        { name: 'Research', href: '/research', hasDropdown: false },
+        { name: 'Community', href: '/community', hasDropdown: false },
         { name: 'Contact', href: '/contact', hasDropdown: false }
     ];
 

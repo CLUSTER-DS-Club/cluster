@@ -10,20 +10,6 @@ const Footer = () => {
   const [subscribed, setSubscribed] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  // Effect for scroll to top button visibility
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 500);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Scroll to top function
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   // Email subscription handler
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -65,6 +51,7 @@ const Footer = () => {
     ],
   };
 
+
   // Social media links
   const socialLinks = [
     {
@@ -78,7 +65,11 @@ const Footer = () => {
       name: "LinkedIn",
     },
     { icon: SiDiscord, href: "https://discord.gg/6QN83D89vx", name: "Discord" },
-    { icon: SiGmail, href: "mailto:dsclub.cluster@vips.edu", name: "Email" },
+    {
+      icon: SiGmail,
+      href: "https://mail.google.com/mail/?view=cm&to=dsclub.cluster@vips.edu",
+      name: "Email",
+    },
   ];
 
   return (
@@ -101,13 +92,13 @@ const Footer = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Your email address"
-              className="px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-cyan-500 flex-grow max-w-md"
+              className="px-4 py-3 bg-slate-700 border border-cyan-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-cyan-500 flex-grow max-w-md"
               required
             />
             <button
               type="submit"
               disabled={subscribed}
-              className="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-medium rounded-lg transition-colors disabled:opacity-70"
+              className="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-white font-medium rounded-lg transition duration-300 ease-in-out disabled:opacity-90 shadow-lg shadow-cyan-500/25 hover:scale-105"
             >
               {subscribed ? "Subscribed!" : "Subscribe"}
             </button>
@@ -333,17 +324,6 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-
-      {/* ==================== SCROLL TO TOP BUTTON ==================== */}
-      {showScrollTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 p-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-2xl shadow-2xl shadow-cyan-500/25 hover:shadow-cyan-500/50 hover:scale-110 transition-all duration-300 z-50 group"
-          aria-label="Scroll to top"
-        >
-          <ArrowUp className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
-        </button>
-      )}
     </>
   );
 };
