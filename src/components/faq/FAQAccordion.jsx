@@ -4,9 +4,9 @@ import QuestionItem from "./QuestionItem";
 
 const FAQAccordion = ({ faqs, expandedId, onToggle }) => {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 ">
       {faqs.map((item) => (
-        <QuestionItem
+        <QuestionItem className=" cursor-pointer"
           key={item.id}
           id={item.id}
           question={item.question}

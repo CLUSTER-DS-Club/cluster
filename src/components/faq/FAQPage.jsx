@@ -83,7 +83,7 @@ const FAQ = () => {
           </div>
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-6 shadow-md">
+        <div className="bg-gray-900 rounded-xl border-2 border-blue-600  p-6 shadow-md">
           {filteredFaqs.length > 0 ? (
             <FAQAccordion faqs={filteredFaqs} expandedId={expandedId} onToggle={handleToggle} />
           ) : (
