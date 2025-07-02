@@ -171,99 +171,68 @@ const TeamGrid = () => {
     const secondRow = teamMembers.slice(2, 5); // Next 3 members
     const thirdRow = teamMembers.slice(5, 8); // Last 3 members
 
-    const renderMemberCard = (member, index, isFirstRow = false) => (
+    const renderMemberCard = (member, index) => (
         <div
             key={member.id}
             className={`group transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: `${index * 100}ms` }}
         >
-            <div className="bg-gradient-to-br from-slate-800/50 to-blue-900/30 backdrop-blur-xl rounded-3xl p-8 border border-white/10 hover:border-cyan-400/30 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/10 relative overflow-hidden">
-                {/* Card Background Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                {/* Profile Section */}
-                <div className="relative z-10">
-                    <div className="flex items-center mb-6">
-                        <div className="w-20 h-20 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center text-white text-xl font-bold shadow-xl shadow-cyan-500/20 group-hover:shadow-cyan-500/30 transition-all duration-300">
-                            {member.name.split(' ').map(n => n[0]).join('')}
-                        </div>
-                        <div className="ml-4 flex flex-col">
-                            <div className="w-3 h-3 bg-green-400 rounded-full mb-2 animate-pulse"></div>
-                            <span className="text-xs text-green-400 font-medium">Available</span>
-                        </div>
+            <div className="bg-gradient-to-br from-slate-800/50 to-blue-900/30 backdrop-blur-xl rounded-2xl p-3 border border-white/10 hover:border-cyan-400/30 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/10 relative overflow-hidden flex items-center min-h-[64px]">
+                {/* Avatar */}
+                <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center text-white text-lg font-bold shadow-xl shadow-cyan-500/20 group-hover:shadow-cyan-500/30 transition-all duration-300 mr-3 shrink-0">
+                    {member.name.split(' ').map(n => n[0]).join('')}
+                </div>
+                {/* Info and Socials */}
+                <div className="flex-1 flex flex-col justify-center">
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mb-1">
+                        <span className="font-bold text-base text-white">{member.name}</span>
+                        <span className="text-cyan-400 text-xs font-semibold">{member.role}</span>
+                        <span className="text-slate-400 text-xs font-medium">{member.department}</span>
                     </div>
-
-                    {/* Member Info */}
-                    <div className="mb-6">
-                        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors duration-300">
-                            {member.name}
-                        </h3>
-                        <p className="text-cyan-400 font-semibold mb-2">{member.role}</p>
-                        <p className="text-slate-400 text-sm font-medium">{member.department}</p>
-                    </div>
-
-                    {/* Stats Row */}
-                    <div className="grid grid-cols-2 gap-4 mb-6">
-                        <div className="text-center bg-white/5 rounded-xl p-3 border border-white/10">
-                            <div className="text-lg font-bold text-cyan-400">{member.stats.projects || 0}</div>
-                            <div className="text-xs text-slate-400 font-medium">Projects</div>
-                        </div>
-                        <div className="text-center bg-white/5 rounded-xl p-3 border border-white/10">
-                            <div className="text-lg font-bold text-purple-400">{member.stats.publications || 0}</div>
-                            <div className="text-xs text-slate-400 font-medium">Papers</div>
-                        </div>
-                    </div>
-
-                    {/* Expertise Tags */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                        {member.expertise.slice(0, 2).map((skill, skillIndex) => (
+                    <div className="flex items-center gap-2">
+                        {/* Expertise Tag (only one) */}
+                        {member.expertise.slice(0, 1).map((skill, skillIndex) => (
                             <span
                                 key={skillIndex}
-                                className="px-3 py-1 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 text-xs font-medium rounded-full border border-cyan-500/30 backdrop-blur-sm"
+                                className="px-2 py-0.5 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 text-xs font-medium rounded-full border border-cyan-500/30 backdrop-blur-sm"
                             >
                                 {skill}
                             </span>
                         ))}
-                        {member.expertise.length > 2 && (
-                            <span className="px-3 py-1 bg-white/10 text-slate-400 text-xs font-medium rounded-full border border-white/20">
-                                +{member.expertise.length - 2} more
-                            </span>
-                        )}
+                        {/* Social Links */}
+                        <div className="flex items-center gap-1 ml-2">
+                            {member.social.github && (
+                                <a href={member.social.github} className="w-6 h-6 bg-white/10 rounded-xl flex items-center justify-center hover:bg-cyan-500/20 hover:scale-110 transition-all duration-300 border border-white/10" title="GitHub">
+                                    <Github className="w-3.5 h-3.5 text-slate-300" />
+                                </a>
+                            )}
+                            {member.social.linkedin && (
+                                <a href={member.social.linkedin} className="w-6 h-6 bg-white/10 rounded-xl flex items-center justify-center hover:bg-blue-500/20 hover:scale-110 transition-all duration-300 border border-white/10" title="LinkedIn">
+                                    <Linkedin className="w-3.5 h-3.5 text-slate-300" />
+                                </a>
+                            )}
+                            {member.showEmail && member.social.email && (
+                                <a href={`mailto:${member.social.email}`} className="w-6 h-6 bg-white/10 rounded-xl flex items-center justify-center hover:bg-purple-500/20 hover:scale-110 transition-all duration-300 border border-white/10" title="Email">
+                                    <Mail className="w-3.5 h-3.5 text-slate-300" />
+                                </a>
+                            )}
+                        </div>
                     </div>
-
-                    {/* Social Links */}
-                    <div className="flex justify-center space-x-3 mb-6">
-                        {member.social.github && (
-                            <a href={member.social.github} className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center hover:bg-cyan-500/20 hover:scale-110 transition-all duration-300 border border-white/10" title="GitHub">
-                                <Github className="w-5 h-5 text-slate-300" />
-                            </a>
-                        )}
-                        {member.social.linkedin && (
-                            <a href={member.social.linkedin} className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center hover:bg-blue-500/20 hover:scale-110 transition-all duration-300 border border-white/10" title="LinkedIn">
-                                <Linkedin className="w-5 h-5 text-slate-300" />
-                            </a>
-                        )}
-                        {member.showEmail && member.social.email && (
-                            <a href={`mailto:${member.social.email}`} className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center hover:bg-purple-500/20 hover:scale-110 transition-all duration-300 border border-white/10" title="Email">
-                                <Mail className="w-5 h-5 text-slate-300" />
-                            </a>
-                        )}
-                    </div>
-
-                    {/* View Profile Button */}
-                    <button
-                        onClick={() => setSelectedMember(member)}
-                        className="w-full py-3 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-400/30 rounded-xl text-cyan-300 text-sm font-semibold hover:from-cyan-500/30 hover:to-blue-500/30 hover:border-cyan-400/50 transition-all duration-300 backdrop-blur-sm hover:scale-105"
-                    >
-                        View Full Profile
-                    </button>
                 </div>
+                {/* View Profile Button */}
+                <button
+                    onClick={() => setSelectedMember(member)}
+                    className="ml-3 px-2 py-1 bg-cyan-600/80 hover:bg-cyan-500 text-white text-xs rounded-lg font-semibold shadow transition-all duration-200"
+                    title="View Full Profile"
+                >
+                    View Profile
+                </button>
             </div>
         </div>
     );
 
     return (
-        <div className="py-20 px-4 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 relative overflow-hidden min-h-screen">
+        <div className="pt-0 mt-0 rounded-2xl bg-slate-900/70 pb-0 min-h-[750px] px-4 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute inset-0 opacity-30">
                 <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
@@ -290,7 +259,7 @@ const TeamGrid = () => {
 
                 {/* First Row - Faculty and President (2 members, centered) */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
-                    {firstRow.map((member, index) => renderMemberCard(member, index, true))}
+                    {firstRow.map((member, index) => renderMemberCard(member, index))}
                 </div>
 
                 {/* Second Row - 3 members */}
@@ -299,7 +268,7 @@ const TeamGrid = () => {
                 </div>
 
                 {/* Third Row - 3 members */}
-                <div className="grid md:grid-cols-3 gap-8 mb-20">
+                <div className="grid md:grid-cols-3 gap-8 mb-0">
                     {thirdRow.map((member, index) => renderMemberCard(member, index + 5))}
                 </div>
             </div>
@@ -382,7 +351,7 @@ const TeamGrid = () => {
                             </div>
 
                             {/* Contact Section */}
-                            <div className="mt-8 pt-8 border-t border-white/10">
+                            <div className="mt-4 pt-4 border-t border-white/10">
                                 <h4 className="text-xl font-bold text-white mb-6">Connect</h4>
                                 <div className="flex gap-4">
                                     {selectedMember.social.github && (
