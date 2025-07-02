@@ -39,6 +39,7 @@ const Research = () => {
         <h2>Featured Research Projects</h2>
         <div className="projects-grid">
           {projects.map((proj, idx) => (
+
             <div
               className={`project-card horizontal-card transition-all duration-700 ease-in-out ${zoomIn ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`}
               key={proj.title}
@@ -65,6 +66,7 @@ const Research = () => {
                     @{proj.github.split('/')[0]}
                   </a>
                 </div>
+
               </div>
               <button className="view-summary" onClick={() => setPopup(idx)}>
                 Read More →

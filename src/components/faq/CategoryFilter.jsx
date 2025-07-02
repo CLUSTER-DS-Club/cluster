@@ -12,7 +12,7 @@ const CategoryFilter = ({ categories, selected, onChange }) => {
             type="button"
             onClick={() => onChange(cat)}
             className={`
-              px-3 py-1 rounded-full border
+              px-3 py-1 rounded-full border cursor-pointer
               focus:outline-none focus:ring-2 focus:ring-blue-500
               ${
                 isActive
