@@ -8,6 +8,7 @@ import FloatingElements from './components/common/FloatingElements.jsx';
 import LoadingScreen from './components/common/LoadingScreen.jsx';
 import AnimatedBackground from './components/common/AnimatedBackground.jsx';
 import ScrollToTop from './components/common/ScrollToTop.jsx';
+import ChatBot from './components/common/ChatBot.jsx';
 
 import Home from './components/home/HomePage.jsx';
 import FAQPage from './components/faq/FAQPage.jsx';
@@ -53,6 +54,7 @@ function App() {
         <>
           <Header />
           <ScrollToTop />
+          <ChatBot/>
           <main>
             <Routes>
               <Route path="/" element={<Home />} />
