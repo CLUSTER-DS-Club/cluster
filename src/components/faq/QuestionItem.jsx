@@ -20,12 +20,17 @@ const QuestionItem = ({ id, question, answer, isExpanded, onToggle }) => {
         aria-expanded={isExpanded}
         aria-controls={`faq-answer-${id}`}
         onClick={onToggle}
-        className="
+       className={`
           w-full text-left px-4 py-3 flex justify-between items-center
           focus:outline-none focus:ring-2 focus:ring-blue-500
-          bg-white dark:bg-gray-800
-        "
+          cursor-pointer transition-all duration-300
+          ${isExpanded 
+            ? 'bg-gray-500  text-white' 
+            : 'bg-white dark:bg-gray-800 hover:bg-blue-900 text-gray-800 dark:text-gray-100'
+          }
+        `}
       >
+        
         <span className="font-medium text-gray-800 dark:text-gray-100">{question}</span>
         <span
           aria-hidden="true"
@@ -45,7 +50,8 @@ const QuestionItem = ({ id, question, answer, isExpanded, onToggle }) => {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="px-4 pb-4 bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-300"
+            
+            className="px-4 pb-4 bg-gray-50 dark:bg-gray-900 bg text-gray-700 dark:text-gray-300"
           >
           
             <p className="mt-2 whitespace-pre-line">{answer}</p>
@@ -53,6 +59,8 @@ const QuestionItem = ({ id, question, answer, isExpanded, onToggle }) => {
         )}
       </AnimatePresence>
     </div>
+
+  
   );
 };
 
