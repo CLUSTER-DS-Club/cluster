@@ -50,7 +50,6 @@ function App() {
     const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
-   const showStars = ["/terms", "/cookies", "/privacy", "/disclaimer"].includes(location.pathname);
 
   // Determine if stars background should be shown for legal pages
   const showStars = ["/terms", "/cookies", "/privacy", "/disclaimer"].includes(location.pathname);
