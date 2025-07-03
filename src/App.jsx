@@ -50,16 +50,14 @@ function App() {
     const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
+   const showStars = ["/terms", "/cookies", "/privacy", "/disclaimer"].includes(location.pathname);
 
   // Determine if stars background should be shown for legal pages
   const showStars = ["/terms", "/cookies", "/privacy", "/disclaimer"].includes(location.pathname);
 
   return (
     <>
-      {/* Conditional animated stars background on select pages */}
       {showStars && <div className="stars"></div>}
-
-      {/* Background animation and floating visual elements */}
       <AnimatedBackground />
       <FloatingElements />
 
