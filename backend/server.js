@@ -1,5 +1,11 @@
-require('dotenv').config(); // Load environment variables
 
+process.on('uncaughtException', (err) => {
+  console.error('💥 Uncaught Exception:', err);
+});
+process.on('unhandledRejection', (err) => {
+  console.error('💥 Unhandled Rejection:', err);
+});
+require('dotenv').config(); 
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
@@ -7,7 +13,12 @@ const nodemailer = require('nodemailer');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true
+}));
+
+
 app.use(express.json());
 
 // Email configuration using .env
@@ -24,6 +35,9 @@ const transporter = nodemailer.createTransport({
     pass: emailConfig.pass
   }
 });
+// Simple subscribers array for testing (replace with DB in production)
+const subscribers = [];
+
 
 // Contact form endpoint
 app.post('/api/contact', async (req, res) => {
@@ -138,8 +152,79 @@ app.post('/api/contact', async (req, res) => {
     });
   }
 });
+// Newsletter subscription endpoint
+app.post('/api/subscribe', async (req, res) => {
+  console.log("➡️  Incoming subscribe request:", req.body);
+  const { email } = req.body;
 
+  // Basic format check
+  if (!email || !email.includes('@')) {
+    return res.status(400).json({ message: 'Invalid email address.' });
+  }
+
+  // Check if already subscribed
+  const already = subscribers.find(sub => sub.email === email);
+  if (already) {
+    return res.status(400).json({ message: 'You’re already subscribed!' });
+  }
+
+  // Save to array
+  const token = Math.random().toString(36).substring(2);
+  subscribers.push({ email, token });
+
+  // Send confirmation email
+try {
+  console.log("Sending email:", email);
+  const transporter = nodemailer.createTransport
+  await transporter.sendMail({
+    to: email,
+    from: emailConfig.user,
+    subject: 'Thanks for subscribing!',
+    html: `
+      <p>You’re now subscribed to CLUSTER updates!</p>
+      <p><a href="http://localhost:5000/api/unsubscribe?token=${token}">Unsubscribe anytime</a></p>
+
+    `
+  });
+} catch (error) {
+  console.error("SendMail error:", error);
+  return res.status(500).json({
+    message: 'Failed to send subscription email',
+    details: error.message || 'Email send failed'
+  });
+}
+
+
+  res.json({ message: 'Thanks for subscribing!' });
+});
+// Unsubscribe endpoint
+app.get('/api/unsubscribe', (req, res) => {
+  const { token } = req.query;
+  const index = subscribers.findIndex(sub => sub.token === token);
+
+  if (index !== -1) {
+    subscribers.splice(index, 1);
+    res.send('You have been unsubscribed.');
+  } else {
+    res.send('Invalid unsubscribe link.');
+  }
+});
+
+
+
+transporter.verify((error, success) => {
+  if (error) {
+    console.error("Transporter error:", error);
+  } else {
+    console.log("Server is ready to send emails");
+  }
+});
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
+});
+
+app.get('/', (req, res) => {
+  res.send('✅ Backend is working!');
 });
