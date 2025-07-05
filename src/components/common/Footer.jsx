@@ -11,27 +11,37 @@ const Footer = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Email subscription handler
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setTimeout(() => {
-        setSubscribed(false);
-        setEmail("");
-      }, 3000);
-    }
-  };
+const handleSubscribe = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch('http://localhost:5000/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+
+    const data = await response.json();
+    alert(data.message);
+    setSubscribed(true);
+    setEmail("");
+  } catch (err) {
+    alert("Subscription failed.");
+  }
+};
+
+
 
   // Footer link data - organized by category
   const footerLinks = {
     company: [
-        { name: 'About Us', url: '/about' },
+      { name: 'About Us', url: '/about' },
       { name: 'Our Team', url: '/team' },
       { name: 'Research', url: '/research' },
       { name: 'Events', url: '/events' },
     ],
     resources: [
-          { name: 'Documentation', url: '/docs' },
+      { name: 'Documentation', url: '/docs' },
       { name: 'Tutorials', url: '/tutorials' },
       { name: 'Blog', url: '/blog' },
       { name: 'Case Studies', url: '/caseStudy' },
