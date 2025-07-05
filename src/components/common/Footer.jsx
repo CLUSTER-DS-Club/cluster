@@ -88,9 +88,10 @@ const handleSubscribe = async (e) => {
       <div className="w-full h-full animate-footerStars opacity-30 blur-sm bg-[radial-gradient(white_1px,transparent_1px)] bg-[size:20px_20px]"></div>
       </div>
       {/* ==================== CTA SECTION ==================== */}
-      <section className="bg-slate-800 py-8 px-4 border-b border-slate-700 -mt-3">
+      <section className="bg-[#0e1a2b] py-12 px-4 border-t border-b border-slate-800">
+
         <div className="max-w-4xl mx-auto text-center">
-          <h3 className="text-2xl font-bold text-white mb-4">Stay In Loop</h3>
+          <h3 className="text-2xl font-bold text-white mb-4">Stay In The Loop</h3>
           <p className="text-slate-300 mb-6">
             Stay updated with the latest research and events from CLUSTER
           </p>
