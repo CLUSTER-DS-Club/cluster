@@ -30,22 +30,65 @@ function ChatBot() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  const handleSend = () => {
-    if (input.trim() === '') return;
-    
-    const userMessage = { text: input, sender: 'user' };
-    setMessages(prev => [...prev, userMessage]);
-    setInput('');
-    setIsTyping(true);
+ const handleSend = () => {
+  if (input.trim() === '') return;
 
-    setTimeout(() => {
-      setIsTyping(false);
-      setMessages(prev => [...prev, { 
-        text: 'Hey! Welcome to Cluster. How can I help you?', 
-        sender: 'bot' 
-      }]);
-    }, 1500);
-  };
+  const userMessage = { text: input, sender: 'user' };
+  setMessages(prev => [...prev, userMessage]);
+  setInput('');
+  setIsTyping(true);
+
+  const lowerInput = input.toLowerCase();
+  let botReply = "I’m not sure I understand that yet. Could you please rephrase your question about CLUSTER?";
+
+   if (lowerInput.includes('what is cluster') || lowerInput.includes('about cluster')) {
+    botReply = "CLUSTER is the Data Science Club Portal where students collaborate, learn, and build real-world projects in data science, machine learning, NLP, and more.";
+  } else if (lowerInput.includes('who can join')) {
+    botReply = "Anyone interested in data science, AI, or related fields is welcome! We love helping beginners and experts grow together.";
+  
+  // === Joining ===
+  } else if (lowerInput.includes('how') && lowerInput.includes('join')) {
+    botReply = "You can join us through our Discord server or contribute directly on GitHub. Just fork the repo, work on issues, or chat with our community!";
+  
+  // === Contribution ===
+  } else if (lowerInput.includes('how') && lowerInput.includes('contribute')) {
+    botReply = "Check our Contributing Guide on GitHub. Fork the repo, create a branch, push your changes, and open a pull request — we welcome all contributions!";
+  } else if (lowerInput.includes('beginner') && lowerInput.includes('contribute')) {
+    botReply = "Absolutely! CLUSTER is beginner-friendly — we love helping new contributors learn.";
+  
+  // === Technical ===
+  } else if (lowerInput.includes('tech stack') || lowerInput.includes('technology') || lowerInput.includes('framework')) {
+    botReply = "CLUSTER is built with React, Vite, and Tailwind CSS — it’s a modern, modular, and fast front-end stack.";
+  } else if (lowerInput.includes('how') && (lowerInput.includes('run') || lowerInput.includes('install'))) {
+    botReply = "Clone the repo, install dependencies with npm or yarn, and run `npm run dev` — you’re ready to develop!";
+  
+  // === Features ===
+  } else if (lowerInput.includes('features') || lowerInput.includes('offer')) {
+    botReply = "CLUSTER focuses on Data Analysis, Machine Learning, NLP, Computer Vision, MLOps, deployment, and more. We also have a Research Hub for collaborative projects.";
+  
+  // === Community ===
+  } else if (lowerInput.includes('connect') || lowerInput.includes('community')) {
+    botReply = "Join our Discord or follow us on LinkedIn to connect with other members — we host events, discussions, and learning sessions.";
+  } else if (lowerInput.includes('newsletter')) {
+    botReply = "Yes! Our newsletter is coming soon — stay tuned for updates.";
+  
+  // === Issues & Support ===
+  } else if (lowerInput.includes('bug') || lowerInput.includes('issue')) {
+    botReply = "You can report bugs by opening an issue on our GitHub under the Issues tab — our community will check it ASAP!";
+  } else if (lowerInput.includes('contact') || lowerInput.includes('help') || lowerInput.includes('support')) {
+    botReply = "You can post in our Discord or open an issue on GitHub — someone from the team or community will assist you.";
+
+  // === Friendly ===
+  } else if (lowerInput.includes('thank')) {
+    botReply = "You're welcome! Let me know if you have any other questions about CLUSTER.";
+  }
+
+  setTimeout(() => {
+    setIsTyping(false);
+    setMessages(prev => [...prev, { text: botReply, sender: 'bot' }]);
+  }, 1000);
+};
+
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
@@ -55,7 +98,7 @@ function ChatBot() {
 
   return (
     <>
-      <div className={`fixed bottom-24 right-6 z-50 w-90 transition-all duration-300 ease-in-out transform ${
+      <div className={`fixed bottom-24 right-6 z-50 w-[400px] transition-all duration-300 ease-in-out transform ${
         isOpen ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-4 opacity-0 scale-95 pointer-events-none'
       }`}>
         <div ref={chatRef} className="bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-sm">
@@ -74,13 +117,14 @@ function ChatBot() {
           </div>
 
           
-          <div className="h-64 overflow-y-auto p-4 space-y-3 bg-slate-900 scrollbar-thin scrollbar-thumb-blue-600 scrollbar-track-slate-800">
+          <div className="h-116 overflow-y-auto p-4 space-y-3 bg-slate-900 scrollbar-thin scrollbar-thumb-blue-600 scrollbar-track-slate-800">
             {messages.length === 0 && (
-              <div className="text-center text-slate-400 mt-8 animate-fade-in">
-                <div className="text-2xl mb-2">👋</div>
-                <p>Hello! How can I help you today?</p>
-              </div>
+           <div className="flex flex-col items-center justify-center h-full text-center text-slate-400 animate-fade-in">
+            <div className="text-4xl mb-2">👋</div>
+             <p className="text-lg">Hello! How can I help you today?</p>
+            </div>
             )}
+
             
             {messages.map((msg, index) => (
               <div 
@@ -139,18 +183,23 @@ function ChatBot() {
 
      
       <button
-        onClick={() => setIsOpen(true)}
-        className={`fixed bottom-25 right-9 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 text-white flex items-center justify-center shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-110 hover:shadow-3xl active:scale-95 ${
-          isOpen ? 'opacity-0 scale-75 pointer-events-none' : 'opacity-100 scale-100'
-        }`}
-      >
-        <div className="relative">
-          <span className="text-2xl animate-bounce">💬</span>
-          <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-pulse flex items-center justify-center">
-            <span className="text-xs text-white font-bold">!</span>
-          </div>
-        </div>
-      </button>
+  onClick={() => setIsOpen(true)}
+  className={`fixed bottom-25 right-9 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 text-white flex items-center justify-center shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-110 hover:shadow-3xl active:scale-95 ${
+    isOpen ? 'opacity-0 scale-75 pointer-events-none' : 'opacity-100 scale-100'
+  }`}
+>
+  <div className="relative">
+    <img 
+      src="blog/chatbot-icon.png" 
+      alt="Chatbot Icon"
+      className="w-8 h-8 animate-bounce"
+    />
+    <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-pulse flex items-center justify-center">
+      <span className="text-xs text-white font-bold">!</span>
+    </div>
+  </div>
+</button>
+
 
     
       <style jsx>{`
