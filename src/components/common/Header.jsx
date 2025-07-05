@@ -41,12 +41,13 @@ const Header = () => {
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
                     <Link to="/" className="flex items-center space-x-3 group cursor-pointer">
-                        <div className="relative">
-                            <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg shadow-cyan-500/25 group-hover:shadow-cyan-500/50 transition-all duration-300 group-hover:scale-110 overflow-hidden">
+                        <div className="w-10 h-10 relative rounded-full overflow-hidden group-hover:scale-110 transition-transform duration-300">
+                            <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg shadow-cyan-500/55 group-hover:shadow-cyan-500/50 transition-all duration-300 group-hover:scale-110 overflow-hidden absolute inset-0 bg-black/40 z-10 ">
                                 <img
                                     src={logo}
                                     alt="Logo"
-                                    className="w-full h-full object-cover rounded-full"
+                                    className="w-full h-full object-cover rounded-full drop-shadow-[0_0_6px_rgba(0,255,255,0.7)]"
+
                                 />
                             </div>
                             <div className="absolute -inset-1 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
