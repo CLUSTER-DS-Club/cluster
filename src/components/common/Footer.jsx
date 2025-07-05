@@ -84,6 +84,9 @@ const handleSubscribe = async (e) => {
 
   return (
     <>
+    <div className="absolute inset-0 h-full w-full overflow-hidden -z-10 pointer-events-none">
+      <div className="w-full h-full animate-footerStars opacity-30 blur-sm bg-[radial-gradient(white_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+      </div>
       {/* ==================== CTA SECTION ==================== */}
       <section className="bg-slate-800 py-8 px-4 border-b border-slate-700 -mt-3">
         <div className="max-w-4xl mx-auto text-center">
