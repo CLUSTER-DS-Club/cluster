@@ -11,11 +11,23 @@
   flex-direction: column;
   align-items: center;
 }
+.popup-window {
+  background: linear-gradient(to bottom right, #1e2a45, #243b5e);
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  color: white;
+  text-align: center;
+  position: relative;
+}
 
 .research-header {
   width: 100%;
   text-align: center;
   margin-bottom: 2.5rem;
+
 }
 
 .research-header h1 {
@@ -125,6 +137,7 @@
 
 .tags span {
   background: #0ea5e9;
+  margin-top: 1rem;
   color: #fff;
   border-radius: 0.5rem;
   padding: 0.2rem 0.7rem;
@@ -135,7 +148,8 @@
 .year {
   color: #b6d6f6;
   font-size: 1.05rem;
-  margin-bottom: 0.7rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .view-summary {
@@ -213,6 +227,7 @@
   color: #6ee0ff;
   font-weight: 500;
   font-size: 1.05rem;
+  
 }
 
 .github-id {

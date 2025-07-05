@@ -101,14 +101,15 @@ const Research = () => {
       {popup !== null && (
         <div className="popup-overlay" onClick={() => setPopup(null)}>
           <div className="popup-window" onClick={e => e.stopPropagation()}>
-            <h3>{projects[popup].title}</h3>
-            <p>{projects[popup].summary}</p>
-            <div className="tags">
+            <h3 className="text-2xl font-medium text-cyan-400 mb-2 ">{projects[popup].title}</h3>
+            <p className="text-sm text-gray-200 mb-4 mt-4">{projects[popup].summary}</p>
+            <div className="tags flex flex-wrap justify-center gap-2 mb-">
               {projects[popup].tags.map(tag => <span key={tag}>{tag}</span>)}
             </div>
             <div className="year">{projects[popup].year}</div>
             <div className="dev-info">
-              <span className="dev-name">{projects[popup].developer}</span>
+             <span className='dev-name'>by - </span>
+             
               <a
                 className="github-id"
                 href={`https://github.com/${projects[popup].github}`}
