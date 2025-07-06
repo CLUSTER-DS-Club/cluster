@@ -11,16 +11,26 @@ const Footer = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Email subscription handler
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setTimeout(() => {
-        setSubscribed(false);
-        setEmail("");
-      }, 3000);
-    }
-  };
+const handleSubscribe = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch('http://localhost:5000/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+
+    const data = await response.json();
+    alert(data.message);
+    setSubscribed(true);
+    setEmail("");
+  } catch (err) {
+    alert("Subscription failed.");
+  }
+};
+
+
 
   // Footer link data - organized by category
   const footerLinks = {
