@@ -12,7 +12,7 @@ import CallToAction from './components/home/CallToAction.jsx'
 import AnimatedBackground from './components/common/AnimatedBackground.jsx'
 import ScrollToTop from './components/common/ScrollToTop.jsx'
 import Research from './components/Research.jsx'
-import Publications from './components/Publications.jsx'
+import PublicationsPage from './pages/PublicationsPage.jsx'
 
 function App() {
   return (
@@ -35,7 +35,7 @@ function App() {
             }
           />
           <Route path="/research" element={<Research />} />
-          <Route path="/publications" element={<Publications />} />
+          <Route path="/publications" element={<PublicationsPage />} />
         </Routes>
       </main>
       <Footer />
