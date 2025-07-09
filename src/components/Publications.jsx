@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import './Publications.css';
 import publications from '../data/publications.js';
@@ -17,10 +16,13 @@ const categories = [
 const Publications = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
+  // Handle potential data loading errors
+  const publicationsData = publications || [];
+
   const filteredPublications =
     selectedCategory === 'All'
-      ? publications
-      : publications.filter((pub) => pub.category === selectedCategory);
+      ? publicationsData
+      : publicationsData.filter((pub) => pub.category === selectedCategory);
 
   return (
     <div className="publications-page">
@@ -38,12 +40,24 @@ const Publications = () => {
       </div>
       <div className="publications-list">
         {filteredPublications.length === 0 ? (
-          <div className="no-pubs">No publications found in this category.</div>
+          <div className="no-pubs">
+            {publicationsData.length === 0
+              ? 'No publications available at the moment.'
+              : 'No publications found in this category.'}
+          </div>
         ) : (
           filteredPublications.map((pub, idx) => (
-            <a className="publication-card" href={pub.link} target="_blank" rel="noopener noreferrer" key={idx}>
+            <a
+              className="publication-card"
+              href={pub.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              key={`${pub.title}-${idx}`}
+            >
               <h3>{pub.title}</h3>
-              <div className="authors">{pub.authors} · {pub.date}</div>
+              <div className="authors">
+                {pub.authors} · {pub.date}
+              </div>
               <p>{pub.summary}</p>
             </a>
           ))
