@@ -147,7 +147,7 @@ const Header = () => {
                                     href="https://discord.gg/6QN83D89vx"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-full block px-3 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 flex items-center justify-center space-x-2"
+                                    className="w-full  px-3 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 flex items-center justify-center space-x-2"
                                 >
                                     <Users className="w-4 h-4" />
                                     <span>Join Community</span>
