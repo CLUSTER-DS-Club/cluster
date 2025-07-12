@@ -14,11 +14,18 @@ import AnimatedBackground from './components/common/AnimatedBackground.jsx';
 import ScrollToTop from './components/common/ScrollToTop.jsx';
 import ChatBot from './components/common/ChatBot.jsx';
 
+// Home page components (from research-page branch)
+import HeroSection from './components/home/HeroSection.jsx';
+import FeaturesGrid from './components/home/FeaturesGrid.jsx';
+import TestimonialsCarousel from './components/home/TestimonialsCarousel.jsx';
+import CallToAction from './components/home/CallToAction.jsx';
+
 // Page components
-import Home from './components/home/HomePage.jsx';
+import HomePageComponent from './components/home/HomePage.jsx';
 import FAQPage from './components/faq/FAQPage.jsx';
 import Research from './components/Research.jsx';
 import Publications from './components/Publications.jsx';
+import PublicationsPage from './pages/PublicationsPage.jsx';
 import ContactPage from './components/contact/ContactPage.jsx';
 import Alumni from './pages/Alumni.jsx';
 import Privacy from './pages/Privacy/Privacy.jsx';
@@ -41,6 +48,18 @@ import Contribute from './pages/Documentation/Contribute.jsx';
 import TechOverview from './pages/Documentation/TechOverview.jsx';
 import CLICommands from './pages/Documentation/CLICommands.jsx';
 
+// Home component combining research-page functionality
+function Home() {
+  return (
+    <>
+      <HeroSection />
+      <FeaturesGrid />
+      <TestimonialsCarousel />
+      <CallToAction />
+    </>
+  );
+}
+
 function App() {
   const [loading, setLoading] = useState(true); // Loading state for initial screen
   const location = useLocation(); // Get current route path
@@ -50,7 +69,9 @@ function App() {
     const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
+
   const showStars = ["/terms", "/cookies", "/privacy", "/disclaimer"].includes(location.pathname);
+
   return (
     <>
       {showStars && <div className="stars"></div>}
@@ -75,7 +96,7 @@ function App() {
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/research" element={<Research />} />
-              <Route path="/publications" element={<Publications />} />
+              <Route path="/publications" element={<PublicationsPage />} />
               <Route path="/alumni" element={<Alumni />} />
               <Route path="/about" element={<About />} />
               <Route path="/community" element={<Community />} />

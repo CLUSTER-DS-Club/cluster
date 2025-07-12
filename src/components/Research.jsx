@@ -1,8 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import './Research.css';
 
-import projects from '../data/researchprojects.js';
-import featuredPublications from '../data/featuredPublications.js';
+// Local data fallback
+const defaultProjects = [
+  {
+    title: 'AI-based Waste Detection',
+    summary: 'A machine learning system for classifying waste using image data. Uses CNNs for real-time waste detection and classification.',
+    tags: ['AI', 'Computer Vision'],
+    year: 2024,
+    developer: 'Tejaswini H.',
+    github: 'tejaswini-h/waste-detection',
+  },
+  {
+    title: 'Blockchain Voting System',
+    summary: 'A decentralized app to enable secure student council elections using blockchain technology for tamper-proof voting.',
+    tags: ['Blockchain', 'Security'],
+    year: 2023,
+    developer: 'Rahul S.',
+    github: 'rahuls/voting-blockchain',
+  },
+];
+
+const defaultFeaturedPublications = [
+  {
+    title: 'Optimizing Deep Neural Networks for Waste Classification',
+    authors: 'Tejaswini H. et al.',
+    date: 'May 2024',
+    summary: 'This paper presents an optimized CNN architecture for real-time waste detection.',
+    link: 'https://ieeexplore.ieee.org/document/1234567',
+  },
+];
+
+// Try to import external data, fallback to local data
+let projects, featuredPublications;
+try {
+  projects = require('../data/researchprojects.js').default || defaultProjects;
+  featuredPublications = require('../data/featuredPublications.js').default || defaultFeaturedPublications;
+} catch (error) {
+  projects = defaultProjects;
+  featuredPublications = defaultFeaturedPublications;
+}
 
 const Research = () => {
   const [popup, setPopup] = useState(null);
@@ -39,22 +76,20 @@ const Research = () => {
         <h2>Featured Research Projects</h2>
         <div className="projects-grid">
           {projects.map((proj, idx) => (
-
             <div
-              className={`project-card horizontal-card transition-all duration-700 ease-in-out ${zoomIn ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`}
+              className={`project-card transition-all duration-700 ease-in-out ${zoomIn ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`}
               key={proj.title}
+              style={{ transitionDelay: `${idx * 100}ms` }}
             >
               <div className="card-content">
-                <div>
-                  <h3 className="text-xl font-bold">{proj.title}</h3>
-                  <p className="text-base text-gray-300">{proj.summary.slice(0, 55)}...</p>
-                  <div className="tags">
-                    {proj.tags.map(tag => (
-                      <span className="tag bg-blue-600 text-white px-2 py-1 rounded text-xs" key={tag}>#{tag}</span>
-                    ))}
-                  </div>
-                  <div className="year text-sm text-gray-400">{proj.year}</div>
+                <h3>{proj.title}</h3>
+                <p>{proj.summary.slice(0, 85)}...</p>
+                <div className="tags">
+                  {proj.tags.map(tag => (
+                    <span key={tag}>{tag}</span>
+                  ))}
                 </div>
+                <div className="year">{proj.year}</div>
                 <div className="dev-info">
                   <span className="dev-name">{proj.developer}</span>
                   <a
@@ -66,10 +101,9 @@ const Research = () => {
                     @{proj.github.split('/')[0]}
                   </a>
                 </div>
-
               </div>
               <button className="view-summary" onClick={() => setPopup(idx)}>
-                Read More →
+                View Summary
               </button>
             </div>
           ))}
@@ -78,7 +112,7 @@ const Research = () => {
 
       <section className={`publications transition-all duration-1000 ease-in ${zoomIn ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95'}`}>
         <h2>Publications</h2>
-        <div className="publications-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', width: '100%' }}>
+        <div className="publications-grid">
           {featuredPublications.map((pub, idx) => (
             <a
               className="publication-card"
@@ -86,7 +120,6 @@ const Research = () => {
               target="_blank"
               rel="noopener noreferrer"
               key={idx}
-              style={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
             >
               <h3>{pub.title}</h3>
               <div className="authors">{pub.authors} · {pub.date}</div>
@@ -94,9 +127,8 @@ const Research = () => {
             </a>
           ))}
         </div>
-
         <div style={{ textAlign: 'right', marginTop: '1.2rem' }}>
-          <a href="/cluster/publications" className="view-all-pubs">View All Publications →</a>
+          <a href="/#/publications" className="view-all-pubs">View All Publications →</a>
         </div>
       </section>
 
